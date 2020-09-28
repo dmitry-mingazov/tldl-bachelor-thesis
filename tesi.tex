@@ -1,0 +1,68 @@
+\documentclass{unicam_thesis}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+%\usepackage[backend=bibtex]{biblatex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TESI DATI FRONTESPIZIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Multiuser Configurable DataView \\ Web Dashboard}
+
+\university{Universit\`a degli Studi di Camerino}%
+\school{Scienze e Tecnologie}%
+\course{Laurea in Informatica (Classe L-31)}%
+
+
+\firstauthor{Tommaso Carletti}%
+\firstmatricola{100889}%
+\secondauthor{Luca Cervioni}%
+\secondmatricola{100993}%
+\thirdauthor{Dmitry Mingazov}%
+\thirdmatricola{101884}%
+\fourthauthor{Lucia Passeri}%
+\fourthmatricola{100824}%
+\advisor{Prof.ssa Emanuela Merelli}%
+\tutor{Luca Mazzuferi}%
+\academicyear{2019/2020}%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FINE DATI FRONTESPIZIO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{definition} \newtheorem{esempio}{Esempio}[chapter]
+\theoremstyle{definition}
+\newtheorem{definizione}{Definizione}[chapter] \theoremstyle{plain}
+\newtheorem{teorema}{Teorema}[chapter]
+
+\graphicspath{{Screenshot/},{Immagini/},{API/},{Source/}}
+\bibliography{biblio.bib}
+%\addbibresource{biblio.bib}
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\lstlistoflistings
+\listoffigures
+\listoftables
+
+\input{abstract}
+\input{introduzione}
+\input{tecnologie}
+\input{architettura}
+\input{conclusione}
+\input{giugno}
+
+
+\appendix
+%\input{schema_elettrico}
+%\input{Appendix1}
+%\input{Appendix2}
+
+\printbibliography
+
+\printindex
+
+\include{ringraziamenti}
+
+\end{document}
