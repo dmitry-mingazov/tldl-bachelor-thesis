@@ -1,0 +1,227 @@
+\chapter{Source Management}
+
+Una source è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una DataSource, una classe che nel pattern Model View Controller si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
+
+\section{Creazione Source}
+Viene creata una classe DataSource che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto ad ottenere i dati richiesti (e.g. GetData), che verrà implementato dalla DataSource.
+\begin{lstlisting}[caption={ITupleDataSource.cs}, style=sharpCode]
+interface ITupleDataSource
+    {
+        public TupleDTO[] GetData(List<Parameter> parameters);
+    }
+\end{lstlisting}
+\begin{lstlisting}[caption={TupleDataSource.cs}, style=sharpCode]
+public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
+{
+  ...
+  public TupleDTO[] GetData(List<Parameter> parameters)
+  {
+    var sam = new SeriousParameterHandler(parameters);
+    var hours = sam.GetValue<long>("from");
+    var now = DateTime.Now;
+          DateTime from = now.AddHours(-hours);
+    if (hours == -1)
+          {
+      from = new DateTime(0);
+          }
+    return sam.Contains("stationCode") ? 
+      _repo.GetStationRefusedByCode(sam.GetValue<long>("stationCode"), from)
+      .GetAwaiter().GetResult() :
+      sam.Contains("benchCode") ? 
+      _repo.GetBenchRefusedByCode(sam.GetValue<long>("benchCode"), from)
+      .GetAwaiter().GetResult() :
+      sam.Contains("lineCode") ?
+      _repo.GetLineRefusedByCode(sam.GetValue<long>("lineCode"), from)
+      .GetAwaiter().GetResult() :
+              _repo.GetAllRefused(from)
+      .GetAwaiter().GetResult();
+  }
+  ...
+}
+\end{lstlisting}
+
+\section{Registrazione Source}
+Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
+\begin{itemize}
+\item SourceCode è l’identificativo della source
+\item TDataSource è il tipo della DataSource legata alla source
+\item Parameters sono i parametri messi a disposizione dalla source per modificare la query
+\item Metadata sono i metadati volti a modificare come vengono visualizzati i dati lato frontend
+\end{itemize}
+Parameters e Metadata vengono scritti in un file json all’interno della cartella \verb|properties| con il nome \verb|{SourceCode}.json|, come nel seguente esempio:
+\begin{lstlisting}[caption={allcode.json}, style=JavaScriptCODE]
+{
+  "metadata": {
+    "meta": {
+      "fieldName": "label"
+    },
+    "properties": {
+      "color": [
+        {
+          "field": "Passed",
+          "value": "green"
+        },
+        {
+          "field": "Refused",
+          "value": "red"
+        }
+      ],
+      ...
+      ]
+    }
+  },
+  "filters": [
+    {
+      "Code": "from",
+      "ShortText": "In the last",
+      "LongText": "From",
+      "Type": "number",
+      "DefaultValue": -1,
+      "Editor": {
+        "Type": "EnumEditor",
+        "Path": "@aulos/parameter-editors",
+        "Options": {
+          "comboValues": [
+            {
+              "label": "12 hours",
+              "value": 12
+            },
+            ...
+            {
+              "label": "Ever",
+              "value": -1
+            }
+          ]
+        }
+      }
+    }
+  ]
+} 
+\end{lstlisting}
+Per registrare una source, si crea una classe di configurazione che estende la classe astratta \verb|DiscoveryConfiguration|, e si richiama all’interno del costruttore il metodo \verb|AddSource|, passandogli le informazioni della source che si sta registrando.
+\\
+\begin{lstlisting}[caption={TupleDiscoveryConfiguration.cs}, style=sharpCode]
+public class TupleDiscoveryConfiguration : DiscoveryConfiguration
+{
+    public TupleDiscoveryConfiguration()
+    {
+        AddSource(new SourceInfo
+        {
+            TDataSource = typeof(AllRefusedDataSource),
+            SourceCode = "allcode",
+            LongText = "All refused",
+            ShortText = "All refused"
+        });
+
+        AddSource(new SourceInfo
+        {
+            TDataSource = typeof(RefusedTypeDataSource),
+            SourceCode = "refusedtype",
+            LongText = "Refused type",
+            ShortText = "Refused type"
+        });
+    }
+}
+\end{lstlisting}
+Il metodo AddSource, definito in DiscoveryConfiguration, ottiene attraverso PropertiesConfiguration le eventuali informazioni aggiuntive contenute nell’apposito file\\ \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure
+\begin{lstlisting}[caption={DiscoveryConfiguration.cs}, style=sharpCode]
+public abstract class DiscoveryConfiguration
+{
+    private List<SourceInfo> _sources = new List<SourceInfo>();
+    public List<SourceInfo> Configure()
+    {
+        return _sources;
+    }
+
+    protected void AddSource(SourceInfo source)
+    {
+        var sourceProperties = PropertiesConfiguration.GetFilters(source.SourceCode);
+        source.Parameters = sourceProperties.Filters.ToList();
+        source.Metadata = sourceProperties.Metadata;
+        _sources.Add(source);
+    }
+
+}
+\end{lstlisting}
+DataDiscoveryConfiguration ottiene tutte le classi che estendono DiscoveryConfiguration, per poi registrare in SourceManagementService tutte le source riscontrate
+\begin{lstlisting}[caption={DataDiscoveryConfiguraton.cs}, style=sharpCode]
+public static class DataDiscoveryConfiguration
+{
+  public static void Configure(SourceManagementService sourceManagementService)
+  {
+      var configurations = AppDomain.CurrentDomain.GetAssemblies()
+          .SelectMany(x => x.GetTypes())
+          .Where(x => typeof(DiscoveryConfiguration).IsAssignableFrom(x) && 
+                  !x.IsInterface && !x.IsAbstract)
+          .ToList();
+
+      configurations.ForEach(configuration =>
+      {
+          sourceManagementService
+              .RegisterSources(
+                  ((DiscoveryConfiguration)Activator.CreateInstance(configuration))
+                  .Configure()
+              );
+      });
+
+  }
+}
+\end{lstlisting}
+\section{Interazioni Frontend}
+DataTypeCoupling è un enum che associa ad ogni risorsa il tipo di DataSource che utilizza.
+\begin{lstlisting}[caption={DataTypeCoupling.cs}, style=sharpCode]
+...
+
+public enum DataTypeCoupling
+{
+    [CouplingData(Label = "tuple", DataType = typeof(ITupleDataSource))]
+    tupleData,
+    [CouplingData(Label = "orders", DataType = typeof(OrdersDataSource))]
+    ordersData,
+
+    ... 
+
+}
+\end{lstlisting}
+DiscoveryController presenta due endpoint:
+\begin{itemize}
+\item \verb|{resource}/discovery| - restituisce lo SourceCode e le descrizioni delle source associate ad una DataSource del tipo associato ad \verb|resource|, utilizzando il metodo GetDataSourcesByType di SourceManagementService
+\item \verb|filters/{sourceCode}| - restituisce i parameters e i metadata di una specifica Source
+\end{itemize}
+Il sourceCode restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
+
+\section{Utilizzo}
+Un Controller che restituisce dati in una determinata forma deve chiamarsi \verb|{resource}Controller|, dove resource è una stringa registrata in DataTypeCoupling.
+\begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
+ [Route("api/widgets/[controller]")]
+ [ApiController]
+ public class TupleController: ControllerBase
+  {
+  
+  ...
+  
+  }
+\end{lstlisting}
+Deve presentare un endpoint Post nella forma \verb|api/widgets/{resource}|
+\begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
+[HttpPost]
+public IActionResult Search([FromBody] GenericRequestDTO request)
+{
+    var dataSource = _sourceManagementService
+      .GetDataSource<ITupleDataSource>(request.SourceCode);
+    return new ObjectResult(dataSource.GetData(request.Filters));
+}
+\end{lstlisting}
+Prende come Body una GenericRequest, che presenta i seguenti campi:
+\begin{itemize}
+\item \verb|SourceCode| indica da quale fonte di dati devono essere presi i dati.
+\item \verb|Filters| sono gli eventuali parametri necessari alla esecuzione della query.
+\end{itemize}
+\begin{lstlisting}[caption={GenericRequestDTO.cs}, style=sharpCode]
+public class GenericRequestDTO
+{
+    public string SourceCode { get; set; }
+    public List<Parameter> Filters { get; set; }
+}
+\end{lstlisting}
+Restituisce la risorsa gestita dal Controller utilizzando il metodo \verb|GetData| della DataSource che ottiene attraverso il metodo \verb|GetDataSource<T>| di \verb|SourceManagementService|, passandogli il SourceCode contenuto nella richiesta

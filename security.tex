@@ -1,0 +1,222 @@
+\chapter{Security}
+\label{chap:security}
+
+\paragraph{Module}
+L'autenticazione degli utenti all'interno della dashboard è gestita dall' \verb|ItSecurity|-\verb|Module|. Nell'\verb|ItSecurityModule| vengono registrati nell'array \verb|providers|, che gestisce la dependency injection, i service necessari specificando per ognuno di essi la classe astratta a cui fanno riferimento e la classe d'implementazione.
+\begin{lstlisting}[caption={Injection dei service nell'ItSecurityModule}, style=javaScriptCode]
+@NgModule({
+  imports: [HttpClientModule],
+})
+export class ItSecurityModule {
+  /**
+   * Main configuration to call on root application module
+   */
+  public static forRoot(): ModuleWithProviders<ItSecurityModule> {
+    return {
+      ngModule: ItSecurityModule,
+      providers: [
+        {
+          provide: AbstractUserFactory,
+          useClass: ItUserFactory
+        },
+        {
+          provide: AbstractTokenProviderService,
+          useClass: ItAccessTokenProviderService,
+        },
+        {
+          provide: ItRefreshTokenProviderService,
+          useClass: ItRefreshTokenProviderService,
+        },
+        {
+          provide: AbstractSecurityService,
+          useClass: ItSecurityService
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ITHttpSecurityInterceptor,
+          multi: true
+        },
+        {
+          provide: APP_INITIALIZER,
+          useFactory: ItSecurityModule.appInitializer,
+          deps: [AbstractTokenProviderService, ItRefreshTokenProviderService, 
+            AbstractSecurityService],
+          multi: true
+        }
+      ]
+    };
+  }
+  ...
+}
+\end{lstlisting}
+In \verb|providers| vengono fornite le implementazioni delle classi astratte
+\verb|Abstract|-\verb|SecurityService|, \verb|AbstractUserFactory| e \verb|AbstractTokenProviderServi|-\verb|ce|, parte del framework Aulos.
+Tutta la logica principale dell'autenticazione risiede all'interno dell'\verb|ItSecurityService|. La sua responsabilità è quella di autenticare e disconnettere l'utente nella dashboard. \\
+\begin{lstlisting}[caption={Principali metodi della classe ItSecurityService}, style=javaScriptCode]
+@Injectable({
+  providedIn: 'root'
+})
+export class ItSecurityService extends AbstractSecurityService {
+
+  ...
+
+  login(username: string, password: string): Observable<ItUser> {
+  
+    ...
+    
+    return this.httpClient.post<JWTToken>(`${this.serviceConfiguration.baseUrl}/
+    issue/oauth2/token`, { username, password, grant_type: 'password', 
+        scope: 'urn:gl-services-infrastructure' }, { headers })
+      .pipe(
+        map(response => {
+          const jwtUser = this.decodeToken(response.access_token);
+          /* We have to set autologin to false to be sure to enable login phase 
+          (when default user logout)*/
+          this.serviceConfiguration.autoLogin = false;
+          // Store current token so next call will have correct token
+          this.accessTokenProviderService.store(btoa(JSON.stringify(jwtUser)));
+          this.refreshTokenProviderService.store(response.refresh_token);
+          this.currentJWTUser.next(jwtUser);
+          return jwtUser;
+        }),
+        concatMap(jwtUser => {
+          return this.getUser(jwtUser.loginName)
+            .pipe(map(user => {
+              this.currentUser.next(user);
+              return user;
+            }));
+        }));
+  }
+
+  logout(): Observable<unknown> {
+    this.accessTokenProviderService.remove();
+    this.refreshTokenProviderService.remove();
+    this.currentUser.next(null);
+    return EMPTY;
+  }
+
+}
+\end{lstlisting}
+\paragraph{Grant}
+Si è utilizzato il Resource Owner Password Credentials Grant \cite{GRANT} in quanto nel caso d'uso in questione si ha un elevato grado di fiducia tra frontend e backend.
+Le credenziali vengono mandate all'Authorization Server che restituisce, se le credenziali sono corrette, un access token ed un refresh token.\\
+\begin{figure}[h]
+\begin{center}
+\label{fig:grantflow}
+\begin{verbatim}
++----------+
+| Resource |
+|  Owner   |
+|          |
++----------+
+     v
+     |    Resource Owner
+    (A) Password Credentials
+     |
+     v
++---------+                                  +---------------+
+|         |>--(B)---- Resource Owner ------->|               |
+|         |         Password Credentials     | Authorization |
+| Client  |                                  |     Server    |
+|         |<--(C)---- Access Token ---------<|               |
+|         |    (w/ Optional Refresh Token)   |               |
++---------+                                  +---------------+
+
+\end{verbatim}
+\caption{Resource Owner Password Credentials Flow \cite{GRANT}}
+\end{center}
+\end{figure}
+\FloatBarrier
+\begin{figure}[h]
+\begin{center}
+\label{fig:refreshflow}
+\begin{verbatim}
++--------+                                           +---------------+
+|        |--(A)------- Authorization Grant --------->|               |
+|        |                                           |               |
+|        |<-(B)----------- Access Token -------------|               |
+|        |               & Refresh Token             |               |
+|        |                                           |               |
+|        |                            +----------+   |               |
+|        |--(C)---- Access Token ---->|          |   |               |
+|        |                            |          |   |               |
+|        |<-(D)- Protected Resource --| Resource |   | Authorization |
+| Client |                            |  Server  |   |     Server    |
+|        |--(E)---- Access Token ---->|          |   |               |
+|        |                            |          |   |               |
+|        |<-(F)- Invalid Token Error -|          |   |               |
+|        |                            +----------+   |               |
+|        |                                           |               |
+|        |--(G)----------- Refresh Token ----------->|               |
+|        |                                           |               |
+|        |<-(H)----------- Access Token -------------|               |
++--------+           & Optional Refresh Token        +---------------+
+
+\end{verbatim}
+\caption{Token Refresh Flow \cite{REFRESH}}
+\end{center}
+\end{figure}
+\FloatBarrier 
+Il refresh token viene utilizzato dal Client per richiedere all'Authorization Server un nuovo access token quando quest'ultimo è scaduto.
+La memorizzazione dell'access e del refresh token viene svolta rispettivamente dall'\verb|ItAccessTokenProviderService| e dall'\verb|ItRefreshTokenProviderService|.
+Entrambe le classi estendono la classe astratta \verb|AbstractTokenProviderService|.\\
+\begin{lstlisting}[caption={Classe astratta AbstractTokenProviderService}, style=javaScriptCode]
+export declare abstract class AbstractTokenProviderService {
+    /**
+     * Get token from storage
+     */
+    abstract get(): Observable<string>;
+    /**
+     * Store token on storage
+     */
+    abstract store(token: string): Observable<void>;
+    /**
+     * Remove token on storage
+     */
+    abstract remove(): Observable<void>;
+}
+\end{lstlisting}
+All'avvio della dashboard l'\verb|ItSecurityModule| autentica automaticamente l'utente se l'access token è già presente nel local storage.\newline
+\begin{lstlisting}[caption={Login con token nell'ItSecurityModule}, style=javaScriptCode]
+@NgModule({
+  imports: [HttpClientModule],
+})
+export class ItSecurityModule {
+    
+  ...
+
+  public static appInitializer(
+    accessTokenProviderService: AbstractTokenProviderService,
+    refreshTokenProviderService: ItRefreshTokenProviderService,
+    securityService: AbstractSecurityService
+  ): () => Promise<void> {
+    const result = (): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        // Check if token is already present on browser storage
+        const sources = [accessTokenProviderService.get(), 
+            refreshTokenProviderService.get()];
+        forkJoin(sources).subscribe((val) => {
+          const accTok: string = val[0];
+          const refrTok: string = val[1];
+          if (accTok && refrTok) {
+            securityService.loginWithToken((JSON.parse(atob(accTok)) as ItJWTUser)
+                .accessToken).subscribe(() => resolve());
+          } else {
+            resolve();
+          }
+        }, (error) => console.error(error));
+      });
+    };
+    return result;
+  }
+}
+\end{lstlisting}
+\pagebreak
+\paragraph{Interceptor} Chi intercetta e gestisce le richieste e le risposte http è l'\verb|ItHttpSecurityIntercep|-\verb|tor|.
+Nello specifico l'\verb|ItHttpSecurityInterceptor| si occupa di: 
+\begin{itemize}
+    \item decorare le richieste http in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta,
+    \item richiedere un access token tramite la procedura di refresh token in caso di risposta 401 a una richiesta al backend,
+    \item ripetere la richiesta fallita con codice 401 dopo aver ottenuto il nuovo access token, 
+    \item effettuare il logout in caso di fallimento della procedura di refresh.
+\end{itemize}

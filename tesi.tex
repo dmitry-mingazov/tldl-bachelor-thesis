@@ -1,12 +1,28 @@
 \documentclass{unicam_thesis}
+\usepackage{placeins}
 \usepackage[utf8]{inputenc}
 \usepackage{listings}
-%\usepackage[backend=bibtex]{biblatex}
+\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{breaklinks=true}
+\urlstyle{same}
+\Urlmuskip=0mu plus 1mu
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+\usepackage {tikz}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subfig}
+\captionsetup[subfloat]{labelfont={bf,small},textfont={it,small},subrefformat=parens}
+\usepackage{floatrow}
+\usepackage{multicol}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TESI DATI FRONTESPIZIO
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Multiuser Configurable DataView \\ Web Dashboard}
+\title{Project: Multiuser Configurable DataView \\ Web Dashboard}
 
 \university{Universit\`a degli Studi di Camerino}%
 \school{Scienze e Tecnologie}%
@@ -34,9 +50,8 @@
 \newtheorem{definizione}{Definizione}[chapter] \theoremstyle{plain}
 \newtheorem{teorema}{Teorema}[chapter]
 
-\graphicspath{{Screenshot/},{Immagini/},{API/},{Source/}}
+\graphicspath{{Screenshot/},{Immagini/},{API/},{Source/},{images/}}
 \bibliography{biblio.bib}
-%\addbibresource{biblio.bib}
 \begin{document}
 
 \maketitle
@@ -44,25 +59,32 @@
 \tableofcontents
 \lstlistoflistings
 \listoffigures
-\listoftables
 
-\input{abstract}
 \input{introduzione}
-\input{tecnologie}
-\input{architettura}
-\input{conclusione}
-\input{giugno}
+\input{widget}
+\input{security}
+\input{parametri}
+\input{Discovery_config}
+\input{topology}
+\input{persistence}
+\input{caching}
+\input{stresstest}
+
+
+
+
+
+
+
 
 
 \appendix
-%\input{schema_elettrico}
-%\input{Appendix1}
-%\input{Appendix2}
+
 
 \printbibliography
 
 \printindex
 
-\include{ringraziamenti}
+%\include{ringraziamenti}
 
 \end{document}

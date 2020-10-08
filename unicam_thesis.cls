@@ -89,7 +89,7 @@
 \RequirePackage[italian]{varioref}
 \RequirePackage[italian]{babel}
 \RequirePackage[babel]{csquotes}
-\RequirePackage[style=numeric, backend=bibtex]{biblatex}
+\RequirePackage[style=alphabetic, backend=bibtex]{biblatex}
 \RequirePackage{colortbl}
 
 \RequirePackage[final]{listings}
@@ -101,7 +101,6 @@
   backgroundcolor=\color{listingsBackground}, frame=none
 , numbers=left, numberstyle={\tiny }
 }
-
 \lstdefinelanguage{JavaScript}{
   keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
   keywordstyle=\color{blue}\bfseries,
@@ -112,12 +111,23 @@
   morestring=[b]',
   morestring=[b]"
 }
-\lstdefinestyle{javaScriptCode}{language=JavaScript,frame=tbrl,
+\lstdefinestyle{sharpCode}{language=[Sharp]C, frame=tbrl,
   basicstyle=\scriptsize\ttfamily,keywordstyle=\ttfamily\bf,
   stringstyle=\itshape,flexiblecolumns=true,
   commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
   backgroundcolor=\color{listingsBackground}, frame=none, 
   numbers=left, numberstyle={\tiny }
+}
+\lstdefinestyle{javaScriptCode}{language=JavaScript,frame=tbrl,
+  basicstyle=\scriptsize\ttfamily,keywordstyle=\ttfamily\bf,
+  stringstyle=\itshape,flexiblecolumns=true,
+  commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
+  backgroundcolor=\color{listingsBackground}, frame=none, 
+  numbers=left, numberstyle={\tiny },
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
 }
 \lstdefinestyle{javaCode}{language=Java,frame=tbrl,
   basicstyle=\scriptsize\ttfamily,keywordstyle=\ttfamily\bf,
@@ -125,6 +135,17 @@
   commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
   backgroundcolor=\color{listingsBackground}, frame=none, 
   numbers=left, numberstyle={\tiny }
+}
+\lstdefinestyle{html}{frame=tbrl,
+  basicstyle=\scriptsize\ttfamily,
+  stringstyle=\itshape,flexiblecolumns=true,
+  commentstyle=\itshape,captionpos=b,abovecaptionskip=10pt,belowcaptionskip=0pt,
+  backgroundcolor=\color{listingsBackground}, frame=none, 
+  numbers=left, numberstyle={\tiny },
+  showspaces=false,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
 }
 
 \addto\captionsitalian{
@@ -221,7 +242,7 @@
   \vspace*{\stretch{7}}%
 
 \end{center}
-{Candidati \hfill Relatore \par}%
+{Candidati \hfill Tutor Universitario \par}%
 {\bfseries \large \@firstauthor \hfill \@theadvisor \par}%
 {\small Matricola \@firstmatricola \par }%
 \vspace{0.30cm}%

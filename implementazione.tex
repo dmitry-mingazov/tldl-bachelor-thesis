@@ -1,10 +1,19 @@
 \chapter{Implementazione}
 
 \section{Qui}
+Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
+- SourceCode è l’identificativo della source
+- TDataSource è il tipo della DataSource legata alla source
+- Parameters sono i parametri messi a disposizione dalla source per modificare la query
+- Metadata sono i metadati volti a modificare come vengono visualizzati i dati lato frontend
 
+Parameters e Metadata vengono scritti in un file json all’interno della cartella {{DA_MODIFICARE}} con il nome {{SourceCode}}.json, come nel seguente esempio:
 
-Ciao Ciao
+Per registrare una source, si crea una classe di configurazione che estenda la classe astratta DiscoveryConfiguration, e si richiama all’interno del costruttore il metodo AddSource, passandogli le informazioni della source che si sta registrando
 
+Il metodo AddSource, definito in DiscoveryConfiguration, ottiene attraverso ParametersConfiguration le eventuali informazioni aggiuntive contenute nell’apposito file ‘{sourceCode}.json’ per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure
+
+DataDiscoveryConfiguration ottiene tutte le classi che estendono DiscoveryConfiguration, per poi registrare in SourceManagementService tutte le source riscontrat
 \newpage
 Ciao Ciao
 

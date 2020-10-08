@@ -8,7 +8,7 @@ un'interfaccia grafica concepita per visualizzare dei widget, ovvero delle mini-
 
 \section{Composizione di un widget}
 Un widget è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni di solito sotto forma di grafici o tabelle. Nel framework proprietario Loccioni, denominato "Aulos", un widget è composto da diversi file. \\ Prendendo come esempio il Revenue Margin Widget, widget realizzato per visualizzare il margine attuale di ogni commessa aperta legata all'utente, possiamo vedere come ogni widget abbia una classe che estenda la classe padre "Widget" in cui poter inserire diversi parametri di configurazione. In questo caso i parametri che abbiamo deciso di aggiungere ci sono serviti per permettere all'utente di filtrare i dati a seconda del periodo scelto e di associare nuovi ordini al proprio widget insieme a Diego Bonura, Giuseppe Romani e Gabriele Rossetti.
-\\
+
 
 \begin{lstlisting}[caption={File revenue-margin-widget.ts}, style=javaScriptCode]
 export class RevenueMarginWidget extends Widget {
@@ -27,7 +27,7 @@ export class RevenueMarginWidget extends Widget {
     
     }
 \end{lstlisting} 
-Dove viene gestita invece la logica effettiva del widget, e dove vengono utilizzati i valori dei parametri di configurazione, è all'interno dei file ".component.ts". I components sono la base per costruire un'applicazione in Angular. Ogni component è definito usando un decorator @Component che ha al suo interno un selector, un template e altre proprietà, le quali specificano i metadati richiesti per elaborare il componente. \\
+Dove viene gestita invece la logica effettiva del widget, e dove vengono utilizzati i valori dei parametri di configurazione, è all'interno dei file ".component.ts". I components sono la base per costruire un'applicazione in Angular. Ogni component è definito usando un decorator @Component che ha al suo interno un selector, un template e altre proprietà, le quali specificano i metadati richiesti per elaborare il componente.
 \begin{lstlisting}[caption={Decorator all'interno del file revenue-margin.component.ts}, style=javaScriptCode]
 @Component({
     selector: 'app-revenue-margin-widget',
@@ -36,7 +36,7 @@ Dove viene gestita invece la logica effettiva del widget, e dove vengono utilizz
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 \end{lstlisting}
-L'aspetto grafico del widget viene definito all'interno del template che è un file HTML, in questo caso nel "revenue-margin.component.html". \\
+L'aspetto grafico del widget viene definito all'interno del template che è un file HTML, in questo caso nel "revenue-margin.component.html".
 \begin{lstlisting}[caption={File revenue-margin.component.html}, style=javaScriptCode]
 <aulos-widget-layout [widget]="widget">
   <aulos-widget-content>
@@ -63,7 +63,7 @@ L'aspetto grafico del widget viene definito all'interno del template che è un f
   </aulos-widget-content>
 </aulos-widget-layout>
 \end{lstlisting}
-I dati invece vengono presi dal backend tramite un servizio che viene iniettato al component alla sua creazione. Ogni servizio si occupa di fare una chiamata REST e di adattare i dati dal DTO all'interfaccia dati utilizzata dal widget. \\
+I dati invece vengono presi dal backend tramite un servizio che viene iniettato al component alla sua creazione. Ogni servizio si occupa di fare una chiamata REST e di adattare i dati dal DTO all'interfaccia dati utilizzata dal widget.
 
 \begin{lstlisting}[caption={File revenue-margin.service.ts}, style=javaScriptCode]
 @Injectable({
@@ -91,7 +91,7 @@ export class RevenueMarginWidgetService {
   }
 }
 \end{lstlisting}
-Infine ogni widget ha al suo interno un modulo. "In Angular i moduli sono dei container per un blocco coeso di codice dedicato a un dominio dell'applicazione, un flusso di lavoro o un insieme di capacità strettamente collegate. Possono contenere dei components, providers di servizi, e altri file di codice il cui ambito è definito dall'oggetto NgModule che lo contiene. Possono importare funzionalità che sono esportate da altri NgModules, ed esportare funzionalità selezionate per l'utilizzo da parte di altri NgModules" \cite{MODULE}. Nel nostro caso il modulo ha come funzionalità importante quella di registrare all'avvio dell'applicazione il widget utilizzando il WidgetComponentService, definendo alcune informazioni base come l'icona e la descrizione. \\
+Infine ogni widget ha al suo interno un modulo. "In Angular i moduli sono dei container per un blocco coeso di codice dedicato a un dominio dell'applicazione, un flusso di lavoro o un insieme di capacità strettamente collegate. Possono contenere dei components, providers di servizi, e altri file di codice il cui ambito è definito dall'oggetto NgModule che lo contiene. Possono importare funzionalità che sono esportate da altri NgModules, ed esportare funzionalità selezionate per l'utilizzo da parte di altri NgModules" \cite{MODULE}. Nel nostro caso il modulo ha come funzionalità importante quella di registrare all'avvio dell'applicazione il widget utilizzando il WidgetComponentService, definendo alcune informazioni base come l'icona e la descrizione.
 
 \begin{lstlisting}[caption={Metodo all'interno del modulo che registra il widget nel sistema}, style=javaScriptCode]
 private static registerWidgets(widgetsService: WidgetComponentsService): 
