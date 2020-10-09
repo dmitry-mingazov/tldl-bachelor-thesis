@@ -131,26 +131,26 @@ Le credenziali vengono mandate all'Authorization Server che restituisce, se le c
 \begin{center}
 \label{fig:refreshflow}
 \begin{verbatim}
-+--------+                                           +---------------+
-|        |--(A)------- Authorization Grant --------->|               |
-|        |                                           |               |
-|        |<-(B)----------- Access Token -------------|               |
-|        |               & Refresh Token             |               |
-|        |                                           |               |
-|        |                            +----------+   |               |
-|        |--(C)---- Access Token ---->|          |   |               |
-|        |                            |          |   |               |
-|        |<-(D)- Protected Resource --| Resource |   | Authorization |
-| Client |                            |  Server  |   |     Server    |
-|        |--(E)---- Access Token ---->|          |   |               |
-|        |                            |          |   |               |
-|        |<-(F)- Invalid Token Error -|          |   |               |
-|        |                            +----------+   |               |
-|        |                                           |               |
-|        |--(G)----------- Refresh Token ----------->|               |
-|        |                                           |               |
-|        |<-(H)----------- Access Token -------------|               |
-+--------+           & Optional Refresh Token        +---------------+
++--------+                                   +---------------+
+|        |--(A)---- Authorization Grant ---->|               |
+|        |                                   |               |
+|        |<-(B)--------- Access Token -------|               |
+|        |             & Refresh Token       |               |
+|        |                                   |               |
+|        |                      +----------+ |               |
+|        |--(C)- Access Token ->|          | |               |
+|        |                      |          | |               |
+|        |<(D)- Protected Reso -| Resource | | Authorization |
+| Client |                      |  Server  | |     Server    |
+|        |--(E)- Access Token ->|          | |               |
+|        |                      |          | |               |
+|        |<(F)Invalid Token Err-|          | |               |
+|        |                      +----------+ |               |
+|        |                                   |               |
+|        |--(G)----- Refresh Token --------->|               |
+|        |                                   |               |
+|        |<-(H)------ Access Token ----------|               |
++--------+      & Optional Refresh Token     +---------------+
 
 \end{verbatim}
 \caption{Token Refresh Flow \cite{REFRESH}}
