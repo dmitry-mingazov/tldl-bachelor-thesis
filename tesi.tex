@@ -16,6 +16,8 @@
 \captionsetup[subfloat]{labelfont={bf,small},textfont={it,small},subrefformat=parens}
 \usepackage{floatrow}
 \usepackage{multicol}
+\captionsetup[figure]{position=t}
+\captionsetup[subfigure]{position=b}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,6 +64,7 @@
 
 \input{introduzione}
 \input{tecnologie_strumenti}
+\input{architettura}
 \input{widget}
 \input{security}
 \input{parametri}
@@ -70,11 +73,13 @@
 \input{persistence}
 \input{caching}
 \input{stresstest}
+\input{elasticsearch}
 
 \appendix
 
 
 \printbibliography
+
 
 \printindex
 
