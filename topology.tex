@@ -1,8 +1,8 @@
-\chapter{Topology}
+\section{Topology}
 \label{chap:topology}
 I widget lato mobility sono impiegati per mostrare i dati provenienti dalle macchine la cui struttura si articola in: linee, banchi e stazioni; queste ultime sono la parte del macchinario volta ad effettuare i test sui vari componenti che attraversano la linea.
 
-\section{ITopologyDataSource}
+\subsection{ITopologyDataSource}
 L'interfaccia \verb|ITopologyDataSource| contiene la definizione di tre metodi:
 \\
 \begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode, label={lst:cacheattribute}]
@@ -15,7 +15,7 @@ L'interfaccia \verb|ITopologyDataSource| contiene la definizione di tre metodi:
 \end{lstlisting}
 Le classi che attualmente la implementano sono \verb|AllRefusedDataSource| e\\ \verb|RefusedTypeDataSource|, le quali andranno a richiamare i metodi necessari per la richiesta della lista dei codici di linee, banchi o stazioni, presente nella repository collegata ad un database MySQL.
 
-\section{Controller Topology}
+\subsection{Controller Topology}
 Quando si procede con la creazione di un widget mobility è possibile scegliere la source, in modo tale da definire la fonte in cui reperire i dati da visualizzare. In seguito,  facendo riferimento al formato standard dei macchinari, si ha la possibilità di scegliere il codice della linea, del banco e della stazione di cui si vogliono osservare i risultati.
 Per poter scegliere questi codici vengono effettuate tre diverse chiamate al backend, in cui il controller definisce tre richieste \verb|HttpGet|: \\
 \begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode, label={lst:cacheattribute}]

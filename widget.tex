@@ -1,10 +1,10 @@
-\chapter{Widget}
+\section{Widget}
 \label{chap:widget}
 \begin{figure}[h]
 \centering
 \includegraphics[scale=0.6]{images/widget_example.png}
 \end{figure}
-\section{Composizione}
+\subsection{Composizione}
 
 Un widget è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle. \newline Prendendo ad esempio il pie chart widget si può vedere come un widget lato frontend sia formato da diversi file. La classe contenente i parametri volti alla visualizzazione grafica del widget si chiama \verb|PieChartWidget|. Estende la classe \verb|BaseWidget|, dove viene gestita tutta la logica per la presa dei dati dal backend, ed è decorata con il \verb|WidgetDecorator|, il quale aggiunge ulteriore comportamento al widget.
 
@@ -117,7 +117,7 @@ private static registerWidgets(widgetsService: WidgetComponentsService): () =>
     }
 \end{lstlisting}
 
-\section{Le classi BaseWidget e BaseWidgetComponent}
+\subsection{Le classi BaseWidget e BaseWidgetComponent}
 
 Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework Aulos, \verb|Widget| e \verb|WidgetComponent|. \verb|BaseWidget| e \verb|BaseWidgetComponent| sono classi nate dall'esigenza del progetto di trovare una soluzione per generalizzare il funzionamento dei widget e di rendere la vita più facile ai futuri sviluppatori.
 Infatti nelle due classi risiede tutto il comportamento per la raccolta dei dati dal backend, comune a tutti i widget.
@@ -209,7 +209,7 @@ export abstract class BaseWidgetComponent<T extends BaseWidget> extends
 }
 \end{lstlisting}
 
-\section{Il servizio WidgetService}
+\subsection{Il servizio WidgetService}
 Nel \verb|WidgetService| avviene tutta la comunicazione tra frontend e backend.
 La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \verb|getData| in cui, passatagli una \verb|GenericRequest| composta da un sourceCode e un array di filtri, manda una richiesta POST al backend. \\
 \begin{lstlisting}[caption={Metodo getData all'interno della classe WidgetService}, style=javaScriptCode]
@@ -281,7 +281,7 @@ export class WidgetService {
 }
 \end{lstlisting}
 
-\section{Il decorator factory WidgetDecorator}
+\subsection{Il decorator factory WidgetDecorator}
 Il \verb|WidgetDecorator| ha la responsabilità di aggiungere comportamento a un widget in base alle opzioni passate con l'interfaccia \verb|WidgetOptions|.\\
 \verb|WidgetOptions| ha la seguente struttura:\\
 \begin{lstlisting}[caption={Struttura delle WidgetOptions e delle RefreshableInfo}, style=javaScriptCode]

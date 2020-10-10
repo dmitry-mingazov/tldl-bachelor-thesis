@@ -1,4 +1,4 @@
-\chapter{Parametri}
+\section{Parametri}
 
 Un parametro, rappresentato dalla classe Parameter, rappresenta un valore con determinate caratteristiche che viene utilizzato in svariati contesti all'interno di AULOS.
 \begin{lstlisting}[caption={Parameter.cs},style=sharpCode]
@@ -45,7 +45,7 @@ public class ParameterDescriptor
 \end{lstlisting}
 L'attributo Editor, istanza della classe ParameterEditor, descrive l'eventuale Editor utilizzato lato frontend per permettere la modifica del parametro da parte dell'utente
 
-\section{Parameter Editor}
+\subsection{Parameter Editor}
 La classe ParameterEditor è così composta:
 \begin{lstlisting}[caption={ParameterEditor.cs},style=sharpCode]
 public class ParameterEditor
@@ -62,7 +62,7 @@ public class ParameterEditor
 \item Options sono le eventuali opzioni che l'editor può avere
 \end{itemize}
 
-\subsection{Custom Editors}
+\subsubsection{Custom Editors}
 AULOS fornisce diversi Editor per permettere all'utente di modificare i parametri, ma è possibile crearne di nuovi per casi d'uso più specifici. Un Editor è un Component Angular che va registrato all'interno dell'EditorFactory attraverso il metodo register .\\
 \begin{lstlisting} [caption={dashboard-parameter-editors.module.ts},style=javascriptCode]
 export class DashboardParameterEditorsModule {
@@ -143,7 +143,7 @@ Il template dell'Editor Component contiene tre direttive strutturali (aulosEdito
 \end{lstlisting}
 È necessario che l'Editor Component estenda BaseEditorComponent, classe che offre delle funzionalità di interfacciamento con AULOS, e che presenti la logica necessaria alla modifica del parametro a esso associato.
 
-\section{Utilizzo dei parametri nell'applicativo}
+\subsection{Utilizzo dei parametri nell'applicativo}
 Nell'applicativo, il parametro svolge una duplice funzione:
 \begin{itemize}
 \item permette di gestire la configurazione di un widget lato frontend
@@ -156,7 +156,7 @@ La classe Widget e le sue estensioni nell'applicazione frontend hanno la respons
 \caption{Possibile configurazione del widget PieChart}
 \end{center}
 \end{figure}
-\subsection{Filter Parameters}
+\subsubsection{Filter Parameters}
 Data la capacità dei parametri di poter rappresentare dati eterogenei, sono stati utilizzati per rappresentare i possibili filtri di una query.\\
 I Filter Parameters vengono generati attraverso dei ParameterDescriptor, presi con una chiamata REST ((~\ref{chap:frontend})) dopo che è stata definita una source.
 \begin{lstlisting}[caption={initSourceCalls, base-widget.ts},style=javascriptCode]
