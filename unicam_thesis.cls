@@ -242,14 +242,14 @@
   \vspace*{\stretch{7}}%
 
 \end{center}
-{Candidati \hfill Tutor Universitario \par}%
+{Candidati \hfill Relatore \par}%
 {\bfseries \large \@firstauthor \hfill \@theadvisor \par}%
 {\small Matricola \@firstmatricola \par }%
 \vspace{0.30cm}%
 {\bfseries \large \@secondauthor \hfill \par}%
 { \small Matricola \@secondmatricola \par}%
 %\vspace{0.30cm}%
-{\hfill Tutor Aziendale \par}%
+{\hfill Corelatore \par}%
 {\bfseries \large \@thirdauthor \hfill \@thetutor \par}%
 {\small Matricola \@thirdmatricola \par }%
 \vspace{0.30cm}%
