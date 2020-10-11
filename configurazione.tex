@@ -1,0 +1,66 @@
+\section{Configurazione}
+Precedentemente, lo sviluppo -- prettamente verticale -- di un widget e la procedura di accesso dati per popolarlo di dati si articolava in:
+
+\begin{multicols}{2}
+Prima:
+\begin{itemize}
+\item
+Creazione component widget
+\begin{itemize}
+\item
+Parte grafica HTML
+\item
+Gestione interfacciamento con il widget
+\item
+Interfacciamento con il service
+\item
+Gestire interamente la logica di acquisizione dati
+\end{itemize}
+\item
+Creazione widget
+\begin{itemize}
+\item
+Creazione e registrazione di parametri
+\item
+Messa a disposizione di valori dei parametri e relativi observable
+\end{itemize}
+\item
+Creazione module
+\begin{itemize}
+\item
+Registrazione widget
+\end{itemize}
+\item
+Creazione service
+\begin{itemize}
+\item
+Implementazione logica di acquisizione dati (Richieste http et cetera)
+\end{itemize}
+\item
+Registrazione widget su module
+\end{itemize}
+\columnbreak
+
+Dopo:
+\begin{itemize}
+\item
+Creazione component widget
+\begin{itemize}
+\item
+Parte grafica HTML
+\item
+Definizione callback di aggiornamento dati
+\end{itemize}
+\item
+Creazione widget
+\item
+Creazione module
+\item
+Creazione service
+\item
+Registrazione widget su module
+\end{itemize}
+
+\end{multicols}
+
+\input{config-component}
