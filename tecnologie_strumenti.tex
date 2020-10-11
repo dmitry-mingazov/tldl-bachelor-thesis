@@ -1,34 +1,11 @@
 \chapter{Tecnologie e strumenti}
 \label{chap:tecnologie_strumenti}
 Di seguito verranno dettagliate le tecnologie e gli strumenti impiegati nello sviluppo del progetto.
-
-    \begin{multicols}{3}
-    \begin{itemize}
-        \item Git
-        \item Gitlab
-        \item Visual Studio
-        \item Visual Studio Code
-        \item Postman
-        \item JMeter
-        \item HeidiSQL
-        \item MS SQL SMS
-        \item Kibana
-        \item ASP.NET Core 3.1
-        \item Angular 10
-        \item NodeJs
-        \item Entity Framework
-        \item ElasticSearch
-        \item AULOS
-        \item Nest
-        \item Newtonsoft.Json
-        \item KendoUI
-    \end{itemize}
-    \end{multicols}
 \section{Visual Studio}
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=6cm]{images/logoVS.jpeg}
-  \caption{Logo Visual Studio}\label{fig:VisualStudio}
+  \includegraphics[width=5cm]{images/logoVS.jpeg}
+  \caption{Logo Visual Studio}
 \end{center}
 \end{figure}
 Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio: un IDE estendibile e con funzionalità complete per la creazione di applicazioni moderne per Android, iOS e Windows, nonché di applicazioni Web e servizi cloud \cite{VS}. Gli strumenti utilizzati sono:
@@ -76,11 +53,11 @@ Live Share
 \section{Visual Studio Code}
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=8cm]{images/VSCode.png}
-  \caption{Logo Visual Studio Code}\label{fig:VisualStudioCode}
+  \includegraphics[width=6cm]{images/VSCode.png}
+  \caption{Logo Visual Studio Code}
 \end{center}
 \end{figure}
-Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Code: è un editor di codice sorgente leggero ma potente che viene eseguito sul desktop ed è disponibile per Windows, macOS e Linux. Viene fornito con il supporto integrato per JavaScript, TypeScript e Node.js e ha un ricco ecosistema di estensioni per altri linguaggi (come C ++, C\#, Java, Python, PHP, Go) e runtime (come .NET e Unity). Vi è la possibilità di installare delle estensioni e quelle impiegate nel progetto sono:
+Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Code: è un editor di codice sorgente leggero ma potente che viene eseguito sul desktop ed è disponibile per Windows, macOS e Linux. Viene fornito con il supporto integrato per JavaScript, TypeScript e Node.js e ha un ricco ecosistema di estensioni per altri linguaggi (come C ++, C\#, Java, Python, PHP, Go) e runtime (come .NET e Unity) \cite{VSCode}. Vi è la possibilità di installare delle estensioni e quelle impiegate nel progetto sono:
 \begin{itemize}
 \item
 \begin{minipage}{0.1\textwidth}
@@ -104,81 +81,75 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=13cm]{images/MaterialIcon.png}
-  \caption{Material Icon Theme}\label{fig:VisualStudioCode}
+  \caption{Material Icon Theme}
 \end{center}
 \end{figure}
 \item
 \textbf{Package Json Upgrade:} Mostra gli aggiornamenti disponibili in package.json. Offre azioni rapide per guidare nell'aggiornamento.
-\item
-\begin{minipage}{0.1\textwidth}
-\includegraphics[width=2cm] {images/TSLint.png}
-\end{minipage}
-Estensione per la correzione automatica.
 \end{itemize}
 
 \section{Git}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=5cm]{images/git_logo.jpg}
-  \caption{Logo di Git}\label{fig:git}
+  \includegraphics[width=4cm]{images/git_logo.jpg}
+  \caption{Logo Git}
 \end{center}
 \end{figure}
-\FloatBarrier
 Git è un software di controllo versione distribuito utilizzabile da interfaccia a riga di comando. \cite{GIT}\\
 Un software di controllo versione è un'applicazione che permette di tenere traccia di tutti gli aggiornamenti apportati ad uno specifico progetto software, o "repository".\\
 Oltre a mostrare una visione più generale e strutturata sul progetto, Git consente agli sviluppatori di implementare codice in team nella maniera più efficiente possibile cercando di ridurre i conflitti che possono nascere da uno sviluppo parallelo. Questo viene reso possibile grazie ad un sistema di branches, letteralmente rami, che permettono allo sviluppatore di lavorare in autonomia in una spazio completamente isolato dal resto del progetto. Per riunificare poi il nuovo codice implementato con il branch principale, lo sviluppatore potrà effettuare un'operazione di merge. \\
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
   \includegraphics[width=12cm]{images/merge-di-due-branch.png}\\
-  \caption{Esempio di merge di due branch in Git}\label{fig:git}
+  \caption{Esempio di merge di due branch in Git}
 \end{center}
 \end{figure}
-\FloatBarrier
-
 
 \section{Gitlab}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=8cm]{images/gitlab_logo.png}
-  \caption{Logo di GitLab}\label{fig:git}
+  \includegraphics[width=7cm]{images/gitlab_logo.png}
+  \caption{Logo GitLab}
 \end{center}
 \end{figure}
-\FloatBarrier
 GitLab è una piattaforma web open source che permette la gestione di repository Git e di funzioni trouble ticket \cite{GITLAB}.\\
 La piattaforma si basa sull'offrire uno spazio virtuale remoto, pubblico o privato, dove archiviare il proprio repository, permettendo agli sviluppatori di lavorare in team.
 Inoltre GitLab consente di avere un controllo più immediato mettendo a disposizione dello sviluppatore una vista sui branch creati e una history delle modifiche apportate al repository. \\
 Ulteriore funzionalità è quella dei trouble ticket, ovvero le "issues" all'interno di GitLab. Questo sistema consente di creare dei ticket per richiedere agli sviluppatori di aggiungere nuove funzionalità o di risolvere uno specifico bug. Una volta soddisfatta la richiesta il ticket potrà essere chiuso e disattivato dallo sviluppatore.
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
   \includegraphics[width=13cm]{images/Repository_GitLab.JPG}
-  \caption{Vista su una delle due repository caricate su GitLab}\label{fig:git}
+  \caption{Vista su una delle due repository caricate su GitLab}
 \end{center}
 \end{figure}
-\FloatBarrier
 Il progetto discusso è stato archiviato su GitLab in un dominio privato Loccioni. 
 
 \section{Postman}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=5cm]{images/postman_logo.png}\\
-  \caption{Logo di Postman}\label{fig:git}
+  \includegraphics[width=4cm]{images/postman_logo.png}\\
+  \caption{Logo Postman}
 \end{center}
 \end{figure}
-\FloatBarrier
 Postman è uno strumento di sviluppo di API (application programming interface) che aiuta a costruire, testare e modificare API. Permette di fare vari tipi di richieste HTTP (GET, POST, PUT, PATCH), salvare gli ambienti per usi futuri e convertire le API in codice per vari linguaggi (come JavaScript, Python) \cite{POSTMAN}.\\
 Nel corso dello sviluppo Postman è stato uno strumento essenziale per testare in modo veloce e immediato le richieste HTTP al backend.
 
-% INSERIRE IMMAGINE POSTMAN RICHIESTA A DATI DI UN WIDGET
-
-\section{Angular 10}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=9cm]{images/angular_logo.png}\\
-  \caption{Logo di Angular}\label{fig:git}
+  \includegraphics[width=15cm]{images/Postman.png}
+  \caption{Schermata di Postman}
 \end{center}
 \end{figure}
-\FloatBarrier
-L’applicativo frontend del progetto discusso nella tesi è stato sviluppato con Angular.\\
+
+\section{Angular 10}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=7cm]{images/angular_logo.png}\\
+  \caption{Logo Angular}
+\end{center}
+\end{figure}
+
+L'applicativo frontend del progetto discusso nella tesi è stato sviluppato con Angular.\\
 Angular è una piattaforma e un framework per costruire applicazioni client single-page usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
 \paragraph{HTML} HTML (Hypertext Markup Language) è il linguaggio markup standard per i documenti visualizzabili in un browser web \cite{HTML}.
 \paragraph{TypeScript} TypeScript è un linguaggio di programmazione open source sviluppato da Microsoft. Estende la sintassi di JavaScript, essendo un suo superset, in modo che qualunque programma scritto in JavaScript sia anche in grado di funzionare con TypeScript senza nessuna modifica. È stato progettato per lo sviluppo di grandi applicazioni ed è destinato a essere compilato in JavaScript per poter essere interpretato da qualunque web browser o app. \cite{TYPESCRIPT} \\
@@ -224,39 +195,35 @@ Per la gestione interna dei pacchetti in Angular è stato utilizzato NPM (Node P
 Il registry è accessibile via client e i pacchetti disponibili sono consultabili sul sito web di npm. \cite{NPM}
 
 \section{KendoUI}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=7cm]{images/kendo_logo.png}
-  \caption{Logo di Kendo UI}\label{fig:git}
+  \includegraphics[width=6cm]{images/kendo_logo.png}
+  \caption{Logo Kendo UI}
 \end{center}
 \end{figure}
-\FloatBarrier
 Kendo UI è un framework integrale di interfaccia utente HTML5 per costruire applicazioni e siti web interattivi e ad alte prestazioni. \cite{KENDO}
 Il framework è stato usato all'interno dell'applicativo frontend con l'obiettivo di conferire un aspetto grafico più accattivante ai widget. Kendo UI per Angular offre un vasto numero di componenti:\\
 \begin{figure}[h]
 \begin{center}
   \includegraphics[width=15cm]{images/kendo_components.JPG}
-  \caption{Componenti di Kendo UI per Angular}\label{fig:git}
+  \caption{Componenti di Kendo UI per Angular}
 \end{center}
 \end{figure}
-\FloatBarrier
 Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della Kendo Grid, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente. 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
   \includegraphics[width=14cm]{images/kendo_grid.JPG}
-  \caption{Esempio di Kendo Grid per Angular}\label{fig:git}
+  \caption{Esempio di Kendo Grid per Angular}
 \end{center}
 \end{figure}
-\FloatBarrier
 
 \section{JMeter}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=7cm]{images/jmeter_logo.png}
-  \caption{Logo di JMeter}\label{fig:git}
+  \includegraphics[width=6cm]{images/jmeter_logo.png}
+  \caption{Logo JMeter}
 \end{center}
 \end{figure}
-\FloatBarrier
 Apache JMeter™ è un software open source sviluppato interamente in Java e progettato per fare test di carico e misurare le prestazioni. Originariamente era stato pensato solamente per testare le applicazioni Web ma nel tempo sono state aggiunte altre funzionalità di testing. 
 Può essere utilizzato per testare la resistenza di un server, una rete o un oggetto simulando diversi tipi di carichi pesanti per analizzarne le prestazioni complessive. \\
 Le principali tipologie di applicazioni/server/protocolli che possono essere testate sono:
@@ -274,4 +241,81 @@ Le principali tipologie di applicazioni/server/protocolli che possono essere tes
 \end{itemize}
 \cite{JMETER} 
 Apache JMeter è stato utilizzato per testare l'applicativo backend del progetto.
-\input{elasticsearch}
+
+\section{HeidiSQL}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=3cm]{images/HeidiSQL.png}
+  \caption{Logo HeidiSQL}
+\end{center}
+\end{figure}
+HeidiSQL è un software gratuito ed ha l'obiettivo di essere di facile comprensione, consente di visualizzare e modificare dati e strutture da computer che eseguono uno dei sistemi di database MariaDB, MySQL, Microsoft SQL, PostgreSQL e SQLite. Appartiene agli strumenti più popolari per MariaDB e MySQL in tutto il mondo \cite{HeidiSQL}. Tale strumento è stato utilizzato per la comunicazione con il server, al fine di manipolare le informazioni nei database che il server gestisce.
+
+\section{Microsoft SQL Server Management Studio}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=5cm]{images/mssql.png}
+  \caption{Logo MicrosoftSQL Server}
+\end{center}
+\end{figure}
+SQL Server Management Studio (SSMS) è un ambiente gratuito ed integrato per la gestione di qualsiasi infrastruttura SQL, da SQL Server al database SQL di Azure. SSMS offre gli strumenti per configurare, monitorare e amministrare le istanze di SQL Server e i database. Usare SSMS per distribuire, monitorare e aggiornare i componenti del livello dati usati dalle applicazioni, nonché per creare query e script.
+È possibile usare SSMS per eseguire query, progettare e gestire database e data warehouse in qualsiasi posizione, nel computer locale o nel cloud \cite{MSSQL}.
+
+\pagebreak
+\section{ElasticSearch}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=6cm]{images/esearch.png}
+  \caption{Logo ElasticSearch}
+\end{center}
+\end{figure}
+Elasticsearch è un motore di ricerca e analisi full-text open source altamente scalabile. Consente di archiviare, cercare e analizzare grandi volumi di dati rapidamente e quasi in tempo reale. Viene generalmente utilizzato come motore sottostante per applicazioni che hanno caratteristiche e requisiti di ricerca complessi.
+Elasticsearch dispone di diversi casi d'uso \cite{ELASTICSEARCH}:
+\begin{itemize}
+    \item consente di avere una visione più ampia delle informazioni a disposizione senza risultare dispersivo, anche con agglomerati di dati estremamente consistenti grazie alle "aggregazioni".
+    \item combina diversi tipi di ricerche: strutturate, non strutturate, geografiche, ricerca di applicazioni, analisi della sicurezza, metriche e registrazione.
+    \item si adatta a qualsiasi situazione che va dal semplice computer con un singolo nodo fino ad arrivare ad un cluster con centinaia di server, rendendo la creazione di un prototipo più agevole.
+    \item utilizza API RESTful standard e JSON. L'apporto costante della comunità ha portato alla creazione e al mantenimento di client in molti linguaggi come Java, Python, .NET, SQL, Perl, PHP.
+    \item è possibile utilizzare le funzionalità di ricerca e analisi in tempo reale di Elasticsearch per lavorare sui big data utilizzando il connettore Elasticsearch-Hadoop (ES-Hadoop).
+\end{itemize}
+Data l'elevata efficienza di questo software diverse compagnie informatiche l'hanno scelto per i loro prodotti. Gli ambiti interessati sono quelli di ricerca per quanto concerne Tinder, dove Elasticsearch permette di rendere il sistema più reattivo e veloce, mentre nel caso di Netflix l'utilizzo principale è focalizzato al giusto indirizzamento di notifiche push, email e messaggistica \cite{ELASTICSEARCH}.\\
+Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione del layer di accesso dei dati relativi alle macchine che testano le componenti degli elettrodomestici Whirlpool. In sinergia con questo strumento è stata impiegata la dashboard di visualizzazione dati Kibana.
+
+\pagebreak
+\section{Nest}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=6cm]{images/elastic.png}
+  \caption{Logo Nest}
+\end{center}
+\end{figure}
+NEST è un client Elasticsearch .NET di alto livello che è ancora molto fedele all'API Elasticsearch originale. Tutte le richieste e le risposte sono esposte attraverso i tipi, rendendolo ideale per essere subito operativi.
+Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con quest'ultima che utilizza il suffisso idiomatico \verb|Async| sul nome del metodo \cite{Nest}.
+Di seguito la medesima richiesta effettuata in Postman tramite un json ed in Nest.
+
+figura~\ref{fig:hitratio} rappresenta la percentuale stimata di hit in cache durante il test, calcolata tramite la formula in fig.~\ref{fig:formula}.
+\begin{figure}[h!]
+     \centering
+     \subfloat[Json body]{
+         \centering
+         \includegraphics[width=12cm]{images/json.png}
+         \label{fig:json}
+         }
+         \hfill
+     \subfloat[Nest query]{
+         \centering
+         \includegraphics[width=15cm]{images/NestQuery.PNG}
+         \label{fig:nest}
+         }
+        \caption{Stessa richiesta in json e Nest}
+\end{figure}
+
+\pagebreak
+\section{Linq}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=4.5cm]{images/linq.png}
+  \caption{Logo Nest}
+\end{center}
+\end{figure}
+LINQ (Language-Integrated Query) è il nome di un set di tecnologie basate sull'integrazione delle funzionalità di query direttamente nel linguaggio C\#. In genere, le query sui dati vengono espresse come stringhe semplici senza il controllo dei tipi in fase di compilazione o il supporto IntelliSense. È anche necessario imparare un linguaggio di query diverso per ogni tipo di origine dati: database SQL, documenti XML, svariati servizi Web e così via. Con LINQ, una query è un costrutto del linguaggio di prima classe, come le classi, i metodi e gli eventi. È possibile scrivere query su insiemi di oggetti fortemente tipizzati usando le parole chiave del linguaggio e gli operatori comuni. La famiglia di tecnologie LINQ offre coerenza per l'esecuzione di query per oggetti (LINQ to Objects), database relazionali (LINQ to SQL) e XML (LINQ to XML). Per uno sviluppatore che scrive query, la parte integrata nel linguaggio più visibile di LINQ è l'espressione di query. Le espressioni di query vengono scritte con una sintassi di query dichiarativa. Tramite la sintassi di query è possibile eseguire operazioni di filtro, ordinamento e raggruppamento sulle origini dati usando una quantità minima di codice \cite{Linq}.
