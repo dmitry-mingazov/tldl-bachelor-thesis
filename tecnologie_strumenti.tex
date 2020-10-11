@@ -4,7 +4,7 @@ Di seguito verranno dettagliate le tecnologie e gli strumenti impiegati nello sv
 \section{Visual Studio}
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=5cm]{images/logoVS.jpeg}
+  \includegraphics[width=6cm]{images/logoVS.jpeg}
   \caption{Logo Visual Studio}
 \end{center}
 \end{figure}
@@ -53,7 +53,7 @@ Live Share
 \section{Visual Studio Code}
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=6cm]{images/VSCode.png}
+  \includegraphics[width=7cm]{images/VSCode.png}
   \caption{Logo Visual Studio Code}
 \end{center}
 \end{figure}
@@ -91,7 +91,7 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
 \section{Git}
 \begin{figure}[h!]
 \begin{center}
-  \includegraphics[width=4cm]{images/git_logo.jpg}
+  \includegraphics[width=5cm]{images/git_logo.jpg}
   \caption{Logo Git}
 \end{center}
 \end{figure}
@@ -133,7 +133,7 @@ Il progetto discusso è stato archiviato su GitLab in un dominio privato Loccion
 \end{figure}
 Postman è uno strumento di sviluppo di API (application programming interface) che aiuta a costruire, testare e modificare API. Permette di fare vari tipi di richieste HTTP (GET, POST, PUT, PATCH), salvare gli ambienti per usi futuri e convertire le API in codice per vari linguaggi (come JavaScript, Python) \cite{POSTMAN}.\\
 Nel corso dello sviluppo Postman è stato uno strumento essenziale per testare in modo veloce e immediato le richieste HTTP al backend.
-
+\pagebreak
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=15cm]{images/Postman.png}
@@ -148,7 +148,7 @@ Nel corso dello sviluppo Postman è stato uno strumento essenziale per testare i
   \caption{Logo Angular}
 \end{center}
 \end{figure}
-
+\FloatBarrier
 L'applicativo frontend del progetto discusso nella tesi è stato sviluppato con Angular.\\
 Angular è una piattaforma e un framework per costruire applicazioni client single-page usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
 \paragraph{HTML} HTML (Hypertext Markup Language) è il linguaggio markup standard per i documenti visualizzabili in un browser web \cite{HTML}.
@@ -203,13 +203,13 @@ Il registry è accessibile via client e i pacchetti disponibili sono consultabil
 \end{figure}
 Kendo UI è un framework integrale di interfaccia utente HTML5 per costruire applicazioni e siti web interattivi e ad alte prestazioni. \cite{KENDO}
 Il framework è stato usato all'interno dell'applicativo frontend con l'obiettivo di conferire un aspetto grafico più accattivante ai widget. Kendo UI per Angular offre un vasto numero di componenti:\\
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
   \includegraphics[width=15cm]{images/kendo_components.JPG}
   \caption{Componenti di Kendo UI per Angular}
 \end{center}
 \end{figure}
-Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della Kendo Grid, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente. 
+Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della Kendo Grid, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=14cm]{images/kendo_grid.JPG}
@@ -224,6 +224,7 @@ Ogni componente include un set completo di funzionalità già pronte all'uso \ci
   \caption{Logo JMeter}
 \end{center}
 \end{figure}
+\FloatBarrier
 Apache JMeter™ è un software open source sviluppato interamente in Java e progettato per fare test di carico e misurare le prestazioni. Originariamente era stato pensato solamente per testare le applicazioni Web ma nel tempo sono state aggiunte altre funzionalità di testing. 
 Può essere utilizzato per testare la resistenza di un server, una rete o un oggetto simulando diversi tipi di carichi pesanti per analizzarne le prestazioni complessive. \\
 Le principali tipologie di applicazioni/server/protocolli che possono essere testate sono:
@@ -291,26 +292,23 @@ Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione de
 \end{figure}
 NEST è un client Elasticsearch .NET di alto livello che è ancora molto fedele all'API Elasticsearch originale. Tutte le richieste e le risposte sono esposte attraverso i tipi, rendendolo ideale per essere subito operativi.
 Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con quest'ultima che utilizza il suffisso idiomatico \verb|Async| sul nome del metodo \cite{Nest}.
-Di seguito la medesima richiesta effettuata in Postman tramite un json ed in Nest.
-
-figura~\ref{fig:hitratio} rappresenta la percentuale stimata di hit in cache durante il test, calcolata tramite la formula in fig.~\ref{fig:formula}.
+Di seguito la medesima richiesta effettuata in Postman tramite un json~\ref{fig:json} ed in Nest~\ref{fig:nest}.
 \begin{figure}[h!]
-     \centering
-     \subfloat[Json body]{
-         \centering
-         \includegraphics[width=12cm]{images/json.png}
-         \label{fig:json}
-         }
-         \hfill
-     \subfloat[Nest query]{
-         \centering
-         \includegraphics[width=15cm]{images/NestQuery.PNG}
-         \label{fig:nest}
-         }
-        \caption{Stessa richiesta in json e Nest}
+\begin{center}
+  \includegraphics[width=12cm]{images/json.png}
+  \caption{Logo Nest}
+  \label{fig:json}
+\end{center}
 \end{figure}
 
-\pagebreak
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=13cm]{images/NestQuery.PNG}
+  \caption{Logo Nest}
+  \label{fig:nest}
+\end{center}
+\end{figure}
+
 \section{Linq}
 \begin{figure}[h!]
 \begin{center}
