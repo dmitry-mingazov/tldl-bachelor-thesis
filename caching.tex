@@ -1,7 +1,7 @@
-\chapter{Caching}
+\section{Caching}
 \label{ch:caching}
 Il caso d'uso del progetto in questione prevede una moltitudine di dashboard collegate simultaneamente a un solo backend; al fine di  migliorare la performance è stato applicato un alleggerimento del carico tramite un middleware ASP.NET di cache. Ciò ha permesso la riduzione delle richieste effettivamente soddisfatte con dati generati appositamente da database SQL ed ElasticSearch sottostanti.
-\section{Implementazione}
+\subsection{Implementazione}
 Il sistema di cache è stato implementato basandosi su di un'implementazione già esistente di IMemoryCache in ASP.NET Core. \cite{MemCache}
 \begin{lstlisting}[caption={Startup.cs, Memory Cache Injection}, style=javaScriptCode]
 services.AddMemoryCache(options => Configuration.Bind("Cache", options));
