@@ -4,8 +4,8 @@ I widget lato mobility sono impiegati per mostrare i dati provenienti dalle macc
 
 \subsection{ITopologyDataSource}
 L'interfaccia \verb|ITopologyDataSource| contiene la definizione di tre metodi:
-\\
-\begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode, label={lst:cacheattribute}]
+
+\begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode]
     interface ITopologyDataSource
     {
         public List<int> GetLines();
@@ -17,8 +17,9 @@ Le classi che attualmente la implementano sono \verb|AllRefusedDataSource| e\\ \
 
 \subsection{Controller Topology}
 Quando si procede con la creazione di un widget mobility è possibile scegliere la source, in modo tale da definire la fonte in cui reperire i dati da visualizzare. In seguito,  facendo riferimento al formato standard dei macchinari, si ha la possibilità di scegliere il codice della linea, del banco e della stazione di cui si vogliono osservare i risultati.
-Per poter scegliere questi codici vengono effettuate tre diverse chiamate al backend, in cui il controller definisce tre richieste \verb|HttpGet|: \\
-\begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode, label={lst:cacheattribute}]
+Per poter scegliere questi codici vengono effettuate tre diverse chiamate al backend, in cui il controller definisce tre richieste \verb|HttpGet|:
+
+\begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode]
         [HttpGet("{sourceCode}/lines")]
         public IActionResult GetLines([FromRoute] string sourceCode)
         {
@@ -43,5 +44,6 @@ Per poter scegliere questi codici vengono effettuate tre diverse chiamate al bac
             return new ObjectResult(dataSource.GetStations(benchCode));
         }
 \end{lstlisting}
-Tramite il metodo \verb|GetDataSource<DataSource>| definito in \verb|SourceManagemetService|, viene creata l'istanza della DataSource che implementa \verb|ITopologyDataSource|, in base al code passato come parametro.\\
+Tramite il metodo \verb|GetDataSource<DataSource>| definito in \verb|SourceManagemetService|, viene creata l'istanza della DataSource che implementa \verb|ITopologyDataSource|, in base al code passato come parametro.
+
 Fornendo questa interfaccia come tipo, si ha la certezza che siano stati implementati i metodi volti al reperimento delle liste di codici di linee, banchi e stazioni.
