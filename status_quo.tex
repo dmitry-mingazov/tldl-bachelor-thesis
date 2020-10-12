@@ -1,0 +1,27 @@
+\chapter{Architettura legacy}
+%In questo capitolo verrà discussa la struttura precedentemente utilizzata %nell'applicativo e [...]
+%L'applicativo presentava una parte backend che aveva la responsabilità di 
+%fornire degli endpoint REST attraverso i quali l'applicativo frontend potesse %ottenere i dati da far visualizzare all'utente finale attraverso i widget
+\section{Widget}
+Un widget è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle.
+La sua struttura si articolava in diversi file con scopi diversi:
+\begin{itemize}
+\item \textbf{widget.component.html} contiene il codice HTML che descrive l'aspetto grafico che il widget avrà all'interno della dashboard, e rappresenta i dati contenuti dal widget.component.ts
+\item \textbf{widget.component.ts} è un Component Angular, contiene i dati che il widget deve visualizzare e si occupa di ottenere i dati interfacciandosi con il servizio opportuno
+\item \textbf{widget.ts} è la classe che gestisce la configurazione del widget
+\item \textbf{widget.service.ts} è un servizio Angular, contiene la logica di accesso ai dati che il widget deve visualizzare
+\item \textbf{widget.module.ts} è un modulo Angular, contiene la dichiarazione del componente widget e la sua registazione al WidgetService
+\end{itemize}
+
+\subsection{Widget Component}
+Il widget
+
+\section{Struttura backend}
+Lo sviluppo di un widget precedentemente si divideva nelle seguenti fasi:
+\begin{itemize}
+\item sviluppo del Widget Component
+\item sviluppo di una classe Widget contenente la logica di business legata ai parametri
+\item creazione di un modulo per il widget e conseguente registrazione in [...]
+\item sviluppo di un servizio contenente la logica di ottenimento dati per il widget
+\item sviluppo della logica di ottenimento dati nell'applicativo backend
+\end{itemize}
