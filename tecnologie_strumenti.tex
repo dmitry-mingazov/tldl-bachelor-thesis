@@ -95,6 +95,22 @@ export class AppService {
 Per la gestione interna dei pacchetti in Angular è stato utilizzato NPM (Node Package Manager). NPM è un gestore di pacchetti per il linguaggio di programmazione JavaScript. È il gestore di pacchetti predefinito per l'ambiente di runtime JavaScript Node.js. Consiste in un client da linea di comando, chiamato anch'esso npm, e un database online di pacchetti pubblici e privati, chiamato npm registry.
 Il registry è accessibile via client e i pacchetti disponibili sono consultabili sul sito web di npm. \cite{NPM}
 
+\section{RxJs}
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=7cm]{images/RxJs.png}
+  \caption{Logo RxJs}
+\end{center}
+\end{figure}
+RxJS (Reactive Extensions for JavaScript) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable| che semplifica la composizione di codice asincrono o basato su callback. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci\cite{RxJS}. Queste ultime possono essere utilizzate per:
+\begin{itemize}
+    \item Conversione del codice esistente per operazioni asincrone in        \verb|Observable|
+    \item Iterare sui valori di uno stream
+    \item Mappare valori di diversi tipi
+    \item Filtrare stream
+    \item Effettuare la composizione di più stream
+\end{itemize}
+
 \section{KendoUI}
 \begin{figure}[ht!]
 \begin{center}
@@ -104,12 +120,14 @@ Il registry è accessibile via client e i pacchetti disponibili sono consultabil
 \end{figure}
 Kendo UI è un framework integrale di interfaccia utente HTML5 per costruire applicazioni e siti web interattivi e ad alte prestazioni. \cite{KENDO}
 Il framework è stato usato all'interno dell'applicativo frontend con l'obiettivo di conferire un aspetto grafico più accattivante ai widget. Kendo UI per Angular offre un vasto numero di componenti:
-\begin{figure}[ht!]
+
+\begin{figure}[h!]
 \begin{center}
   \includegraphics[width=15cm]{images/kendo_components.JPG}
   \caption{Componenti di Kendo UI per Angular}
 \end{center}
 \end{figure}
+\pagebreak
 Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della Kendo Grid, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
 \begin{figure}[ht!]
 \begin{center}
@@ -118,8 +136,9 @@ Ogni componente include un set completo di funzionalità già pronte all'uso \ci
 \end{center}
 \end{figure}
 
+\pagebreak
 \section{.NET}
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 	\includegraphics[width=7cm]{images/dotnet.png}
 	\caption{Logo di .NET}\label{fig:dotnet}
