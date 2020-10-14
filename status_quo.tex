@@ -13,6 +13,7 @@ La sua struttura si articolava in diversi file con scopi diversi:
 \item \textbf{widget.module.ts} è un modulo Angular, contiene la dichiarazione del componente widget e la sua registazione al WidgetService
 \end{itemize}
 
+
 \subsection{Widget Component}
 Il Component di un widget è una classe che deve estendere WidgetComponent del framework Aulos e avere come tipo generico una classe che estenda Widget. Nel codice~\ref{lst:booking_view_component} si può osservare \verb|BookingViewComponent| che prende come tipo generico \verb|BookingViewWidget|
 \begin{lstlisting}[caption={orders.component.ts},label={lst:booking_view_component},style=javascriptCode]
@@ -156,6 +157,9 @@ export class BookingViewWidgetModule {
     }
 }
 \end{lstlisting}
+
+\section{Struttura backend}
+Il backend precedentemente non presentava una struttura definita per l'accesso dei dati. Rimaneva a carico dello sviluppatore implementarne la logica e scrivere un Controller attraverso il quale il frontend avrebbe potuto ottenere i dati raccolti.
 
 %\section{Struttura backend}
 %Lo sviluppo di un widget precedentemente si divideva nelle seguenti fasi:
