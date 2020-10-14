@@ -1,69 +1,68 @@
 \FloatBarrier
 \pagebreak
 \section{Configurazione}
-Precedentemente, lo sviluppo -- prettamente verticale -- di un widget e la procedura di accesso dati per popolarlo di dati si articolava in:
-
-\begin{multicols}{2}
-Prima:
+Grazie alla nuova architettura sviluppata ora è possibile creare e configurare un widget in modo più strutturato e scrivendo molte meno linee di codice. 
+Precedentemente il processo per implementare un widget era prettamente verticale e si articolava nei seguenti step:
 \begin{itemize}
 \item
 Creazione component widget
 \begin{itemize}
 \item
-Parte grafica HTML
+Parte grafica HTML.
 \item
-Gestione interfacciamento con il widget
+Gestione interfacciamento con il widget.
 \item
-Interfacciamento con il service
+Interfacciamento con il service.
 \item
-Gestire interamente la logica di acquisizione dati
+Intera gestione della logica di acquisizione dati.
 \end{itemize}
 \item
 Creazione widget
 \begin{itemize}
 \item
-Creazione e registrazione di parametri
+Creazione e registrazione di parametri.
 \item
-Messa a disposizione di valori dei parametri e relativi observable
+Messa a disposizione di valori dei parametri e relativi observable.
 \end{itemize}
 \item
 Creazione module
 \begin{itemize}
 \item
-Registrazione widget
+Registrazione widget.
 \end{itemize}
 \item
 Creazione service
 \begin{itemize}
 \item
-Implementazione logica di acquisizione dati (Richieste http et cetera)
+Implementazione logica di acquisizione dati (richieste HTTP).
 \end{itemize}
-\item
-Registrazione widget su module
 \end{itemize}
-\columnbreak
-
-Dopo:
+Il backend non presentava una struttura definita per l'accesso dei dati. Rimaneva a carico dello sviluppatore implementarne la logica e scrivere un Controller attraverso il quale il frontend avrebbe potuto ottenere i dati raccolti.\\\\
+Allo stato attuale al fine di sviluppare un widget un programmatore deve seguire i seguenti passi:
 \begin{itemize}
-\item
-Creazione component widget
+    \item Frontend
 \begin{itemize}
-\item
-Parte grafica HTML
-\item
-Definizione callback di aggiornamento dati
+    \item Creazione component widget estendendo la classe BaseWidgetComponent
+    \begin{itemize}
+        \item BaseWidgetComponent aggiunge la logica di inizializzazione dei dati da far visualizzare.
+    \end{itemize}
+    \item Creazione widget estendendo la classe BaseWidget
+    \begin{itemize}
+        \item BaseWidget aggiunge la creazione e l'inizializzazione dei parametri legati all'ottenimento dei dati.
+        \item decorazione della classe con il decorator factory WidgetDecorator.
+    \end{itemize}
+    \item Creazione module
+    \begin{itemize}
+        \item Registrazione widget.
+    \end{itemize}
+    \item Creazione adapter (opzionale)
 \end{itemize}
-\item
-Creazione widget
-\item
-Creazione module
-\item
-Creazione service
-\item
-Registrazione widget su module
+\item Backend
+\begin{itemize}
+	\item Implementare il data access layer
+	\item Aggiungere il \verb|sourcecode.json| relativo in \verb|DiscoveryConfiguration/parameters|
+	\item Definire una classe \verb|DataSource|, mediatrice tra controller e data access
+	\item Estendere la classe del tipo desiderato in \verb|DiscoveryConfiguration|
+	\item Definire un nuovo controller per manipolare un nuovo data type
 \end{itemize}
-
-\end{multicols}
-
-\input{config-component}
-\input{config-backend}
+\end{itemize}
