@@ -19,6 +19,7 @@
 \usepackage{multicol}
 \captionsetup[figure]{position=t}
 \captionsetup[subfigure]{position=b}
+\usepackage[smartEllipses]{markdown}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,19 +69,24 @@
 \input{status_quo}
 \input{architettura}
 \input{widgetrealizzati}
+\input{metodologia}
 \input{conclusione}
 
 
 
 
 \appendix
-
+\subsection{Manuale d'uso}
+\subsubsection{Frontend}
+\markdownInput{READMEfrontend.md}
+\subsubsection{Backend}
+\markdownInput{READMEbackend.md}
 
 \printbibliography
 
 
 \printindex
 
-%\include{ringraziamenti}
+\include{ringraziamenti}
 
 \end{document}

@@ -1,0 +1,10 @@
+        AddSource(new SourceInfo
+        {
+            TDataSource = typeof(RefusedTypeDataSource),
+            SourceCode = "refusedtype",
+            LongText = "Refused type",
+            ShortText = "Refused type"
+        });
+    }
+}
+```

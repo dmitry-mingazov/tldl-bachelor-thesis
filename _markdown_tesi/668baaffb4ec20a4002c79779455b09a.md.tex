@@ -1,0 +1,99 @@
+\markdownRendererHeadingOne{:closed\markdownRendererUnderscore{}book: Multiuser Configurable DataView Web Dashboard - Backend}\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Installation}\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingThree{Register Loccioni.Aulos packages repository}\markdownRendererInterblockSeparator
+{}Just add on nuget sources:\markdownRendererInterblockSeparator
+{}https://nuget.loccioni.com/repository/nuget-aulos-csharp-next/\markdownRendererInterblockSeparator
+{}See: https://docs.microsoft.com/it-it/nuget/consume-packages/install-use-packages-visual-studio\markdownRendererHash{}package-sources\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Widget Setup}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Implement the data access layer\markdownRendererUlItemEnd 
+\markdownRendererUlItem Add a \markdownRendererCodeSpan{\markdownRendererLeftBrace{}sourcecode\markdownRendererRightBrace{}.json} file in \markdownRendererCodeSpan{DiscoveryConfiguration/parameters}\markdownRendererUlItemEnd 
+\markdownRendererUlItem Example: \markdownRendererCodeSpan{json
+\markdownRendererLeftBrace{}
+    "metadata": \markdownRendererLeftBrace{}
+        "meta": \markdownRendererLeftBrace{}
+            "fieldName": "label"
+        \markdownRendererRightBrace{},
+    "properties": \markdownRendererLeftBrace{}
+        "color": [
+            \markdownRendererLeftBrace{}
+                "field": "Passed",
+                "value": "green"
+            \markdownRendererRightBrace{},
+            \markdownRendererLeftBrace{}
+                "field": "Refused",
+                "value": "red"
+            \markdownRendererRightBrace{}
+        ],
+        "field": [
+            \markdownRendererLeftBrace{}
+                "field": "Passed",
+                "value": "ok"
+            \markdownRendererRightBrace{},
+            \markdownRendererLeftBrace{}
+                "field": "Refused",
+                "value": "ko"
+            \markdownRendererRightBrace{}
+        ]
+    \markdownRendererRightBrace{}
+    \markdownRendererRightBrace{},
+    "filters": [
+        \markdownRendererLeftBrace{}
+            "Code": "time-span",
+            "ShortText": "Time span",
+            "LongText": "T i m e   s p a n",
+            "Type": "number",
+            "DefaultValue": "7",
+            "Editor": \markdownRendererLeftBrace{}
+                "Type": "EnumEditor",
+                "Path": "@aulos/parameter-editors",
+                "Options": \markdownRendererLeftBrace{}
+                    "comboValues": [
+                        \markdownRendererLeftBrace{}
+                            "label": "1 week",
+                            "value": 7
+                        \markdownRendererRightBrace{},
+                        \markdownRendererLeftBrace{}
+                            "label": "2 weeks",
+                            "value": 14
+                        \markdownRendererRightBrace{},
+                        \markdownRendererLeftBrace{}
+                            "label": "1 month",
+                            "value": 28
+                        \markdownRendererRightBrace{},
+                        \markdownRendererLeftBrace{}
+                            "label": "2 months",
+                            "value": 56
+                        \markdownRendererRightBrace{},
+                        \markdownRendererLeftBrace{}
+                            "label": "Forever",
+                            "value": 9999
+                        \markdownRendererRightBrace{}
+                    ]
+                \markdownRendererRightBrace{}
+            \markdownRendererRightBrace{}
+        \markdownRendererRightBrace{}   
+    ]
+\markdownRendererRightBrace{}
+} Where filters is an array of AULOS JSON parameters and metadata defines how the dto is modified for better frontend interpretation: \markdownRendererCodeSpan{fieldName} defines the name of the dto unique identifier while the properties field defines parameters that will be changed in the frontend such as Kendo chart field colors and field names.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Define a \markdownRendererCodeSpan{DataSource} class to mediate between the controller and data access class/es\markdownRendererUlItemEnd 
+\markdownRendererUlItem Extend the \markdownRendererCodeSpan{DiscoveryConfiguration} class of the desired type (extend base class if non-existant)\markdownRendererUlItemEnd 
+\markdownRendererUlItem Call \markdownRendererCodeSpan{AddSource} method in constructor\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{TDataSource} should be the type of your datasource\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{SourceCode} must be unique and the same as the previously created filename of the .json ```csharp public class TupleDiscoveryConfiguration : DiscoveryConfiguration \markdownRendererLeftBrace{} public TupleDiscoveryConfiguration() \markdownRendererLeftBrace{} AddSource(new SourceInfo \markdownRendererLeftBrace{} TDataSource = typeof(AllRefusedDataSource), SourceCode = "allcode", LongText = "All refused", ShortText = "All refused" \markdownRendererRightBrace{});\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}\markdownRendererInputVerbatim{./_markdown_tesi/9fe3acca3b92d148cda52fa662c309a2.verbatim}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem Define a controller if handling a new data type or otherwise use an already existant one \markdownRendererUlItemEnd 
+\markdownRendererUlItem Single POST method taking \markdownRendererCodeSpan{GenericRequestDTO} argument\markdownRendererUlItemEnd 
+\markdownRendererUlItem Call \markdownRendererCodeSpan{SourceManagementService} \markdownRendererCodeSpan{getDataSource<dataSource>} where \markdownRendererCodeSpan{dataSource} is the \markdownRendererCodeSpan{DataSource} class/interface you need \markdownRendererCodeSpan{csharp
+[HttpPost]
+    public IActionResult Search([FromBody] GenericRequestDTO request)
+    \markdownRendererLeftBrace{}
+        var dataSource = \markdownRendererUnderscore{}sourceManagementService.GetDataSource<ITupleDataSource>(request.SourceCode);
+        return new ObjectResult(dataSource.GetData(request.Filters));
+    \markdownRendererRightBrace{}
+}\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \relax
