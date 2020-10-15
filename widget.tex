@@ -96,7 +96,7 @@ Nel file HTML, di cui viene passato il path al @Component decorator, viene speci
     </aulos-widget-content>
 </aulos-widget-layout>
 \end{lstlisting}
-Infine ogni widget viene incluso in un modulo Angular. All'avvio dell'applicazione il widget viene registrato nel sistema con la chiamata del metodo \verb|registerWidgets|, presente nel modulo. Ciò permette alla dashboard di riconoscere il widget come tale e di mostrarlo selezionabile al momento della configurazione della dashboard.
+Infine ogni widget viene incluso in un modulo Angular. All'avvio dell'applicazione il widget viene registrato nel sistema con la chiamata del metodo \verb|registerWidgets|, presente nel modulo. Ciò permette ad AULOS di inserirlo nella lista di widget instanziabili nella dashboard.
 
 \begin{lstlisting}[caption={Metodo all'interno del modulo che registra il widget nel sistema}, style=javaScriptCode]
 private static registerWidgets(widgetsService: WidgetComponentsService): () => 
@@ -121,10 +121,13 @@ private static registerWidgets(widgetsService: WidgetComponentsService): () =>
 \end{lstlisting}
 
 \subsection{Le classi BaseWidget e BaseWidgetComponent}
-
-Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework Aulos, \verb|Widget| e \verb|WidgetComponent|. \verb|BaseWidget| e \verb|BaseWidgetComponent| sono classi nate dall'esigenza del progetto di trovare una soluzione per generalizzare il funzionamento dei widget e di rendere la vita più facile ai futuri sviluppatori.
-Infatti nelle due classi risiede tutto il comportamento per la raccolta dei dati dal backend, comune a tutti i widget.
-All'interno del \verb|BaseWidget| viene iniettato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|.
+Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| sono state create con l'obiettivo di alleggerire il carico di lavoro inerente allo sviluppo di un widget. In esse risiede tutta la logica di interfacciamento con il backend, lasciando come unica responsabilità alle classi che le estendono le modalità attraverso le quali vengono visualizzati i dati.
+\\
+\verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework AULOS, \verb|Widget| e \verb|WidgetComponent|.
+\\
+\paragraph{Base Widget}
+Questa classe ha la responsabilità di ges
+All'interno del \verb|BaseWidget| viene iniettato e utilizzato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|. 
 
 \begin{lstlisting}[caption={Creazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
 export class BaseWidget extends Widget {
@@ -145,7 +148,8 @@ export class BaseWidget extends Widget {
 
 }
 \end{lstlisting}
-Il parametro \verb|source| serve per definire la source a cui chiedere dati, mentre il parametro \verb|filter| si occupa di filtrare la richiesta in base ai filtri presi dal backend e gestiti lato frontend. Il tutto viene inizializzato e caricato tramite il metodo \verb|initSourceCalls|.
+
+Il parametro \verb|source| indica da quale contesto verranno presi i dati da visuaizzare, mentre il parametro \verb|filters| contiene tutti i parametri che aggiungono filtri in fase di ottenimento dati (e.g. un intervallo di tempo per il quale si vogliono ottenere i risultati di un test). Il tutto viene inizializzato e caricato tramite il metodo \verb|initSourceCalls|.
 
 \begin{lstlisting}[caption={Inizializzazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
 export class BaseWidget extends Widget {
