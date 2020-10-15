@@ -1,0 +1,7 @@
+public data: TupleData[] = [];
+
+...
+
+protected getDataCallback(value: any): void {
+    this.data = value;
+}

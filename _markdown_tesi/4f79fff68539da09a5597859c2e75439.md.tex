@@ -1,0 +1,55 @@
+\markdownRendererHeadingOne{:blue\markdownRendererUnderscore{}book: Multiuser Configurable DataView Web Dashboard - Frontend}\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Create a new widget}\markdownRendererInterblockSeparator
+{}To create a new widget you must extend the \markdownRendererCodeSpan{BaseWidget} and \markdownRendererCodeSpan{BaseWidgetComponent} classes respectively for the \markdownRendererCodeSpan{Widget} and \markdownRendererCodeSpan{WidgetComponent} classes.\markdownRendererInterblockSeparator
+{}Then you must decorate your \markdownRendererCodeSpan{Widget} with the \markdownRendererCodeSpan{WidgetDecorator} which takes 5 fields to set the configuration.\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{Pie chart widget} example: ```javascript @WidgetDecorator(\markdownRendererLeftBrace{} endpoint: 'tuple', type: WidgetTypeEnum.MOBILITY, sourceable: true, refreshableInfo: \markdownRendererLeftBrace{} refreshable: true, defaultRefreshRate: RefreshRateEnum.sec\markdownRendererUnderscore{}5 \markdownRendererRightBrace{}, adapter: PieChartAdapter, \markdownRendererRightBrace{}) export class PieChartWidget extends BaseWidget \markdownRendererLeftBrace{}\markdownRendererInterblockSeparator
+{}\markdownRendererEllipsis{}\markdownRendererInterblockSeparator
+{}\markdownRendererRightBrace{} ```\markdownRendererInterblockSeparator
+{}And this is the \markdownRendererStrongEmphasis{structure} of the options passed to the decorator:\markdownRendererInterblockSeparator
+{}```javascript export interface WidgetOptions \markdownRendererLeftBrace{} endpoint: string; type: WidgetTypeEnum; sourceable?: boolean; refreshableInfo?: RefreshableInfo; adapter?: any; \markdownRendererRightBrace{}\markdownRendererInterblockSeparator
+{}export interface RefreshableInfo \markdownRendererLeftBrace{} refreshable: boolean; defaultRefreshRate?: RefreshRateEnum; \markdownRendererRightBrace{} ```\markdownRendererInterblockSeparator
+{}\markdownRendererUlBeginTight
+\markdownRendererUlItem \markdownRendererCodeSpan{endpoint}: indicates which endpoint the widget has to use to take data from \markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{type}: indicates the widget type (currently IT/MOBILITY)\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{sourceable} (optional): indicates whether or not the widget has a selectable source parameter\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{refreshableInfo} (optional): indicates whether or not the widget has a refresh parameter and can be used to set the default refresh rate\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{adapter} (optional): indicates the adapter class used to transform received data into a more useful form\markdownRendererUlItemEnd 
+\markdownRendererUlEndTight \markdownRendererInterblockSeparator
+{}You can create an Adapter class implementing the \markdownRendererCodeSpan{Adapter} functional interface and the \markdownRendererCodeSpan{adapt} method.\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{javascript
+export interface Adapter \markdownRendererLeftBrace{}
+    adapt(dto: any): any;
+\markdownRendererRightBrace{}
+}\markdownRendererInterblockSeparator
+{}Lastly inside the \markdownRendererCodeSpan{WidgetComponent} you must implement the \markdownRendererCodeSpan{getDataCallback} method where \markdownRendererCodeSpan{value} is the data received from the backend. This method will be called everytime the widget receives data.\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{Note}: \markdownRendererCodeSpan{value} will be adapted data if an \markdownRendererCodeSpan{Adapter} for that class exists.\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{Pie chart widget component} example:\markdownRendererInterblockSeparator
+{}```javascript @Component(\markdownRendererLeftBrace{} selector: 'app-pie-chart-widget', templateUrl: './pie-chart.component.html', encapsulation: ViewEncapsulation.None, changeDetection: ChangeDetectionStrategy.OnPush \markdownRendererRightBrace{}) export class PieChartComponent extends BaseWidgetComponent<PieChartWidget> \markdownRendererLeftBrace{}\markdownRendererInterblockSeparator
+{}\markdownRendererInputVerbatim{./_markdown_tesi/02b09b253bf451ca53a91e0d61d72371.verbatim}\markdownRendererInterblockSeparator
+{}\markdownRendererRightBrace{} ```\markdownRendererInterblockSeparator
+{}<br />\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingOne{Loccioni Aulos Web GetStarted}\markdownRendererInterblockSeparator
+{}This project was generated with \markdownRendererLink{Angular CLI}{https://github.com/angular/angular-cli}{https://github.com/angular/angular-cli}{}.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Register @aulos packages repository}\markdownRendererInterblockSeparator
+{}To install @aulos packages from Loccioni npm repository it is necessary to add the user credentials using the following command:\markdownRendererInterblockSeparator
+{}npm login --scope=@aulos --registry=https://nuget.loccioni.com/repository/npm-aulos-web-next/\markdownRendererInterblockSeparator
+{}See official npm documentation: https://docs.npmjs.com/logging-in-to-an-npm-enterprise-registry-from-the-command-line\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Using Mock Server}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{npm run server:start} from a terminal.\markdownRendererInterblockSeparator
+{}Check \markdownRendererCodeSpan{config.json} file and see baseUrl value, to work with expressjs mock server has to be: \markdownRendererCodeSpan{http://@localHostName:9000/webservice}\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Using AspNet Core 3.1 Backend}\markdownRendererInterblockSeparator
+{}Start project: https://git.loccioni.com/-/ide/project/aulos/web/loccioni-aulos-getstarted/backend.\markdownRendererInterblockSeparator
+{}Check \markdownRendererCodeSpan{config.json} file and see baseUrl value, to work with expressjs mock server has to be: \markdownRendererCodeSpan{https://@localHostName:5001/api}\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Development server}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ng serve} for a dev server. Navigate to \markdownRendererCodeSpan{http://localhost:4200/}. The app will automatically reload if you change any of the source files.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Code scaffolding}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ng generate component component-name} to generate a new component. You can also use \markdownRendererCodeSpan{ng generate directive\markdownRendererPipe{}pipe\markdownRendererPipe{}service\markdownRendererPipe{}class\markdownRendererPipe{}guard\markdownRendererPipe{}interface\markdownRendererPipe{}enum\markdownRendererPipe{}module}.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Build}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ng build} to build the project. The build artifacts will be stored in the \markdownRendererCodeSpan{dist/} directory. Use the \markdownRendererCodeSpan{--prod} flag for a production build.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Running unit tests}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ng test} to execute the unit tests via \markdownRendererLink{Karma}{https://karma-runner.github.io}{https://karma-runner.github.io}{}.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Running end-to-end tests}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ng e2e} to execute the end-to-end tests via \markdownRendererLink{Protractor}{http://www.protractortest.org/}{http://www.protractortest.org/}{}.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingTwo{Further help}\markdownRendererInterblockSeparator
+{}To get more help on the Angular CLI use \markdownRendererCodeSpan{ng help} or go check out the \markdownRendererLink{Angular CLI README}{https://github.com/angular/angular-cli/blob/master/README.md}{https://github.com/angular/angular-cli/blob/master/README.md}{}.\markdownRendererInterblockSeparator
+{}\markdownRendererHeadingOne{}\relax
