@@ -121,7 +121,7 @@ private static registerWidgets(widgetsService: WidgetComponentsService): () =>
 \end{lstlisting}
 
 \subsection{Le classi BaseWidget e BaseWidgetComponent}
-
+\label{subsec:base}
 Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework Aulos, \verb|Widget| e \verb|WidgetComponent|. \verb|BaseWidget| e \verb|BaseWidgetComponent| sono classi nate dall'esigenza del progetto di trovare una soluzione per generalizzare il funzionamento dei widget e di rendere la vita più facile ai futuri sviluppatori.
 Infatti nelle due classi risiede tutto il comportamento per la raccolta dei dati dal backend, comune a tutti i widget.
 All'interno del \verb|BaseWidget| viene iniettato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|.
@@ -289,6 +289,7 @@ export class WidgetService {
 \end{lstlisting}
 
 \subsection{Il decorator factory WidgetDecorator}
+\label{subsec:widgetDecorator}
 Il \verb|WidgetDecorator| ha la responsabilità di aggiungere comportamento a un widget in base alle opzioni passate con l'interfaccia \verb|WidgetOptions|.
 
 \verb|WidgetOptions| ha la seguente struttura:
