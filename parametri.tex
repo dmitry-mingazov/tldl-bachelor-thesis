@@ -86,7 +86,7 @@ export class DashboardParameterEditorsModule {
     }
 }
 \end{lstlisting}
-Il template dell'Editor Component contiene tre direttive strutturali (aulosEditorSmallTemplate, aulosEditorCompactTemplate e aulosEditorExpandedTemplate) le quali contengono il codice html che deve essere visualizzato a seconda dello spazio in cui è contenuto l'Editor.
+Il template dell'Editor Component contiene tre direttive strutturali (aulosEditorSmallTemplate, aulosEditorCompactTemplate e aulosEditorExpandedTemplate), le quali contengono il codice html che deve essere visualizzato a seconda dello spazio in cui è contenuto l'Editor.
 \begin{lstlisting}[caption={source-editor.component.html},style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">
   <ng-template aulosEditorSmallTemplate>
@@ -149,7 +149,7 @@ Nell'applicativo, il parametro svolge una duplice funzione:
 \item permette di gestire la configurazione di un widget lato frontend
 \item viene utilizzato per specificare dei filtri da applicare in fase di ottenimento dei dati
 \end{itemize}
-La classe Widget e le sue estensioni nell'applicazione frontend hanno la responsabilità di gestire i parametri legati ad un widget. Questi parametri possono rappresentare un attributo grafico del widget, un valore della sua configurazione oppure un filtro da applicare ai dati da visualizzare.
+La classe Widget e le sue estensioni nell'applicazione frontend hanno la responsabilità di gestire i parametri legati a un widget. Questi parametri possono rappresentare un attributo grafico del widget, un valore della sua configurazione oppure un filtro da applicare ai dati da visualizzare.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{parameters_example}\\

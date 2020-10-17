@@ -1,10 +1,10 @@
 \section{Source Management}
 
-Una source è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una DataSource, una classe che nel pattern Model View Controller si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
+Una \textit{source} è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una DataSource, una classe che nel pattern \textit{Model View Controller} si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
 
 \subsection{Creazione Source}
 \label{subsec:creazioneSource}
-Viene creata una classe DataSource che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto ad ottenere i dati richiesti (e.g. GetData), che verrà implementato dalla DataSource.
+Viene creata una classe DataSource che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto a ottenere i dati richiesti (e.g. GetData), che verrà implementato dalla DataSource.
 \begin{lstlisting}[caption={ITupleDataSource.cs}, style=sharpCode]
 interface ITupleDataSource
     {
@@ -47,7 +47,7 @@ Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
 \begin{itemize}
 \item SourceCode è l’identificativo della source
 \item TDataSource è il tipo della DataSource legata alla source
-\item Parameters sono i parametri messi a disposizione dalla source per modificare la query
+\item Parameters sono i parametri messi a disposizione dalla source per modificare la \textit{query}
 \item Metadata sono i metadati volti a modificare come vengono visualizzati i dati lato frontend
 \end{itemize}
 Parameters e Metadata vengono scritti in un file json all’interno della cartella \verb|properties| con il nome \verb|{SourceCode}.json|, come nel seguente esempio:
@@ -100,7 +100,7 @@ Parameters e Metadata vengono scritti in un file json all’interno della cartel
   ]
 } 
 \end{lstlisting}
-Per registrare una source, si crea una classe di configurazione che estende la classe astratta \verb|DiscoveryConfiguration|, e si richiama all’interno del costruttore il metodo \verb|AddSource|, passandogli le informazioni della source che si sta registrando.
+Per registrare una source, si crea una classe di configurazione che estende la classe astratta \verb|DiscoveryConfiguration| e si richiama all’interno del costruttore il metodo \verb|AddSource|, passandogli le informazioni della source che si sta registrando.
 \\
 \begin{lstlisting}[caption={TupleDiscoveryConfiguration.cs}, style=sharpCode]
 public class TupleDiscoveryConfiguration : DiscoveryConfiguration
@@ -125,7 +125,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     }
 }
 \end{lstlisting}
-Il metodo AddSource, definito in DiscoveryConfiguration, ottiene attraverso PropertiesConfiguration le eventuali informazioni aggiuntive contenute nell’apposito file\\ \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure
+Il metodo AddSource, definito in \verb|DiscoveryConfiguration|, ottiene attraverso \verb|PropertiesConfiguration| le eventuali informazioni aggiuntive contenute nell’apposito file\\ \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
 \begin{lstlisting}[caption={DiscoveryConfiguration.cs}, style=sharpCode]
 public abstract class DiscoveryConfiguration
 {
@@ -145,7 +145,7 @@ public abstract class DiscoveryConfiguration
 
 }
 \end{lstlisting}
-DataDiscoveryConfiguration ottiene tutte le classi che estendono DiscoveryConfiguration, per poi registrare in SourceManagementService tutte le source riscontrate
+DataDiscoveryConfiguration ottiene tutte le classi che estendono \verb|DiscoveryConfiguration|, per poi registrare in SourceManagementService tutte le source riscontrate
 \begin{lstlisting}[caption={DataDiscoveryConfiguraton.cs}, style=sharpCode]
 public static class DataDiscoveryConfiguration
 {
@@ -188,7 +188,7 @@ public enum DataTypeCoupling
 \end{lstlisting}
 DiscoveryController presenta due endpoint:
 \begin{itemize}
-\item \verb|{resource}/discovery| - restituisce lo SourceCode e le descrizioni delle source associate ad una DataSource del tipo associato ad \verb|resource|, utilizzando il metodo GetDataSourcesByType di SourceManagementService
+\item \verb|{resource}/discovery| - restituisce SourceCode e le descrizioni delle source associate a una DataSource del tipo associato a \verb|resource|, utilizzando il metodo GetDataSourcesByType di SourceManagementService
 \item \verb|filters/{sourceCode}| - restituisce i parameters e i metadata di una specifica Source
 \end{itemize}
 Il sourceCode restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
@@ -215,7 +215,7 @@ public IActionResult Search([FromBody] GenericRequestDTO request)
     return new ObjectResult(dataSource.GetData(request.Filters));
 }
 \end{lstlisting}
-Prende come Body una GenericRequest, che presenta i seguenti campi:
+Prende come Body una \verb|GenericRequest|, che presenta i seguenti campi:
 \begin{itemize}
 \item \verb|SourceCode| indica da quale fonte di dati devono essere presi i dati.
 \item \verb|Filters| sono gli eventuali parametri necessari alla esecuzione della query.
@@ -227,4 +227,4 @@ public class GenericRequestDTO
     public List<Parameter> Filters { get; set; }
 }
 \end{lstlisting}
-Restituisce la risorsa gestita dal Controller utilizzando il metodo \verb|GetData| della DataSource che ottiene attraverso il metodo \verb|GetDataSource<T>| di \verb|SourceManagementService|, passandogli il SourceCode contenuto nella richiesta
+Restituisce la risorsa gestita dal Controller utilizzando il metodo \verb|GetData| della DataSource che ottiene attraverso il metodo \verb|GetDataSource<T>| di \verb|SourceManagementService|, passandogli il SourceCode contenuto nella richiesta.

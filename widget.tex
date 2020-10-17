@@ -214,7 +214,7 @@ export abstract class BaseWidgetComponent<T extends BaseWidget> extends
 
 \subsection{Il servizio WidgetService}
 Nel \verb|WidgetService| avviene tutta la comunicazione tra frontend e backend.
-La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \verb|getData| in cui, passatagli una \verb|GenericRequest| composta da un sourceCode e un array di filtri, manda una richiesta POST al backend.
+La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \verb|getData| cui viene passata una \verb|GenericRequest| composta da un sourceCode e un array di filtri, manda una richiesta POST al backend.
 
 \begin{lstlisting}[caption={Metodo getData all'interno della classe WidgetService}, style=javaScriptCode]
 @Injectable({
@@ -257,7 +257,7 @@ export class WidgetService {
 
 }
 \end{lstlisting}
-Se un widget è di tipo \verb|MOBILITY|, ovvero legato a dei dati provenienti dalle macchine Loccioni, avrà bisogno della possibilità di filtrare i dati in base alla linea, banco e stazione. Per questo all'interno del \verb|WidgetService| vi sono 3 metodi predisposti per il recupero di questi ultimi.
+Se un widget è di tipo \verb|MOBILITY|, ovvero legato a dei dati provenienti dalle macchine Loccioni, avrà bisogno della possibilità di filtrare i dati in base a linea, banco e stazione. Per questo all'interno del \verb|WidgetService| vi sono tre metodi predisposti per il recupero di questi ultimi.
 
 \begin{lstlisting}[caption={Metodi per recuperare linee, banchi e stazioni all'interno della classe WidgetService}, style=javaScriptCode]
 @Injectable({
@@ -350,7 +350,7 @@ export const WidgetDecorator: (options: WidgetOptions) => (target: Function) =>
 };
 \end{lstlisting}
 \subsection{Mobility Decorator}
-Il \verb|Mobility| decorator si occupa di aggiungere i parametri atti al filtraggio dei dati di un widget in base alla linea, banco e stazione.
+Il \verb|Mobility| decorator si occupa di aggiungere i parametri atti al filtraggio dei dati di un widget in base a linea, banco e stazione.
 
 \begin{lstlisting}[caption={Metodo di creazione dei parametri all'interno del decorator Mobility}, style=javaScriptCode]
 export const Mobility: (target: Function) => void = (target: Function) => {
@@ -429,7 +429,7 @@ export const Mobility: (target: Function) => void = (target: Function) => {
 \end{lstlisting}
 
 \subsection{Sourceable decorator}
-Il \verb|Sourceable| decorator dà al widget la possiblità di far selezione all'utente la source dove prendere i dati dal backend.
+Il \verb|Sourceable| decorator dà al widget la possiblità di far selezionare all'utente la source dove prendere i dati dal backend.
 
 Ogni widget che estende \verb|BaseWidget| ha al suo interno il parametro \verb|SourceParame|-\verb|ter|. Nel \verb|baseWidget| \verb|initSource| si occupa di impostare l'unica source da cui il widget prenderà i dati, mentre con l'override all'interno del \verb|Sourceable| decorator il metodo ha lo scopo di impostare la source in base a ciò che selezionerà l'utente.
 
@@ -484,7 +484,7 @@ export const Sourceable = (target: Function) => {
 };
 \end{lstlisting}
 \subsection{Refreshable decorator}
-Il \verb|Refreshable| decorator permette al widget di aggiornarsi e ricaricare i dati ad uno specifico intervallo di tempo. Il valore di default dell'intervallo può essere cambiato passando all'interno delle \verb|RefreshableInfo| anche un \verb|defaultRefreshRate|.
+Il \verb|Refreshable| decorator permette al widget di aggiornarsi e ricaricare i dati nell'arco di uno specifico intervallo di tempo. Il valore di default dell'intervallo può essere cambiato passando all'interno delle \verb|RefreshableInfo| anche un \verb|defaultRefreshRate|.
 L'intervallo poi potrà essere selezionato dall'utente al momento di configurazione della dashboard grazie al \verb|refreshRateParameter| che viene aggiunto al widget.
 
 \begin{lstlisting}[caption={Creazione del refreshRateParameter all'interno del Refreshable decorator}, style=javaScriptCode]
@@ -552,7 +552,7 @@ export class RefreshService {
 \end{lstlisting}
 Nello specifico il metodo \verb|getObservableOfInterval| ritorna l'Observable dell'intervallo di tempo fornito. Se l'intervallo non è presente all'interno di \verb|intervals| allora lo inserisce creando l'Observable legato ad esso.
 
-L'\verb|Observable| viene creato con il metodo \verb|interval|, il quale crea un \verb|Observable| che emette numeri sequenziali all'intervallo di tempo specificato. Poi viene trasformato con il metodo \verb|multicast| in un \verb|ConnectableObservable|, particolare tipo di \verb|Observable| che non emetterà valori finché non sarà chiamato il metodo \verb|connect|. Questa chiamata viene resa automatizzata grazie al metodo \verb|refCount|, il quale gestisce la connessione in modo tale da mantenerla attiva fintanto ci siano observer in ascolto.
+L'\verb|Observable| viene creato con il metodo \verb|interval|, il quale crea un \verb|Observable| che emette numeri sequenziali all'intervallo di un tempo specificato. Poi viene trasformato con il metodo \verb|multicast| in un \verb|ConnectableObservable|, particolare tipo di \verb|Observable| che non emetterà valori finché non sarà chiamato il metodo \verb|connect|. Questa chiamata viene resa automatizzata grazie al metodo \verb|refCount|, il quale gestisce la connessione in modo tale da mantenerla attiva fintanto che ci siano observer in ascolto.
 
 \begin{lstlisting}[caption={Classe RefreshService}, style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">

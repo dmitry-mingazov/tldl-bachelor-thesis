@@ -9,13 +9,13 @@ Di seguito verranno dettagliate le tecnologie, gli strumenti, i framework ed i l
   \caption{Logo di AULOS}
 \end{center}
 \end{figure}
-AULOS è il framework utilizzato all'interno dell'impresa Loccioni per standardizzare lo sviluppo e rendere riconoscibile ed uniforme lo stile grafico di applicativi per la visualizzazione dati. La parte frontend utilizza la tecnologia Angular, mentre la parte backend può essere scritta utilizzando linguaggi come C\# e LabView.\\
-Un componente fondamentale sul quale si è basato il lavoro svolto per il progetto è la dashboard, nata dall'esigenza di monitorare in tempo reale i dati provenienti dalle macchine Loccioni. Offre un ambiente di authoring che permette ai clienti di creare ad hoc in maniera semplice e veloce il proprio pannello personalizzabile \cite{AULOS}.
+AULOS è il \textit{framework} utilizzato all'interno dell'impresa Loccioni per standardizzare lo sviluppo e rendere riconoscibile e uniforme lo stile grafico di applicativi per la visualizzazione dati. La parte frontend utilizza la tecnologia Angular, mentre la parte backend può essere scritta utilizzando linguaggi come C\# e LabView.\\
+Un componente fondamentale sul quale si è basato il lavoro svolto per il progetto è la \textit{dashboard}, nata dall'esigenza di monitorare in tempo reale i dati provenienti dalle macchine Loccioni. Offre un ambiente di \textit{authoring} che permette ai clienti di creare ad hoc in maniera semplice e veloce il proprio pannello personalizzabile \cite{AULOS}.
 La dashboard è composta da:
 \begin{itemize}
     \item l'elenco di tutti i possibili widget selezionabili dall'utente.
     \item la griglia centrale in cui l'utente può selezionare, spostare, ridimensionare o eliminare un widget.
-    \item il pannello di configurazione, che si attiva selezionando un widget e permette all'utente di andare a modificare le impostazioni legate ad esso. 
+    \item il pannello di configurazione, che si attiva selezionando un widget e permette all'utente di andare a modificare le impostazioni legate a esso. 
 \end{itemize}
 \begin{figure}[h]
 \begin{center}
@@ -24,8 +24,8 @@ La dashboard è composta da:
 \end{center}
 \end{figure}
 \pagebreak
-Il widget, attore principale all'interno della dashboard,
-è una miniapplicazione che permette all'utente di visualizzare dati e svolgere semplici azioni. Nel progetto discusso ne sono stati sviluppati diversi relativi ai dati generati dalle macchine ed ai flussi gestionali interni all'impresa.
+Il \textit{widget}, attore principale all'interno della dashboard,
+è una mini applicazione che permette all'utente di visualizzare dati e svolgere semplici azioni. Nel progetto discusso ne sono stati sviluppati diversi relativi ai dati generati dalle macchine e ai flussi gestionali interni all'impresa.
 \begin{figure}[h]
 \begin{center}
   \includegraphics[width=7cm]{images/orders_widget.jpg}
@@ -33,7 +33,7 @@ Il widget, attore principale all'interno della dashboard,
 \end{center}
 \end{figure}
 \paragraph{Storybook}
-AULOS offre una pagina di storybook al fine di agevolare gli sviluppatori nell'utilizzo dei suoi componenti. Ciascun storia contenuta al suo interno, si occupa di descrivere tutti gli stati di rendering interessanti di un componente UI e di fornirne una spiegazione implementativa \cite{STORYBOOK}.
+AULOS offre una pagina di \textit{storybook} al fine di agevolare gli sviluppatori nell'utilizzo dei suoi componenti. Ciascuna storia contenuta al suo interno si occupa di descrivere tutti gli stati di \textit{rendering} interessanti di un componente UI e di fornirne una spiegazione implementativa \cite{STORYBOOK}.
 \pagebreak
 \begin{figure}[h]
 \begin{center}
@@ -50,11 +50,11 @@ AULOS offre una pagina di storybook al fine di agevolare gli sviluppatori nell'u
 \end{center}
 \end{figure}
 \FloatBarrier
-L'applicativo frontend del progetto discusso nella tesi è stato sviluppato con Angular.
-Angular è una piattaforma e un framework per costruire applicazioni client single-page usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
-\paragraph{HTML} HTML (Hypertext Markup Language) è il linguaggio markup standard per i documenti visualizzabili in un browser web \cite{HTML}.
-\paragraph{TypeScript} TypeScript è un linguaggio di programmazione open source sviluppato da Microsoft. Estende la sintassi di JavaScript, essendo un suo superset, in modo che qualunque programma scritto in JavaScript sia anche in grado di funzionare con TypeScript senza nessuna modifica. È stato progettato per lo sviluppo di grandi applicazioni ed è destinato a essere compilato in JavaScript per poter essere interpretato da qualunque web browser o app. \cite{TYPESCRIPT}
-L'architettura di un'applicazione Angular si basa su alcuni concetti fondamentali. Gli elementi costitutivi di base sono gli NgModules, che forniscono un contesto di compilazione per i Component. Questi ultimi sono elementi fondamentali per la costruzione delle UI in Angular. Ciascun Component definisce una classe che contiene dati e logica dell'applicazione ed è associato ad un modello HTML che definisce come verrà visualizzato nell'ambiente di destinazione. Il decoratore @Component() identifica la classe immediatamente sotto di essa come un componente e fornisce il modello e i relativi metadati specifici del componente.
+\textit{L'applicativo frontend} del progetto discusso nella tesi è stato sviluppato con Angular.
+Angular è una piattaforma e un framework per costruire applicazioni \textit{client single-page} usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
+\paragraph{HTML} HTML (Hypertext Markup Language) è il \textit{linguaggio di markup} standard per i documenti visualizzabili in un browser web \cite{HTML}.
+\paragraph{TypeScript} TypeScript è un linguaggio di programmazione \textit{open source} sviluppato da Microsoft. Estende la sintassi di JavaScript, essendo un suo superset, in modo che qualunque programma scritto in JavaScript sia anche in grado di funzionare con TypeScript senza nessuna modifica. È stato progettato per lo sviluppo di grandi applicazioni ed è destinato a essere compilato in JavaScript per poter essere interpretato da qualunque web browser o app. \cite{TYPESCRIPT}
+L'architettura di un'applicazione Angular si basa su alcuni concetti fondamentali. Gli elementi costitutivi di base sono gli \textit{NgModules}, che forniscono un contesto di compilazione per i \textit{Component}. Questi ultimi sono elementi fondamentali per la costruzione delle UI in Angular. Ciascun Component definisce una classe che contiene dati e logica dell'applicazione ed è associato ad un modello HTML che definisce come verrà visualizzato nell'ambiente di destinazione. Il decoratore \verb|@Component()| identifica la classe immediatamente sotto di essa come un componente e fornisce il modello e i relativi metadati specifici del componente.
 I decoratori sono funzioni che modificano le classi JavaScript. Angular definisce un numero di decoratori che associano specifici tipi di metadati alle classi, in modo che il sistema sappia cosa significano quelle classi e come dovrebbero funzionare.\cite{ANGULAR}
 \begin{lstlisting}[caption={Esempio di un Component in Angular}, style=javaScriptCode]
 import { Component, OnInit } from '@angular/core';
@@ -67,11 +67,11 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
-  
+
 }
 \end{lstlisting}
-Per i dati o la logica che non sono associati a una vista specifica e che si desidera condividere tra i componenti, si crea una classe di servizio. Una definizione di classe di servizio è immediatamente preceduta dal decoratore @Injectable(). Il decoratore fornisce i metadati che consentono ad altri provider di essere inseriti come dipendenze nella tua classe.
-La dependency injection (DI) consente di mantenere le classi dei componenti snelle ed efficienti. Non recuperano dati dal server, convalidano l'input dell'utente o accedono direttamente alla console; delegano tali compiti ai servizi. \cite{ANGULAR}
+Per i dati o la logica che non sono associati a una vista specifica e che si desidera condividere tra i componenti si crea una classe di servizio. Una definizione di classe di servizio è immediatamente preceduta dal decoratore \verb|@Injectable()|. Il decoratore fornisce i metadati che consentono ad altri provider di essere inseriti come dipendenze nella classe.
+La \textit{dependency injection (DI)} consente di mantenere le classi dei componenti snelle ed efficienti. Esse non recuperano dati dal server, convalidano l'input dell'utente o accedono direttamente alla console; delegano tali compiti ai servizi. \cite{ANGULAR}
 \begin{lstlisting}[caption={Esempio di un Service in Angular}, style=javaScriptCode]
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -91,7 +91,7 @@ export class AppService {
 
 }
 \end{lstlisting}
-Per la gestione interna dei pacchetti in Angular è stato utilizzato NPM (Node Package Manager). NPM è un gestore di pacchetti per il linguaggio di programmazione JavaScript. È il gestore di pacchetti predefinito per l'ambiente di runtime JavaScript Node.js. Consiste in un client da linea di comando, chiamato anch'esso npm, e un database online di pacchetti pubblici e privati, chiamato npm registry.
+Per la gestione interna dei pacchetti in Angular è stato utilizzato \textit{NPM (Node Package Manager)}. NPM è un gestore di pacchetti per il linguaggio di programmazione JavaScript. È il gestore di pacchetti predefinito per l'ambiente di runtime JavaScript \textit{Node.js}. Consiste in un client da linea di comando, chiamato anch'esso npm, e un database online di pacchetti pubblici e privati, chiamato \textit{npm registry}.
 Il registry è accessibile via client e i pacchetti disponibili sono consultabili sul sito web di npm. \cite{NPM}
 
 \section{RxJs}
@@ -101,7 +101,7 @@ Il registry è accessibile via client e i pacchetti disponibili sono consultabil
   \caption{Logo RxJs}
 \end{center}
 \end{figure}
-RxJS (Reactive Extensions for JavaScript) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable| che semplifica la composizione di codice asincrono o basato su callback. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci\cite{RxJS}. Queste ultime possono essere utilizzate per:
+RxJS (\textit{Reactive Extensions for JavaScript}) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable|, che semplifica la composizione di codice asincrono o basato su callback. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci\cite{RxJS}. Queste ultime possono essere utilizzate per:
 \begin{itemize}
     \item Conversione del codice esistente per operazioni asincrone in        \verb|Observable|
     \item Iterare sui valori di uno stream
@@ -118,7 +118,7 @@ RxJS (Reactive Extensions for JavaScript) è una libreria per la programmazione 
 \end{center}
 \end{figure}
 Kendo UI è un framework integrale di interfaccia utente HTML5 per costruire applicazioni e siti web interattivi e ad alte prestazioni. \cite{KENDO}
-Il framework è stato usato all'interno dell'applicativo frontend con l'obiettivo di conferire un aspetto grafico più accattivante ai widget. Kendo UI per Angular offre un vasto numero di componenti:
+Il framework è stato usato all'interno dell'applicativo frontend con l'obiettivo di conferire un aspetto grafico più accattivante ai widget. Kendo UI per Angular offre un vasto numero di componenti.
 
 \begin{figure}[h!]
 \begin{center}
@@ -166,7 +166,7 @@ ASP.NET è un framework di sviluppo open-source per web applications lato server
 Analogamente a .NET, presenta due versioni:
 \begin{itemize}
 \item \textbf{ASP.NET Core} è la versione cross-platform che utilizza il runtime di .NET Core.
-\item \textbf{ASP.NET Core 4.x} è la versione solo per Windows, utilizza il runtime di .NET Framework
+\item \textbf{ASP.NET Core 4.x} è la versione solo per Windows che utilizza il runtime di .NET Framework
 \end{itemize}
 
 \subsection{Entity Framework}
@@ -201,9 +201,9 @@ LINQ (Language-Integrated Query) è il nome di un set di tecnologie basate sull'
 Elasticsearch è un motore di ricerca e analisi full-text open source altamente scalabile. Consente di archiviare, cercare e analizzare grandi volumi di dati rapidamente e quasi in tempo reale. Viene generalmente utilizzato come motore sottostante per applicazioni che hanno caratteristiche e requisiti di ricerca complessi.
 Elasticsearch dispone di diversi casi d'uso \cite{ELASTICSEARCH}:
 \begin{itemize}
-    \item consente di avere una visione più ampia delle informazioni a disposizione senza risultare dispersivo, anche con agglomerati di dati estremamente consistenti grazie alle "aggregazioni".
+    \item consente di avere una visione più ampia delle informazioni a disposizione senza risultare dispersivo, anche con agglomerati di dati estremamente consistenti grazie alle `aggregazioni`.
     \item combina diversi tipi di ricerche: strutturate, non strutturate, geografiche, ricerca di applicazioni, analisi della sicurezza, metriche e registrazione.
-    \item si adatta a qualsiasi situazione che va dal semplice computer con un singolo nodo fino ad arrivare ad un cluster con centinaia di server, rendendo la creazione di un prototipo più agevole.
+    \item si adatta a qualsiasi situazione che va dal semplice computer con un singolo nodo fino ad arrivare a un cluster con centinaia di server, rendendo la creazione di un prototipo più agevole.
     \item utilizza API RESTful standard e JSON. L'apporto costante della comunità ha portato alla creazione e al mantenimento di client in molti linguaggi come Java, Python, .NET, SQL, Perl, PHP.
     \item è possibile utilizzare le funzionalità di ricerca e analisi in tempo reale di Elasticsearch per lavorare sui big data utilizzando il connettore Elasticsearch-Hadoop (ES-Hadoop).
 \end{itemize}
@@ -218,8 +218,8 @@ Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione de
 \end{center}
 \end{figure}
 NEST è un client Elasticsearch .NET di alto livello che è ancora molto fedele all'API Elasticsearch originale. Tutte le richieste e le risposte sono esposte attraverso i tipi, rendendolo ideale per essere subito operativi.
-Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con quest'ultima che utilizza il suffisso idiomatico \verb|Async| sul nome del metodo \cite{Nest}.
-Di seguito la medesima richiesta effettuata in Postman tramite un json~\ref{fig:json} ed in Nest~\ref{fig:nest}.
+Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con queste ultime che utilizzano suffisso idiomatico \verb|Async| sul nome del metodo \cite{Nest}.
+Di seguito la medesima richiesta effettuata in Postman utilizzando un payload in formato json~\ref{fig:json} e in Nest~\ref{fig:nest}.
 \pagebreak
 \begin{figure}[ht!]
 \begin{center}
@@ -255,7 +255,7 @@ JSON.NET è un framework open source di gestione JSON per framework .NET che met
 \end{figure}
 Git è un software di controllo versione distribuito utilizzabile da interfaccia a riga di comando. \cite{GIT}
 Un software di controllo versione è un'applicazione che permette di tenere traccia di tutti gli aggiornamenti apportati ad uno specifico progetto software, o "repository".
-Oltre a mostrare una visione più generale e strutturata sul progetto, Git consente agli sviluppatori di implementare codice in team nella maniera più efficiente possibile cercando di ridurre i conflitti che possono nascere da uno sviluppo parallelo. Questo viene reso possibile grazie ad un sistema di branches, letteralmente rami, che permettono allo sviluppatore di lavorare in autonomia in una spazio completamente isolato dal resto del progetto. Per riunificare poi il nuovo codice implementato con il branch principale, lo sviluppatore potrà effettuare un'operazione di merge.
+Oltre a mostrare una visione più generale e strutturata sul progetto, Git consente agli sviluppatori di implementare codice in team nella maniera più efficiente possibile riducendo i conflitti che possono nascere da uno sviluppo parallelo. Questo viene reso possibile grazie a a un sistema a rami, dall'inglese branches, letteralmente rami, che permettono allo sviluppatore di lavorare in autonomia in uno spazio completamente isolato dal resto del progetto. Per riunificare poi il nuovo codice implementato con il branch principale, lo sviluppatore potrà effettuare un'operazione di merge.
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[width=12cm]{images/merge-di-due-branch.png}
@@ -291,11 +291,11 @@ Il progetto discusso è stato archiviato su GitLab in un dominio privato Loccion
   \caption{Logo Visual Studio}
 \end{center}
 \end{figure}
-Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio: un IDE estendibile e con funzionalità complete per la creazione di applicazioni moderne per Android, iOS e Windows, nonché di applicazioni Web e servizi cloud \cite{VS}. Gli strumenti utilizzati sono:
+Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio, un IDE estendibile e con funzionalità complete per la creazione di applicazioni moderne per Android, iOS e Windows, nonché di applicazioni Web e servizi cloud \cite{VS}. Gli strumenti utilizzati sono:
 \begin{itemize}
 \item
 \textbf{Sviluppo ASP.NET e Web}
-Viene offerta la possibilità di creare applicazioni Web usando ASP.NET Core, ASP.NET (.NET Framework), HTML/JavaScript e i contenitori. Esso è volto a massimizzare la produttività sviluppando applicazioni Web .NET con ASP.NET Core e tecnologie basate su standard quali HTML e JavaScript.
+Viene offerta la possibilità di creare applicazioni Web usando ASP.NET Core, ASP.NET (.NET Framework), HTML/JavaScript e i contenitori. ASP.NET è volto a massimizzare la produttività sviluppando applicazioni Web .NET con ASP.NET Core e tecnologie basate su standard quali HTML e JavaScript.
 Questo componente trova applicazione in diversi campi:
 \begin{itemize}
 \item 
@@ -350,16 +350,16 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
 \begin{minipage}{0.1\textwidth}
 \includegraphics[width=1cm] {images/GitLens.jpg}
 \end{minipage}
-\textbf{GitLens — Git supercharged:} Permette, per ciascuna parte di codice, di visualizzare da chi è stato scritto tramite le annotazioni Git blame e la lente del codice, è possibile navigare ed esplorare senza problemi i repository Git.
+\textbf{GitLens — Git supercharged:} Permette, per ciascuna parte di codice, di visualizzare da chi è stato scritto. Tramite le annotazioni Git blame e la lente del codice, è possibile navigare ed esplorare senza problemi i repository Git.
 \item
 \begin{minipage}{0.1\textwidth}
 \includegraphics[width=1cm] {images/LiveShare.png}
 \end{minipage}
 \textbf{Live Share:} Consente di modificare in modo collaborativo ed eseguire il debug con altri collaboratori in tempo reale. Gli sviluppatori che partecipano alle tue sessioni ricevono tutto il contesto dell'editor dal tuo ambiente, il che garantisce che possano iniziare immediatamente a collaborare in modo produttivo, senza la necessità di clonare alcun repository o installare SDK.
 \item
-\textbf{Markdown Prewin Enhanced:} Estensione che fornisce molte funzionalità utili come la sincronizzazione automatica dello scorrimento, la composizione matematica, la sirena, PlantUML, pandoc, esportazione PDF, blocco di codice, scrittore di presentazioni, ecc. Molte delle sue idee sono ispirate da Markdown Preview Plus e RStudio Markdown .
+\textbf{Markdown Prewin Enhanced:} Estensione che fornisce molte funzionalità utili come la sincronizzazione automatica dello scorrimento, la composizione matematica, la sirena, PlantUML, pandoc, esportazione PDF, blocco di codice, scrittore di presentazioni, ecc. Molte delle sue idee sono ispirate a Markdown Preview Plus e RStudio Markdown .
 \item
-\textbf{Material Icon Theme:} Rende possibile il cambiamento del colore dell'icona della cartella predefinita e modificare il design delle icone delle cartelle, utilizzando la tavolozza dei comandi:
+\textbf{Material Icon Theme:} Rende possibile cambiare il colore dell'icona della cartella predefinita e modificare il design delle icone delle cartelle, utilizzando la tavolozza dei comandi:
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[width=13cm]{images/MaterialIcon.png}
@@ -378,7 +378,7 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
   \caption{Logo HeidiSQL}
 \end{center}
 \end{figure}
-HeidiSQL è un software gratuito ed ha l'obiettivo di essere di facile comprensione, consente di visualizzare e modificare dati e strutture da computer che eseguono uno dei sistemi di database MariaDB, MySQL, Microsoft SQL, PostgreSQL e SQLite. Appartiene agli strumenti più popolari per MariaDB e MySQL in tutto il mondo \cite{HeidiSQL}. Tale strumento è stato utilizzato per la comunicazione con il server, al fine di manipolare le informazioni nei database che il server gestisce.
+HeidiSQL è un software gratuito e ha l'obiettivo di essere di facile comprensione, consente di visualizzare e modificare dati e strutture da computer che eseguono uno dei sistemi di database MariaDB, MySQL, Microsoft SQL, PostgreSQL e SQLite. Appartiene agli strumenti più popolari per MariaDB e MySQL in tutto il mondo \cite{HeidiSQL}. Tale strumento è stato utilizzato per la comunicazione con il server, al fine di manipolare le informazioni nei database che il server gestisce.
 
 \section{Microsoft SQL Server Management Studio}
 \begin{figure}[ht!]
@@ -387,7 +387,7 @@ HeidiSQL è un software gratuito ed ha l'obiettivo di essere di facile comprensi
   \caption{Logo MicrosoftSQL Server}
 \end{center}
 \end{figure}
-SQL Server Management Studio (SSMS) è un ambiente gratuito ed integrato per la gestione di qualsiasi infrastruttura SQL, da SQL Server al database SQL di Azure. SSMS offre gli strumenti per configurare, monitorare e amministrare le istanze di SQL Server e i database. Usare SSMS per distribuire, monitorare e aggiornare i componenti del livello dati usati dalle applicazioni, nonché per creare query e script.
+SQL Server Management Studio (SSMS) è un ambiente gratuito e integrato per la gestione di qualsiasi infrastruttura SQL, da SQL Server al database SQL di Azure. SSMS offre gli strumenti per configurare, monitorare e amministrare le istanze di SQL Server e i database. SSMS viene impiegato per distribuire, monitorare e aggiornare i componenti del livello dati usati dalle applicazioni, nonché per creare query e script.
 È possibile usare SSMS per eseguire query, progettare e gestire database e data warehouse in qualsiasi posizione, nel computer locale o nel cloud \cite{MSSQL}.
 
 \pagebreak
@@ -416,7 +416,7 @@ Nel corso dello sviluppo Postman è stato uno strumento essenziale per testare i
 \end{center}
 \end{figure}
 \FloatBarrier
-Apache JMeter™ è un software open source sviluppato interamente in Java e progettato per fare test di carico e misurare le prestazioni. Originariamente era stato pensato solamente per testare le applicazioni Web ma nel tempo sono state aggiunte altre funzionalità di testing. 
+Apache JMeter™ è un software open source sviluppato interamente in Java e progettato per fare test di carico e misurare le prestazioni. Originariamente era stato pensato solamente per testare le applicazioni Web, ma nel tempo sono state aggiunte altre funzionalità di testing. 
 Può essere utilizzato per testare la resistenza di un server, una rete o un oggetto simulando diversi tipi di carichi pesanti per analizzarne le prestazioni complessive.
 Le principali tipologie di applicazioni/server/protocolli che possono essere testate sono:
 \begin{itemize}
