@@ -1,16 +1,57 @@
-\chapter{Conclusione}
-\label{chap:conclusione}
-In questo lavoro l'obiettivo principale è stato quello di creare una sovrastruttura al framework AULOS che permettesse agli sviluppatori di implementare in modo più efficiente e rapido le commesse nate dalle esigenze dei clienti Loccioni. Le problematiche affrontate sono state perlopiù relative alle scelte di design per trovare il giusto equilibrio tra la flessibilità del sistema e la facilità di configurazione. 
-L'indagine del framework AULOS ha portato ad un incremento dei progressi del progetto, rendendo possibile il conseguimento del risultato finale. La documentazione Loccioni insieme all'assiduo sostegno dei collaboratori interni dell'impresa hanno fornito gli strumenti per decodificare il funzionamento del completo workflow del framework.
-\\
-La sovrastruttura creata permetterà di ridurre i tempi di sviluppo di una singola commessa e faciliterà il riuso di codice
-scritto, minimizzando di conseguenza i costi per l'impresa. 
-Il riuso sarà notevolmente favorito dalla possibilità di sviluppare widget che non presentino un forte accoppiamento verso l'origine dei dati che gestiscono.
-\paragraph{Punti di miglioramento}
+%\chapter{Conclusione}
+%\label{chap:conclusione}
+%In questo lavoro l'obiettivo principale è stato quello di creare una sovrastruttura al \textit{framework} AULOS che permettesse agli sviluppatori di implementare in modo più efficiente e rapido le commesse nate dalle esigenze dei clienti Loccioni. Le problematiche affrontate sono state perlopiù relative alle scelte di design per trovare il giusto equilibrio tra la flessibilità del sistema e la facilità di configurazione. 
+%L'indagine del framework AULOS ha portato ad un incremento dei progressi del progetto, rendendo possibile il conseguimento del risultato finale. La documentazione Loccioni insieme all'assiduo sostegno dei collaboratori interni dell'impresa hanno fornito gli strumenti per decodificare il funzionamento del completo \textit{workflow} del framework.
+
+%La sovrastruttura creata permetterà di ridurre i tempi di sviluppo di una singola commessa e faciliterà il riuso di codice scritto, minimizzando di conseguenza i costi per l'impresa. 
+%Il riuso sarà notevolmente favorito dalla possibilità di sviluppare widget che non presentino un forte accoppiamento verso l'origine dei dati che gestiscono.
+%\paragraph{Punti di miglioramento}
+
+
+
+
+
+
+\chapter{Conclusioni}
+\setlength{\epigraphwidth}{0.6\textwidth}
+\epigraph{To develop reusable object oriented software it is essential to
+determine both the proper objects and their relationships,
+and the correct balance between generality and usability.}{\textit{Diego Bonura}\footnotemark }
+\footcitetext{DBLP:conf/seke/BonuraCM02}
+
+Nell'organizzazione dello sviluppo di questo applicativo, date limitazioni di tempo sia esterne che autoimposte, è mancata una vera e propria fase di studio dello stato dell'arte per quanto concerne i problemi da affrontare.
+Ciononostante, lo sviluppo è continuato portando l'applicativo a uno stato che soddisfa i requisiti richiesti in Loccioni. 
+
+%Nella fase di revisione del lavoro svolto, si è dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto. [WIP]
+%In particolare, vista l'estrema centralità dell'architettura nella generalizzazione di dati, perlomeno nell'ambito della soluzione ideata, la ricerca di infrastrutture simili 
+
+Nella fase di revisione del lavoro svolto si è dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto, in particolare in merito all'architettura della generalizzazione di dati che ricopre un ruolo fondamentale nella soluzione adottata.
+
+Si è arrivati a scoprire pubblicazioni riguardo problemi assimilabili a quelli affrontati; l'organizzazione di un'applicazione web, come esposto da Diego Bonura in \textit{Patterns for web applications} \cite{DBLP:conf/seke/BonuraCM02}, può essere articolata in tre livelli:
+\begin{itemize}
+\item
+\textit{front-end};
+\item
+\textit{business logic};
+\item
+\textit{back-end}.
+\end{itemize}
+
+Per quanto concerne il livello front-end, esso è facilmente associabile a dashboard e annesso applicativo Angular.
+I livelli Business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto corrispondono rispettivamente al servizio di \textit{source management} esposto nella sezione~\ref{ch:sms} e alla logica di accesso dati dell'applicativo esposta nella sezione~\ref{chap:persistence}, per cui il servizio di source management abilita la visibilità nella pipeline del sistema tramite \textit{datasource} descritte nella sottosezione~\ref{sec:datasource}.
+
+Entrando maggiormente nel dettaglio, una delle pattern descritte in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management: esso infatti permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
+
+Tale studio ha permesso di confermare che, come verificabile nella letteratura specializzata tali LIBRILIBRILIBRILIBRILIBRI, l'utilizzo di pattern nello sviluppo di software secondo il paradigma OOP può velocizzarlo e renderlo più solido.
+
+Prescindendo dallo sviluppo, l'applicativo sviluppato è considerabile un buon assaggio delle tecnologie in voga in ambito lavorativo al momento dello sviluppo: sistemi quali Elasticsearch e il loro crescente utilizzo in ogni ambito rendono solamente più appetibile il loro studio per studenti e professionisti già affermati nel proprio campo  in cerca di nuovi sbocchi o puramente interessati ad aggiornare il proprio \textit{skillset}.
+
+\chapter{Sviluppi futuri}
 Il progetto sviluppato rappresenta una solida base per quanto concerne il lavoro di ridefinizione e generalizzazione dei widget. Per una futura estensione del risultati raggiunti, sono stati individuati i seguenti possibili sviluppi:
 \begin{itemize}
     \item aggiunta di nuovi decorator all'interno dell'applicativo frontend per determinare ulteriori comportamenti comuni a più widget.
     \item successiva generalizzazione del backend con l'utilizzo di un singolo controller per la restituzione dei dati.
     \item definizione di uno "schema" e uso di un linguaggio più formale per i metadata e generale approfondimento della tematica.
     \item messa in atto di uno studio per testare varie strategie di caching durante un utilizzo reale della dashboard per capire come ottimizzarne maggiormente le performance.
+    \item \textit{hardening} del sistema di autenticazione per portarlo agli standard d'industria, e.g. 2FA.
 \end{itemize}
