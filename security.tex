@@ -51,7 +51,7 @@ export class ItSecurityModule {
 \end{lstlisting}
 In \verb|providers| vengono fornite le implementazioni delle classi astratte
 \verb|Abstract|-\verb|SecurityService|, \verb|AbstractUserFactory| e \verb|AbstractTokenProviderServi|-\verb|ce|, parte del framework Aulos.
-Tutta la logica principale dell'autenticazione risiede all'interno dell'\verb|ItSecurityService|. La sua responsabilità è quella di autenticare e disconnettere l'utente nella dashboard. \\
+Tutta la logica principale dell'autenticazione risiede all'interno dell'\verb|ItSecurityService|. La sua responsabilità è quella di autenticare e disconnettere l'utente nella \textit{dashboard}. \\
 \begin{lstlisting}[caption={Principali metodi della classe ItSecurityService}, style=javaScriptCode]
 @Injectable({
   providedIn: 'root'
@@ -98,8 +98,8 @@ export class ItSecurityService extends AbstractSecurityService {
 }
 \end{lstlisting}
 \paragraph{Grant}
-Si è utilizzato il Resource Owner Password Credentials Grant \cite{GRANT} in quanto nel caso d'uso in questione si ha un elevato grado di fiducia tra frontend e backend.
-Le credenziali vengono mandate all'Authorization Server che restituisce, se le credenziali sono corrette, un access token ed un refresh token.\\
+Si è utilizzato il \textit{Resource Owner Password Credentials Grant} \cite{GRANT} in quanto nel caso d'uso in questione si ha un elevato grado di fiducia tra frontend e backend.
+Le credenziali vengono mandate all'\textit{Authorization Server} che restituisce, se le credenziali sono corrette, un \textit{access token} e un \textit{refresh token}.\\
 \begin{figure}[h]
 \begin{center}
 \label{fig:grantflow}
@@ -176,7 +176,7 @@ export declare abstract class AbstractTokenProviderService {
     abstract remove(): Observable<void>;
 }
 \end{lstlisting}
-All'avvio della dashboard l'\verb|ItSecurityModule| autentica automaticamente l'utente se l'access token è già presente nel local storage.\newline
+All'avvio della dashboard l'\verb|ItSecurityModule| autentica automaticamente l'utente se l'access token è già presente nel \textit{local storage}.\newline
 \begin{lstlisting}[caption={Login con token nell'ItSecurityModule}, style=javaScriptCode]
 @NgModule({
   imports: [HttpClientModule],
@@ -212,7 +212,7 @@ export class ItSecurityModule {
 }
 \end{lstlisting}
 \pagebreak
-\paragraph{Interceptor} Chi intercetta e gestisce le richieste e le risposte http è l'\verb|ItHttpSecurityIntercep|-\verb|tor|.
+\paragraph{Interceptor} Chi intercetta e gestisce le \textit{richieste} e le \textit{risposte http} è l'\verb|ItHttpSecurityIntercep|-\verb|tor|.
 Nello specifico l'\verb|ItHttpSecurityInterceptor| si occupa di: 
 \begin{itemize}
     \item decorare le richieste http in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta,

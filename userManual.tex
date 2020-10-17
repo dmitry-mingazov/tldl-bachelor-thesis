@@ -178,7 +178,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     \begin{itemize}
         \item Single POST method taking \verb|GenericRequestDTO| argument.
         \item Call \verb|SourceManagementService| \verb|getDataSource<dataSource>| where \verb|dataSource| is the \verb|DataSource| class/interface you need.
-        \begin{lstlisting}[caption={NON SO COSA METTERE example}, style=javaScriptCode]
+        \begin{lstlisting}[caption={HttpPost request in Controller example}, style=javaScriptCode]
         [HttpPost]
         public IActionResult Search([FromBody] GenericRequestDTO request)
         {
