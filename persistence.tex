@@ -15,16 +15,16 @@ Nella conformazione che si denota in figura~\ref{fig:persistence}, ciascuna cart
 
 \begin{itemize}
 \item 
-\textbf{Entity configurations:} vi sono le configurazioni delle entità presenti in \textbf{Models} e vi si effettua il \textit{mapping} di tabelle e colonne nel database
+\textbf{Entity configurations:} vi sono le configurazioni delle entità presenti in \textbf{Models} e vi si effettua il \textit{mapping} di tabelle e colonne nel database.
 \item
-\textbf{Models:} ciascun modello è un'entità che rappresenta l'analogo del record, o riga, di una tabella
+\textbf{Models:} ciascun modello è un'entità che rappresenta l'analogo del record, o riga, di una tabella.
 \item 
-\textbf{Repositories:} volte all'interrogazione e manipolazione dati tramite l'uso di \textit{Data Manipulation Language} (quali Linq e Nest, rispettivamente per database SQL ed ElasticSearch)
+\textbf{Repositories:} volte all'interrogazione e manipolazione dati tramite l'uso di \textit{Data Manipulation Language} (quali Linq e Nest, rispettivamente per database SQL ed ElasticSearch).
 \item 
-\textbf{IUnitOfWork:} interfaccia in cui vengono definite \textit{repository} e metodo \verb|SaveChanges|
+\textbf{IUnitOfWork:} interfaccia in cui vengono definite \textit{repository} e metodo \verb|SaveChanges|.
 \item
-\textbf{DbContext:} in questa classe viene fornita la \textit{connection string} del database (definita in \verb|appsettings|), si dichiarano i DbSet relativi ai model, che sono entity set utilizzati per le \textit{CRUD operation} \cite{DbSet} e in \verb|OnModelCreating| si applicano le configurazioni dei model
+\textbf{DbContext:} in questa classe viene fornita la \textit{connection string} del database (definita in \verb|appsettings|), si dichiarano i DbSet relativi ai model, che sono entity set utilizzati per le \textit{CRUD operation} \cite{DbSet} e in \verb|OnModelCreating| si applicano le configurazioni dei model.
 \item 
-\textbf{UnitOfWork:} implementa l'interfaccia creando la repository e applicando il metodo \verb|SaveChanges| al context; quest'ultimo ha la funzione di salvare un insieme di modifiche in una transazione, oppure di eseguire un \textbf{rollback} (ossia un ripristino allo stato che precede l'aggiornamento)
+\textbf{UnitOfWork:} implementa l'interfaccia creando la repository e applicando il metodo \verb|SaveChanges| al context; quest'ultimo ha la funzione di salvare un insieme di modifiche in una transazione, oppure di eseguire un \textbf{rollback} (ossia un ripristino allo stato che precede l'aggiornamento).
 \end{itemize}
 \verb|PersistenceServiceCollectionExtension| si occupa di configurare le \textit{dependency injection} per la creazione del context ElasticSearch.

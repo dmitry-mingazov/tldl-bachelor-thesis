@@ -215,8 +215,8 @@ export class ItSecurityModule {
 \paragraph{Interceptor} Chi intercetta e gestisce le \textit{richieste} e le \textit{risposte http} è l'\verb|ItHttpSecurityIntercep|-\verb|tor|.
 Nello specifico l'\verb|ItHttpSecurityInterceptor| si occupa di: 
 \begin{itemize}
-    \item decorare le richieste http in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta,
-    \item richiedere un access token tramite la procedura di refresh token in caso di risposta 401 a una richiesta al backend,
-    \item ripetere la richiesta fallita con codice 401 dopo aver ottenuto il nuovo access token, 
+    \item decorare le richieste http in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta;
+    \item richiedere un access token tramite la procedura di refresh token in caso di risposta 401 a una richiesta al backend;
+    \item ripetere la richiesta fallita con codice 401 dopo aver ottenuto il nuovo access token;
     \item effettuare il logout in caso di fallimento della procedura di refresh.
 \end{itemize}

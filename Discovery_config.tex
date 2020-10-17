@@ -45,10 +45,10 @@ public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 \label{subsec:source}
 Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
 \begin{itemize}
-\item SourceCode è l’identificativo della source
-\item TDataSource è il tipo della DataSource legata alla source
-\item Parameters sono i parametri messi a disposizione dalla source per modificare la \textit{query}
-\item Metadata sono i metadati volti a modificare come vengono visualizzati i dati lato frontend
+\item \verb|SourceCode| è l’identificativo della source;
+\item \verb|TDataSource| è il tipo della DataSource legata alla source;
+\item \verb|Parameters| sono i parametri messi a disposizione dalla source per modificare la \textit{query};
+\item \verb|Metadata| sono i metadati volti a modificare come vengono visualizzati i dati lato frontend.
 \end{itemize}
 Parameters e Metadata vengono scritti in un file json all’interno della cartella \verb|properties| con il nome \verb|{SourceCode}.json|, come nel seguente esempio:
 \begin{lstlisting}[caption={allcode.json}, style=JavaScriptCODE]
@@ -125,7 +125,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     }
 }
 \end{lstlisting}
-Il metodo AddSource, definito in \verb|DiscoveryConfiguration|, ottiene attraverso \verb|PropertiesConfiguration| le eventuali informazioni aggiuntive contenute nell’apposito file\\ \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
+Il metodo AddSource, definito in \verb|DiscoveryConfiguration|, ottiene attraverso \verb|PropertiesConfiguration| le eventuali informazioni aggiuntive contenute nell’apposito file \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
 \begin{lstlisting}[caption={DiscoveryConfiguration.cs}, style=sharpCode]
 public abstract class DiscoveryConfiguration
 {
@@ -145,7 +145,7 @@ public abstract class DiscoveryConfiguration
 
 }
 \end{lstlisting}
-DataDiscoveryConfiguration ottiene tutte le classi che estendono \verb|DiscoveryConfiguration|, per poi registrare in SourceManagementService tutte le source riscontrate
+DataDiscoveryConfiguration ottiene tutte le classi che estendono \verb|DiscoveryConfiguration|, per poi registrare in SourceManagementService tutte le source riscontrate.
 \begin{lstlisting}[caption={DataDiscoveryConfiguraton.cs}, style=sharpCode]
 public static class DataDiscoveryConfiguration
 {
@@ -188,8 +188,8 @@ public enum DataTypeCoupling
 \end{lstlisting}
 DiscoveryController presenta due endpoint:
 \begin{itemize}
-\item \verb|{resource}/discovery| - restituisce SourceCode e le descrizioni delle source associate a una DataSource del tipo associato a \verb|resource|, utilizzando il metodo GetDataSourcesByType di SourceManagementService
-\item \verb|filters/{sourceCode}| - restituisce i parameters e i metadata di una specifica Source
+\item \verb|{resource}/discovery| - restituisce SourceCode e le descrizioni delle source associate a una \verb|DataSource| del tipo associato a \verb|resource|, utilizzando il metodo \verb|GetDataSourcesByType| di \verb|SourceManagementService|;
+\item \verb|filters/{sourceCode}| - restituisce i parameters e i metadata di una specifica Source.
 \end{itemize}
 Il sourceCode restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
 
@@ -217,7 +217,7 @@ public IActionResult Search([FromBody] GenericRequestDTO request)
 \end{lstlisting}
 Prende come Body una \verb|GenericRequest|, che presenta i seguenti campi:
 \begin{itemize}
-\item \verb|SourceCode| indica da quale fonte di dati devono essere presi i dati.
+\item \verb|SourceCode| indica da quale fonte di dati devono essere presi i dati;
 \item \verb|Filters| sono gli eventuali parametri necessari alla esecuzione della query.
 \end{itemize}
 \begin{lstlisting}[caption={GenericRequestDTO.cs}, style=sharpCode]

@@ -13,9 +13,9 @@ AULOS è il \textit{framework} utilizzato all'interno dell'impresa Loccioni per 
 Un componente fondamentale sul quale si è basato il lavoro svolto per il progetto è la \textit{dashboard}, nata dall'esigenza di monitorare in tempo reale i dati provenienti dalle macchine Loccioni. Offre un ambiente di \textit{authoring} che permette ai clienti di creare ad hoc in maniera semplice e veloce il proprio pannello personalizzabile \cite{AULOS}.
 La dashboard è composta da:
 \begin{itemize}
-    \item l'elenco di tutti i possibili widget selezionabili dall'utente.
-    \item la griglia centrale in cui l'utente può selezionare, spostare, ridimensionare o eliminare un widget.
-    \item il pannello di configurazione, che si attiva selezionando un widget e permette all'utente di andare a modificare le impostazioni legate a esso. 
+    \item l'elenco di tutti i possibili widget selezionabili dall'utente;
+    \item la griglia centrale in cui l'utente può selezionare, spostare, ridimensionare o eliminare un widget;
+    \item il pannello di configurazione, che si attiva selezionando un widget e permette all'utente di andare a modificare le impostazioni legate a esso.
 \end{itemize}
 \begin{figure}[h]
 \begin{center}
@@ -91,7 +91,7 @@ export class AppService {
 
 }
 \end{lstlisting}
-Per la gestione interna dei pacchetti in Angular è stato utilizzato \textit{NPM (Node Package Manager)}. NPM è un gestore di pacchetti per il linguaggio di programmazione JavaScript. È il gestore di pacchetti predefinito per l'ambiente di runtime JavaScript \textit{Node.js}. Consiste in un client da linea di comando, chiamato anch'esso npm, e un database online di pacchetti pubblici e privati, chiamato \textit{npm registry}.
+Per la gestione interna dei pacchetti in Angular è stato utilizzato \textit{npm} (node package manager), un gestore di pacchetti per il linguaggio di programmazione JavaScript. È il gestore di pacchetti predefinito per l'ambiente di runtime JavaScript \textit{Node.js}. Consiste in un client da linea di comando, chiamato anch'esso npm, e un database online di pacchetti pubblici e privati, chiamato \textit{npm registry}.
 Il registry è accessibile via client e i pacchetti disponibili sono consultabili sul sito web di npm. \cite{NPM}
 
 \section{RxJs}
@@ -101,13 +101,13 @@ Il registry è accessibile via client e i pacchetti disponibili sono consultabil
   \caption{Logo RxJs}
 \end{center}
 \end{figure}
-RxJS (\textit{Reactive Extensions for JavaScript}) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable|, che semplifica la composizione di codice asincrono o basato su callback. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci\cite{RxJS}. Queste ultime possono essere utilizzate per:
+RxJS (\textit{Reactive Extensions for JavaScript}) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable|, che semplifica la composizione di codice asincrono o basato su \textit{callback}. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci\cite{RxJS}. Queste ultime possono essere utilizzate per:
 \begin{itemize}
-    \item Conversione del codice esistente per operazioni asincrone in        \verb|Observable|
-    \item Iterare sui valori di uno stream
-    \item Mappare valori di diversi tipi
-    \item Filtrare stream
-    \item Effettuare la composizione di più stream
+    \item convertire codice esistente per operazioni asincrone in \verb|Observable|;
+    \item iterare sui valori di uno stream;
+    \item mappare valori di diversi tipi;
+    \item filtrare stream;
+    \item effettuare la composizione di più stream.
 \end{itemize}
 
 \section{KendoUI}
@@ -127,7 +127,7 @@ Il framework è stato usato all'interno dell'applicativo frontend con l'obiettiv
 \end{center}
 \end{figure}
 \pagebreak
-Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della Kendo Grid, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
+Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della \textit{Kendo Grid}, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[width=14cm]{images/kendo_grid.JPG}
@@ -145,14 +145,14 @@ Ogni componente include un set completo di funzionalità già pronte all'uso \ci
 \end{figure}
 .NET è una piattaforma di sviluppo ideata da Microsoft per costruire differenti tipi di applicazioni, utilizzando il C\#, F\# o Visual Basic.\cite{DOTNET} 
 \begin{itemize}
-\item \textbf{C\#} è un linguaggio di programmazione object-oriented semplice, moderno e fortemente tipizzato.
-\item \textbf{F\#} è un linguaggio di programmazione funzionale cross-platform e open-source. Include anche tratti di programmazione imperativa e object-oriented.
+\item \textbf{C\#} è un linguaggio di programmazione object-oriented semplice, moderno e fortemente tipizzato;
+\item \textbf{F\#} è un linguaggio di programmazione funzionale \textit{cross-platform} e \textit{open-source}. Include anche tratti di programmazione imperativa e object-oriented;
 \item \textbf{Visual Basic} è un linguaggio di programmazione intuitivo con una sintassi semplice volto a scrivere app object-oriented e fortemente tipizzate.
 \end{itemize}
 Viene divisa in due versioni principali:
 \begin{itemize}
-\item \textbf{.NET Core} è la versione cross-platform, e viene utilizzata per lo sviluppo di siti, servizi e console apps. È questa la versione che è stata utilizzata nello sviluppo dell'applicativo backend.
-\item \textbf{.NET Framework} è la versione solo per Windows, e viene utilizzata per lo sviluppo di ogni tipo di app che può essere eseguita di Windows
+\item \textbf{.NET Core} è la versione cross-platform, e viene utilizzata per lo sviluppo di siti, servizi e console apps. È questa la versione che è stata utilizzata nello sviluppo dell'applicativo backend;
+\item \textbf{.NET Framework} è la versione solo per Windows, e viene utilizzata per lo sviluppo di ogni tipo di app che può essere eseguita di Windows.
 \end{itemize}
 \pagebreak
 \subsection{ASP.NET}
@@ -165,8 +165,8 @@ Viene divisa in due versioni principali:
 ASP.NET è un framework di sviluppo open-source per web applications lato server. È stato sviluppato da Microsoft per permettere ai programmatori di costruire pagine web dinamiche, applicazioni e servizi.\cite{ASPNET}\\
 Analogamente a .NET, presenta due versioni:
 \begin{itemize}
-\item \textbf{ASP.NET Core} è la versione cross-platform che utilizza il runtime di .NET Core.
-\item \textbf{ASP.NET Core 4.x} è la versione solo per Windows che utilizza il runtime di .NET Framework
+\item \textbf{ASP.NET Core} è la versione cross-platform che utilizza il runtime di .NET Core;
+\item \textbf{ASP.NET Core 4.x} è la versione solo per Windows che utilizza il runtime di .NET Framework.
 \end{itemize}
 
 \subsection{Entity Framework}
@@ -201,10 +201,10 @@ LINQ (Language-Integrated Query) è il nome di un set di tecnologie basate sull'
 Elasticsearch è un motore di ricerca e analisi full-text open source altamente scalabile. Consente di archiviare, cercare e analizzare grandi volumi di dati rapidamente e quasi in tempo reale. Viene generalmente utilizzato come motore sottostante per applicazioni che hanno caratteristiche e requisiti di ricerca complessi.
 Elasticsearch dispone di diversi casi d'uso \cite{ELASTICSEARCH}:
 \begin{itemize}
-    \item consente di avere una visione più ampia delle informazioni a disposizione senza risultare dispersivo, anche con agglomerati di dati estremamente consistenti grazie alle `aggregazioni`.
-    \item combina diversi tipi di ricerche: strutturate, non strutturate, geografiche, ricerca di applicazioni, analisi della sicurezza, metriche e registrazione.
-    \item si adatta a qualsiasi situazione che va dal semplice computer con un singolo nodo fino ad arrivare a un cluster con centinaia di server, rendendo la creazione di un prototipo più agevole.
-    \item utilizza API RESTful standard e JSON. L'apporto costante della comunità ha portato alla creazione e al mantenimento di client in molti linguaggi come Java, Python, .NET, SQL, Perl, PHP.
+    \item consente di avere una visione più ampia delle informazioni a disposizione senza risultare dispersivo, anche con agglomerati di dati estremamente consistenti grazie alle `aggregazioni`;
+    \item combina diversi tipi di ricerche: strutturate, non strutturate, geografiche, ricerca di applicazioni, analisi della sicurezza, metriche e registrazione;
+    \item si adatta a qualsiasi situazione che va dal semplice computer con un singolo nodo fino ad arrivare a un cluster con centinaia di server, rendendo la creazione di un prototipo più agevole;
+    \item utilizza API RESTful standard e JSON. L'apporto costante della comunità ha portato alla creazione e al mantenimento di client in molti linguaggi come Java, Python, .NET, SQL, Perl, PHP;
     \item è possibile utilizzare le funzionalità di ricerca e analisi in tempo reale di Elasticsearch per lavorare sui big data utilizzando il connettore Elasticsearch-Hadoop (ES-Hadoop).
 \end{itemize}
 Data l'elevata efficienza di questo software diverse compagnie informatiche l'hanno scelto per i loro prodotti. Gli ambiti interessati sono quelli di ricerca per quanto concerne Tinder, dove Elasticsearch permette di rendere il sistema più reattivo e veloce, mentre nel caso di Netflix l'utilizzo principale è focalizzato al giusto indirizzamento di notifiche push, email e messaggistica \cite{ELASTICSEARCH}.
@@ -295,15 +295,15 @@ Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio, un 
 \begin{itemize}
 \item
 \textbf{Sviluppo ASP.NET e Web}
-Viene offerta la possibilità di creare applicazioni Web usando ASP.NET Core, ASP.NET (.NET Framework), HTML/JavaScript e i contenitori. ASP.NET è volto a massimizzare la produttività sviluppando applicazioni Web .NET con ASP.NET Core e tecnologie basate su standard quali HTML e JavaScript.
+viene offerta la possibilità di creare applicazioni Web usando ASP.NET Core, ASP.NET (.NET Framework), HTML/JavaScript e i contenitori. ASP.NET è volto a massimizzare la produttività sviluppando applicazioni Web .NET con ASP.NET Core e tecnologie basate su standard quali HTML e JavaScript.
 Questo componente trova applicazione in diversi campi:
 \begin{itemize}
 \item 
-Sito Web con pagine Razor in ASP.NET Core
+sito Web con pagine Razor in ASP.NET Core;
 \item 
-API Web con ASP.NET Core MVC
+API Web con ASP.NET Core MVC;
 \item 
-App Web in tempo reale con ASP.NET Core SignalR
+app web in tempo reale con ASP.NET Core SignalR.
 \end{itemize}
 Alcuni dei componenti messi a disposizione sono IntelliSense (per il completamento del codice), esplorazione del codice e refactoring per C\#, Visual Basic e F\# \cite{VS}.
 \item
@@ -312,23 +312,23 @@ Viene offerta la possibilità di creare applicazioni Web con .NET Framework, app
 I componenti messi a disposizione sono gli strumenti per:
 \begin{itemize}
 \item
-Strumenti per sviluppo di applicazioni desktop .NET
+strumenti per sviluppo di applicazioni desktop .NET;
 \item
-Strumenti di sviluppo per .NET Framework 4.x
+strumenti di sviluppo per .NET Framework 4.x;
 \item
-Strumenti di profilatura .NET
+strumenti di profilatura .NET;
 \item
-Supporto per i linguaggi C\# e Visual Basic
+supporto per i linguaggi C\# e Visual Basic;
 \item
-Strumenti di Entity Framework 6
+strumenti di Entity Framework 6;
 \item
-IntelliTrace
+IntelliTrace;
 \item
-Debugger JIT
+debugger JIT;
 \item
-Live Unit Testing
+Live Unit Testing;
 \item
-Live Share
+Live Share.
 \end{itemize}
 \end{itemize}
 
@@ -357,7 +357,7 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
 \end{minipage}
 \textbf{Live Share:} Consente di modificare in modo collaborativo ed eseguire il debug con altri collaboratori in tempo reale. Gli sviluppatori che partecipano alle tue sessioni ricevono tutto il contesto dell'editor dal tuo ambiente, il che garantisce che possano iniziare immediatamente a collaborare in modo produttivo, senza la necessità di clonare alcun repository o installare SDK.
 \item
-\textbf{Markdown Prewin Enhanced:} Estensione che fornisce molte funzionalità utili come la sincronizzazione automatica dello scorrimento, la composizione matematica, la sirena, PlantUML, pandoc, esportazione PDF, blocco di codice, scrittore di presentazioni, ecc. Molte delle sue idee sono ispirate a Markdown Preview Plus e RStudio Markdown .
+\textbf{Markdown Prewin Enhanced:} Estensione che fornisce molte funzionalità utili come la sincronizzazione automatica dello scorrimento, la composizione matematica, la sirena, PlantUML, pandoc, esportazione PDF, blocco di codice, scrittore di presentazioni, ecc. Molte delle sue idee sono ispirate a Markdown Preview Plus e RStudio Markdown.
 \item
 \textbf{Material Icon Theme:} Rende possibile cambiare il colore dell'icona della cartella predefinita e modificare il design delle icone delle cartelle, utilizzando la tavolozza dei comandi:
 \begin{figure}[ht!]
@@ -420,16 +420,16 @@ Apache JMeter™ è un software open source sviluppato interamente in Java e pro
 Può essere utilizzato per testare la resistenza di un server, una rete o un oggetto simulando diversi tipi di carichi pesanti per analizzarne le prestazioni complessive.
 Le principali tipologie di applicazioni/server/protocolli che possono essere testate sono:
 \begin{itemize}
-    \item Web - HTTP, HTTPS (Java, NodeJS, PHP, ASP.NET, …)
-    \item SOAP / REST Webservices
-    \item FTP
-    \item Database via JDBC
-    \item LDAP
-    \item Message-oriented middleware (MOM) via JMS
-    \item Mail - SMTP(S), POP3(S) and IMAP(S)
-    \item Native commands or shell scripts
-    \item TCP
-    \item Java Objects
+    \item web - HTTP, HTTPS (Java, NodeJS, PHP, ASP.NET, …);
+    \item SOAP / REST Webservices;
+    \item FTP;
+    \item database via JDBC;
+    \item LDAP;
+    \item message-oriented middleware (MOM) via JMS;
+    \item mail - SMTP(S), POP3(S) and IMAP(S);
+    \item native commands or shell scripts;
+    \item TCP;
+    \item Java Objects.
 \end{itemize}
 \cite{JMETER} 
 Apache JMeter è stato utilizzato per testare l'applicativo backend del progetto.
