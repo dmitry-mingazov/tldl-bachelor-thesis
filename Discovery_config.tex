@@ -3,6 +3,7 @@
 Una source è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una DataSource, una classe che nel pattern Model View Controller si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
 
 \subsection{Creazione Source}
+\label{subsec:creazioneSource}
 Viene creata una classe DataSource che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto ad ottenere i dati richiesti (e.g. GetData), che verrà implementato dalla DataSource.
 \begin{lstlisting}[caption={ITupleDataSource.cs}, style=sharpCode]
 interface ITupleDataSource
@@ -41,6 +42,7 @@ public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 \end{lstlisting}
 
 \subsection{Registrazione Source}
+\label{subsec:source}
 Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
 \begin{itemize}
 \item SourceCode è l’identificativo della source
