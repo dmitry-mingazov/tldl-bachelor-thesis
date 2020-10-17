@@ -6,9 +6,7 @@
 \end{figure}
 \subsection{Composizione}
 
-Un widget è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle. \newline Prendendo ad esempio il pie chart widget si può vedere come un widget lato frontend sia formato da diversi file. La classe contenente i parametri volti alla visualizzazione grafica del widget si chiama \verb|PieChartWidget|. Estende la classe \verb|BaseWidget|, dove viene gestita tutta la logica per la presa dei dati dal backend, ed è decorata con il \verb|WidgetDecorator|, il quale aggiunge ulteriore comportamento al widget.
-
-
+Un \textit{widget} è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle. \newline Prendendo ad esempio il \textit{pie chart} widget si può vedere come un widget lato \textit{frontend} sia formato da diversi \textit{file}. La classe contenente i parametri volti alla visualizzazione grafica del widget si chiama \verb|PieChartWidget|. Estende la classe \verb|BaseWidget|, dove viene gestita tutta la logica per la presa dei dati dal \textit{backend}, ed è decorata con il \verb|WidgetDecorator|, il quale aggiunge ulteriore comportamento al widget.
 
 \begin{lstlisting}[caption={Classe PieChartWidget}, style=javaScriptCode]
 @WidgetDecorator({
@@ -46,7 +44,7 @@ export class PieChartWidget extends BaseWidget {
 }
 
 \end{lstlisting}
-Tutta la logica riguardante la visualizzazione dei dati del widget si trova nella classe \verb|PieChartComponent|. Al suo interno viene specificato come la label debba essere mostrata nel pie chart (con il metodo \verb|labelContent|) e viene implementato il metodo \verb|getDataCallback|, richiesto dalla classe \verb|BaseWidgetComponent| che viene estesa da \verb|PieChartComponent|, per salvarsi i dati ogni qualvolta il widget riceva dati dal backend.
+Tutta la logica riguardante la visualizzazione dei dati del widget si trova nella classe \verb|PieChartComponent|. Al suo interno viene specificato come la \textit{label} debba essere mostrata nel pie chart (con il metodo \verb|labelContent|) e viene implementato il metodo \verb|getDataCallback|, richiesto dalla classe \verb|BaseWidgetComponent| che viene estesa da \verb|PieChartComponent|, per salvarsi i dati ogni qualvolta il widget riceva dati dal backend.
 
 \begin{lstlisting}[caption={Classe PieChartComponent}, style=javaScriptCode]
 @Component({
@@ -74,7 +72,7 @@ export class PieChartComponent extends BaseWidgetComponent<PieChartWidget> {
     }
 }
 \end{lstlisting}
-Nel file HTML, di cui viene passato il path al @Component decorator, viene specificato l'aspetto grafico che avrà il widget all'interno della dashboard.
+Nel file HTML, di cui viene passato il path al \verb|Component| \textit{decorator}, viene specificato l'aspetto grafico che avrà il widget all'interno della \textit{dashboard}.
 
 \begin{lstlisting}[caption={File pie-chart.component.html}, style=javaScriptCode]
 <aulos-widget-layout [widget]="widget" [backgroundColor]="backgroundColor">
@@ -96,7 +94,7 @@ Nel file HTML, di cui viene passato il path al @Component decorator, viene speci
     </aulos-widget-content>
 </aulos-widget-layout>
 \end{lstlisting}
-Infine ogni widget viene incluso in un modulo Angular. All'avvio dell'applicazione il widget viene registrato nel sistema con la chiamata del metodo \verb|registerWidgets|, presente nel modulo. Ciò permette alla dashboard di riconoscere il widget come tale e di mostrarlo selezionabile al momento della configurazione della dashboard.
+Infine ogni widget viene incluso in un modulo Angular. All'avvio dell'applicazione il widget viene registrato nel sistema con la chiamata del metodo \verb|registerWidgets|, presente nel modulo. Ciò permette ad AULOS di inserirlo nella lista di widget instanziabili nella dashboard.
 
 \begin{lstlisting}[caption={Metodo all'interno del modulo che registra il widget nel sistema}, style=javaScriptCode]
 private static registerWidgets(widgetsService: WidgetComponentsService): () => 
@@ -121,10 +119,12 @@ private static registerWidgets(widgetsService: WidgetComponentsService): () =>
 \end{lstlisting}
 
 \subsection{Le classi BaseWidget e BaseWidgetComponent}
-
-Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework Aulos, \verb|Widget| e \verb|WidgetComponent|. \verb|BaseWidget| e \verb|BaseWidgetComponent| sono classi nate dall'esigenza del progetto di trovare una soluzione per generalizzare il funzionamento dei widget e di rendere la vita più facile ai futuri sviluppatori.
-Infatti nelle due classi risiede tutto il comportamento per la raccolta dei dati dal backend, comune a tutti i widget.
-All'interno del \verb|BaseWidget| viene iniettato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|.
+\label{subsec:base}
+Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| sono state create con l'obiettivo di alleggerire il carico di lavoro inerente allo sviluppo di un widget. In esse risiede tutta la logica di interfacciamento con il backend, lasciando come unica responsabilità alle classi che le estendono le modalità attraverso le quali vengono visualizzati i dati.
+\\
+\verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel \textit{framework} AULOS, \verb|Widget| e \verb|WidgetComponent|.
+\\
+All'interno del \verb|BaseWidget| viene iniettato e utilizzato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|. 
 
 \begin{lstlisting}[caption={Creazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
 export class BaseWidget extends Widget {
@@ -145,7 +145,8 @@ export class BaseWidget extends Widget {
 
 }
 \end{lstlisting}
-Il parametro \verb|source| serve per definire la source a cui chiedere dati, mentre il parametro \verb|filter| si occupa di filtrare la richiesta in base ai filtri presi dal backend e gestiti lato frontend. Il tutto viene inizializzato e caricato tramite il metodo \verb|initSourceCalls|.
+
+Il parametro \verb|source| indica da quale contesto verranno presi i dati da visuaizzare, mentre il parametro \verb|filters| contiene tutti i parametri che aggiungono filtri in fase di ottenimento dati (e.g. un intervallo di tempo per il quale si vogliono ottenere i risultati di un test). Il tutto viene inizializzato e caricato tramite il metodo \verb|initSourceCalls|.
 
 \begin{lstlisting}[caption={Inizializzazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
 export class BaseWidget extends Widget {
@@ -214,7 +215,7 @@ export abstract class BaseWidgetComponent<T extends BaseWidget> extends
 
 \subsection{Il servizio WidgetService}
 Nel \verb|WidgetService| avviene tutta la comunicazione tra frontend e backend.
-La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \verb|getData| in cui, passatagli una \verb|GenericRequest| composta da un sourceCode e un array di filtri, manda una richiesta POST al backend.
+La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \verb|getData| il quale, passatagli una \verb|GenericRequest| composta da un \verb|sourceCode| e un \textit{array} di filtri, manda una richiesta POST al backend.
 
 \begin{lstlisting}[caption={Metodo getData all'interno della classe WidgetService}, style=javaScriptCode]
 @Injectable({
@@ -237,7 +238,7 @@ export class WidgetService {
 \end{lstlisting}
 Se esiste un'implementazione dell'\verb|Adapter|, interfaccia funzionale con il singolo metodo \verb|adapt|, per quel determinato widget, i dati che verranno presi saranno adattati prima di essere restituiti. In caso contrario verranno passati al widget dati grezzi.
 
-La lista di sources disponibili e la possibile lista di filtri e metadati si ricavano rispettivamente dal metodo \verb|getSources| e dal metodo \verb|getSourceProperties|.
+La lista di \textit{source} disponibili e la possibile lista di filtri e metadati si ricavano rispettivamente dal metodo \verb|getSources| e dal metodo \verb|getSourceProperties|.
 
 \begin{lstlisting}[caption={Metodi getSources e getSourceProperties all'interno della classe WidgetService}, style=javaScriptCode]
 @Injectable({
@@ -257,7 +258,7 @@ export class WidgetService {
 
 }
 \end{lstlisting}
-Se un widget è di tipo \verb|MOBILITY|, ovvero legato a dei dati provenienti dalle macchine Loccioni, avrà bisogno della possibilità di filtrare i dati in base alla linea, banco e stazione. Per questo all'interno del \verb|WidgetService| vi sono 3 metodi predisposti per il recupero di questi ultimi.
+Se un widget è di tipo \verb|MOBILITY|, ovvero legato a dei dati provenienti dalle macchine Loccioni, avrà bisogno della possibilità di filtrare i dati in base a \textit{linea}, \textit{banco} e \textit{stazione}. Per questo all'interno del \verb|WidgetService| vi sono tre metodi predisposti per il recupero di questi ultimi.
 
 \begin{lstlisting}[caption={Metodi per recuperare linee, banchi e stazioni all'interno della classe WidgetService}, style=javaScriptCode]
 @Injectable({
@@ -289,6 +290,7 @@ export class WidgetService {
 \end{lstlisting}
 
 \subsection{Il decorator factory WidgetDecorator}
+\label{subsec:widgetDecorator}
 Il \verb|WidgetDecorator| ha la responsabilità di aggiungere comportamento a un widget in base alle opzioni passate con l'interfaccia \verb|WidgetOptions|.
 
 \verb|WidgetOptions| ha la seguente struttura:
@@ -314,7 +316,7 @@ export interface RefreshableInfo {
     defaultRefreshRate?: RefreshRateEnum;
 }
 \end{lstlisting}
-Il comportamento viene aggiunto al widget tramite altri decorators verificando le opzioni passate al momento della decorazione.
+Il comportamento viene aggiunto al widget tramite altri decorator verificando le opzioni passate al momento della decorazione.
 
 \begin{lstlisting}[caption={Decorator factory WidgetDecorator}, style=javaScriptCode]
 export const WidgetDecorator: (options: WidgetOptions) => (target: Function) => 
@@ -349,7 +351,7 @@ export const WidgetDecorator: (options: WidgetOptions) => (target: Function) =>
 };
 \end{lstlisting}
 \subsection{Mobility Decorator}
-Il \verb|Mobility| decorator si occupa di aggiungere i parametri atti al filtraggio dei dati di un widget in base alla linea, banco e stazione.
+Il \verb|Mobility| decorator si occupa di aggiungere i parametri atti al filtraggio dei dati di un widget in base a linea, banco e stazione.
 
 \begin{lstlisting}[caption={Metodo di creazione dei parametri all'interno del decorator Mobility}, style=javaScriptCode]
 export const Mobility: (target: Function) => void = (target: Function) => {
@@ -428,7 +430,7 @@ export const Mobility: (target: Function) => void = (target: Function) => {
 \end{lstlisting}
 
 \subsection{Sourceable decorator}
-Il \verb|Sourceable| decorator dà al widget la possiblità di far selezione all'utente la source dove prendere i dati dal backend.
+Il \verb|Sourceable| decorator dà al widget la possiblità di far selezionare all'utente la source dove prendere i dati dal backend.
 
 Ogni widget che estende \verb|BaseWidget| ha al suo interno il parametro \verb|SourceParame|-\verb|ter|. Nel \verb|baseWidget| \verb|initSource| si occupa di impostare l'unica source da cui il widget prenderà i dati, mentre con l'override all'interno del \verb|Sourceable| decorator il metodo ha lo scopo di impostare la source in base a ciò che selezionerà l'utente.
 
@@ -459,7 +461,7 @@ export const Sourceable = (target: Function) => {
 
 };
 \end{lstlisting}
-La configurazione delle possibili source disponibili avviene nell'override del metodo \verb|initSourceCalls|. Le \verb|options| per l'\verb|editor| del \verb|sourceParameter| vengono impostate con il metodo \verb|setSources|.
+La configurazione delle possibili source disponibili avviene nell'\textit{override} del metodo \verb|initSourceCalls|. Le \verb|options| per l'\verb|editor| del \verb|sourceParameter| vengono impostate con il metodo \verb|setSources|.
 
 \begin{lstlisting}[caption={Metodo setSources e override del metodo initSourceCalls all'interno del Sourceable Decorator}, style=javaScriptCode]
 export const Sourceable = (target: Function) => {
@@ -483,7 +485,7 @@ export const Sourceable = (target: Function) => {
 };
 \end{lstlisting}
 \subsection{Refreshable decorator}
-Il \verb|Refreshable| decorator permette al widget di aggiornarsi e ricaricare i dati ad uno specifico intervallo di tempo. Il valore di default dell'intervallo può essere cambiato passando all'interno delle \verb|RefreshableInfo| anche un \verb|defaultRefreshRate|.
+Il \verb|Refreshable| decorator permette al widget di aggiornarsi e ricaricare i dati nell'arco di uno specifico intervallo di tempo. Il valore di default dell'intervallo può essere cambiato passando all'interno delle \verb|RefreshableInfo| anche un \verb|defaultRefreshRate|.
 L'intervallo poi potrà essere selezionato dall'utente al momento di configurazione della dashboard grazie al \verb|refreshRateParameter| che viene aggiunto al widget.
 
 \begin{lstlisting}[caption={Creazione del refreshRateParameter all'interno del Refreshable decorator}, style=javaScriptCode]
@@ -506,7 +508,7 @@ export const Refreshable: (options?: RefreshableOptions) => (Function) =>
     };
 };
 \end{lstlisting}
-Ogni qualvolta un utente cambi intervallo di refresh viene effettuata una nuova registrazione all'Observable presente nel \verb|RefreshService|, legato a quel determinato intervallo, e viene annullata la precedente registrazione.
+Ogni qualvolta un utente cambi intervallo di \textit{refresh} viene effettuata una nuova registrazione all'\verb|Observable| presente nel \verb|RefreshService|, legato a quel determinato intervallo, e viene annullata la precedente registrazione.
 
 \begin{lstlisting}[caption={Metodo updateSubscription all'interno del Refreshable decorator}, style=javaScriptCode]
 export const Refreshable: (options?: RefreshableOptions) => (Function) => 
@@ -527,7 +529,7 @@ export const Refreshable: (options?: RefreshableOptions) => (Function) =>
     };
 };
 \end{lstlisting}
-Il \verb|RefreshService| ha la responsabilità di tenere salvati gli Observable legati a tutti gli intervalli richiesti.
+Il \verb|RefreshService| ha la responsabilità di tenere salvati gli \verb|Observable| legati a tutti gli intervalli richiesti.
 
 \begin{lstlisting}[caption={Classe RefreshService}, style=javaScriptCode]
 @Injectable({
@@ -549,9 +551,9 @@ export class RefreshService {
   }
 }
 \end{lstlisting}
-Nello specifico il metodo \verb|getObservableOfInterval| ritorna l'Observable dell'intervallo di tempo fornito. Se l'intervallo non è presente all'interno di \verb|intervals| allora lo inserisce creando l'Observable legato ad esso.
+Nello specifico il metodo \verb|getObservableOfInterval| ritorna l'\verb|Observable| dell'intervallo di tempo fornito. Se l'intervallo non è presente all'interno di \verb|intervals| allora lo inserisce creando l'\verb|Observable| legato ad esso.
 
-L'\verb|Observable| viene creato con il metodo \verb|interval|, il quale crea un \verb|Observable| che emette numeri sequenziali all'intervallo di tempo specificato. Poi viene trasformato con il metodo \verb|multicast| in un \verb|ConnectableObservable|, particolare tipo di \verb|Observable| che non emetterà valori finché non sarà chiamato il metodo \verb|connect|. Questa chiamata viene resa automatizzata grazie al metodo \verb|refCount|, il quale gestisce la connessione in modo tale da mantenerla attiva fintanto ci siano observer in ascolto.
+L'\verb|Observable| viene creato con il metodo \verb|interval|, il quale crea un \verb|Observable| che emette numeri sequenziali all'intervallo di un tempo specificato. Poi viene trasformato con il metodo \verb|multicast| in un \verb|ConnectableObservable|, particolare tipo di \verb|Observable| che non emetterà valori finché non sarà chiamato il metodo \verb|connect|. Questa chiamata viene resa automatizzata grazie al metodo \verb|refCount|, il quale gestisce la connessione in modo tale da mantenerla attiva fintanto che ci siano \textit{observer} in ascolto.
 
 \begin{lstlisting}[caption={Classe RefreshService}, style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">

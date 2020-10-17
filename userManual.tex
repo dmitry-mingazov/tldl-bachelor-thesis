@@ -1,0 +1,190 @@
+\chapter{User Manual}
+\section{Software documentation - Frontend}
+To create a new widget you must extend the \verb|BaseWidget| and \verb|BaseWidgetComponent| [\ref{subsec:base}] classes respectively for the \verb|Widget| and \verb|WidgetComponent|[\ref{chap:widget}] classes.\\
+Then you must decorate your \verb|Widget| with the \verb|WidgetDecorator| which takes 5 fields to set the configuration.
+\begin{lstlisting}[caption={PieChartWidget example}, style=javaScriptCode]
+@WidgetDecorator({
+    endpoint: 'tuple', 
+    type: WidgetTypeEnum.MOBILITY,
+    sourceable: true,
+    refreshableInfo: {
+        refreshable: true,
+        defaultRefreshRate: RefreshRateEnum.sec_5
+    },
+    adapter: PieChartAdapter,
+})
+export class PieChartWidget extends BaseWidget {
+
+...
+
+}
+\end{lstlisting}
+And this is the \textbf{structure} of the options passed to the decorator [\ref{subsec:widgetDecorator}]:
+\begin{lstlisting}[caption={Structure of WidgetOptions}, style=javaScriptCode]
+export interface WidgetOptions {
+    endpoint: string;
+    type: WidgetTypeEnum;
+    sourceable?: boolean;
+    refreshableInfo?: RefreshableInfo; 
+    adapter?: any;
+}
+
+export interface RefreshableInfo {
+    refreshable: boolean;
+    defaultRefreshRate?: RefreshRateEnum;
+}
+\end{lstlisting}
+\begin{itemize}
+    \item \verb|endpoint|: indicates which endpoint the widget has to use to take data from.
+    \item \verb|type|: indicates the widget type (currently IT/MOBILITY).
+    \item \verb|sourceable| (optional): indicates whether or not the widget has a selectable source parameter.
+    \item \verb|refreshableInfo| (optional): indicates whether or not the widget has a refresh parameter and can be used to set the default refresh rate.
+    \item \verb|adapter| (optional): indicates the adapter class used to transform received data into a more useful form.
+\end{itemize}
+You can create an \verb|Adapter| class implementing the \verb|Adapter| functional interface and the \verb|adapt| method.
+\begin{lstlisting}[caption={Adapter interface}, style=javaScriptCode]
+export interface Adapter {
+    adapt(dto: any): any;
+}
+\end{lstlisting}
+Lastly inside the \verb|WidgetComponent| you must implement the \verb|getDataCallback| method where \verb|value| is the data received from the backend.  This method will be called everytime the widget receives data.\\
+\textbf{Note}: \verb|value| will be adapted data if an \verb|Adapter| for that class exists.
+\begin{lstlisting}[caption={PieChartComponent example}, style=javaScriptCode]
+@Component({
+    selector: 'app-pie-chart-widget',
+    templateUrl: './pie-chart.component.html',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class PieChartComponent extends BaseWidgetComponent<PieChartWidget> {
+
+    public data: TupleData[] = [];
+  
+    ...
+
+    protected getDataCallback(value: any): void {
+        this.data = value;
+    }
+}
+\end{lstlisting}
+
+\section{Software documentation - Backend}
+To add a new widget endpoint you need to follow this steps:
+\begin{itemize}
+    \item Implement the data access layer.
+    \item Add a \verb|{sourcecode}.json| file in \verb|DiscoveryConfiguration/parameters| [\ref{subsec:source}].
+    \begin{lstlisting}[caption={{sourcecode}.json example}, style=javaScriptCode]
+    {
+        "metadata": {
+            "meta": {
+                "fieldName": "label"
+            },
+        "properties": {
+            "color": [
+                {
+                    "field": "Passed",
+                    "value": "green"
+                },
+                {
+                    "field": "Refused",
+                    "value": "red"
+                }
+            ],
+            "field": [
+                {
+                    "field": "Passed",
+                    "value": "ok"
+                },
+                {
+                    "field": "Refused",
+                    "value": "ko"
+                }
+            ]
+        }
+        },
+        "filters": [
+            {
+                "Code": "time-span",
+                "ShortText": "Time span",
+                "LongText": "T i m e   s p a n",
+                "Type": "number",
+                "DefaultValue": "7",
+                "Editor": {
+                    "Type": "EnumEditor",
+                    "Path": "@aulos/parameter-editors",
+                    "Options": {
+                        "comboValues": [
+                            {
+                                "label": "1 week",
+                                "value": 7
+                            },
+                            {
+                                "label": "2 weeks",
+                                "value": 14
+                            },
+                            {
+                                "label": "1 month",
+                                "value": 28
+                            },
+                            {
+                                "label": "2 months",
+                                "value": 56
+                            },
+                            {
+                                "label": "Forever",
+                                "value": 9999
+                            }
+                        ]
+                    }
+                }
+            }   
+        ]
+    }
+    \end{lstlisting}
+    \verb|filters| is an array of AULOS JSON \verb|Parameters| and \verb|metadata| which defines how the dto is modified for better frontend interpretation: \verb|fieldName| defines the name of the dto unique identifier while the properties field defines parameters that will be changed in the frontend such as Kendo chart field colors and field names.
+    \item Define a \verb|DataSource| class to mediate between the controller and data access class/es [\ref{subsec:creazioneSource}].
+    \item Extend the \verb|DiscoveryConfiguration| class of the desired type (extend base class if non-existant) [\ref{fig:exendDiscovery}]:
+    \begin{itemize}
+        \item Call \verb|AddSource| method in constructor:
+        \begin{itemize}
+            \item \verb|TDataSource| should be the type of your datasource.
+            \item \verb|SourceCode| must be unique and the same as the previously created filename of the .json.
+            \begin{lstlisting}[caption={TupleDiscoveryConfiguration example}, style=javaScriptCode]
+public class TupleDiscoveryConfiguration : DiscoveryConfiguration
+    {
+        public TupleDiscoveryConfiguration()
+        {
+            AddSource(new SourceInfo
+            {
+                TDataSource = typeof(AllRefusedDataSource),
+                SourceCode = "allcode",
+                LongText = "All refused",
+                ShortText = "All refused"
+            });
+
+            AddSource(new SourceInfo
+            {
+                TDataSource = typeof(RefusedTypeDataSource),
+                SourceCode = "refusedtype",
+                LongText = "Refused type",
+                ShortText = "Refused type"
+            });
+        }
+    }                
+            \end{lstlisting}
+        \end{itemize}
+    \end{itemize}
+    \item Define a controller if handling a new data type or otherwise use an already existant one [\ref{subsec:utilizzo}]:
+    \begin{itemize}
+        \item Single POST method taking \verb|GenericRequestDTO| argument.
+        \item Call \verb|SourceManagementService| \verb|getDataSource<dataSource>| where \verb|dataSource| is the \verb|DataSource| class/interface you need.
+        \begin{lstlisting}[caption={HttpPost request in Controller example}, style=javaScriptCode]
+        [HttpPost]
+        public IActionResult Search([FromBody] GenericRequestDTO request)
+        {
+            var dataSource = _sourceManagementService.GetDataSource<ITupleDataSource>(request.SourceCode);
+            return new ObjectResult(dataSource.GetData(request.Filters));
+        }
+        \end{lstlisting}
+    \end{itemize}
+\end{itemize}

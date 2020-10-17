@@ -1,17 +1,17 @@
 \chapter{Introduzione}
 \label{chap:intro}
 
-L'obiettivo di questo documento consiste nell'esposizione del lavoro svolto durante il periodo di Stage++ in Loccioni. Le competenze apprese spaziano tra know-how che caratterizza l'impresa e i suoi collaboratori, le capacità organizzative che derivano dal lavorare in un team e, naturalmente, nelle tecnologie utilizzate e l'architettura sviluppata.
-Stilare report settimanali ci ha consentito di tracciare con precisione i progressi del nostro progetto, oltre che a poterci confrontare con esperti per poter garantire uno sviluppo regolare e senza errori di sorta.
-Una caratteristica che spicca nel far parte di questo ambiente è quella della collaborazione orizzontale, dove noi studenti abbiamo percepito l'importanza attribuitaci: tutto ciò ha comportato un'esperienza di valore, dove le conoscenze apprese negli studi sono state sfruttate ed integrate completamente.
+L'obiettivo di questo documento consiste nell'esposizione del lavoro svolto durante il periodo di Stage++ nell'impresa \textit{Loccioni} di Angeli di Rosora (AN). Le competenze apprese spaziano dal know-how che caratterizza l'impresa e i suoi collaboratori alle capacità organizzative che derivano dal lavorare in un team e, naturalmente, dalle tecnologie utilizzate e all'architettura sviluppata.
+Stilare \textit{report settimanali} ci ha consentito di tracciare con precisione i progressi del nostro progetto, oltre a poterci confrontare con esperti per poter garantire uno sviluppo regolare e senza errori di sorta.
+Una caratteristica che spicca nel far parte di questo ambiente è quella della \textit{collaborazione orizzontale}, grazie alla quale noi studenti abbiamo percepito l'importanza attribuitaci: tutto ciò ha comportato un'esperienza di valore, dove le conoscenze apprese negli studi sono state sfruttate e integrate completamente.
 Questo ci ha consentito peraltro di avere un rapporto diretto con sviluppatori altamente qualificati, altrimenti impossibile in altre realtà dove una divisione del lavoro verticale implicherebbe una minore integrazione dei tirocinanti.
 Poter prender parte allo stage anche nel periodo in cui l'emergenza sanitaria dovuta al COVID-19 costringeva al lavoro da remoto è stato estremamente valido a livello formativo. Sebbene alcune attività fossero impossibili da attuare, l'esperienza di apprendimento non si è mai fermata, garantendo in pieno la continuità del tirocinio.
-Quello che Loccioni pone al centro della sua value proposition si può riassumere in una frase riportata nel sito dell'impresa stessa: "Trasformiamo i dati in valore" \cite{Loccioni}.
+Quello che Loccioni pone al centro della sua \textit{value proposition} si può riassumere in una frase riportata nel sito dell'impresa stessa: \textit{"trasformiamo i dati in valore"} \cite{Loccioni}.
 La sua principale attività è quella di progettare e realizzare sistemi di misura per 
-testare e controllare componenti di auto, lavatrici ed altri strumenti elettronici.
-Queste mansioni sono svolte in "linee di test"; ogni "linea" è strutturata in più "banchi" che a loro volta sono composti da più "stazioni", all'interno delle quali avviene 
-il test effettivo del pezzo, o del DuT (device under test).\\
-I risultati dei test sono poi visualizzabili tramite widget all'interno di dashboard remote, prendendo i dati da un server centrale, 
+testare e controllare componenti di auto, lavatrici e altri strumenti elettronici.
+Queste mansioni sono svolte in \textbf{linee di test}; ogni \textit{linea} è strutturata in più \textit{banchi} che a loro volta sono composti da più \textit{stazioni}, all'interno delle quali avviene 
+il test effettivo del pezzo, o del \textit{DuT} (Device under Test).\\
+I risultati dei test sono poi visualizzabili tramite widget all'interno di \textit{dashboard} remote, prendendo i dati da un server centrale, 
 o collocate in prossimità della macchina.
 \begin{figure}[h!]
 \begin{center}
@@ -21,7 +21,7 @@ o collocate in prossimità della macchina.
 \end{figure}
 
 \pagebreak
-Nelle figure sottostanti sono raffigurati dei \textit{Banchi di Prova} per il testing di componenti. In entrambe la immagini è possibile osservare un pannello di controllo impiegato per la visualizzazione dei dati derivanti dai test effettuati sui componenti.
+Nelle figure sottostanti sono raffigurati dei \textit{Banchi di Prova} per il testing di componenti. In entrambe le immagini è possibile osservare un pannello di controllo impiegato per la visualizzazione dei dati derivanti dai test effettuati sui componenti.
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=15cm]{images/banco.jpg}
@@ -39,15 +39,16 @@ Nelle figure sottostanti sono raffigurati dei \textit{Banchi di Prova} per il te
 
 \pagebreak
 \section{Obiettivo}
-Il proposito del progetto è stato quello di ideare e realizzare una sovrastruttura per il framework AULOS, che verrà approfondito nel capitolo~\ref{chap:aulos}, per agevolare e rendere più efficiente lo sviluppo dei widget. Punto focale per ottenere questo risultato è stato effettuare uno studio delle caratteristiche che accomunavano più widget tramite un processo di graduale generalizzazione.
-Quello che ne risulta è la creazione stessa dei widget in questione, con caratteristiche di flessibilità ed adattabilità: sarà infatti facilitato il ritrovamento dei dati dello stesso formato provenienti da fonti diverse. \\
+Il proposito del progetto è stato quello di ideare e realizzare una sovrastruttura per il \textit{framework AULOS}, che verrà approfondito nel capitolo~\ref{chap:aulos}, per agevolare e rendere più efficiente lo sviluppo dei \textit{widget}. Punto focale per ottenere questo risultato è stato effettuare uno studio delle caratteristiche che accomunavano più widget tramite un processo di graduale generalizzazione.
+Quello che ne risulta è la creazione stessa dei widget in questione, con caratteristiche di flessibilità e adattabilità: sarà infatti facilitato il ritrovamento dei dati dello stesso formato provenienti da fonti diverse. \\
 Una lista di widget realizzati per lo studio sopracitato è presente nel capitolo~\ref{chap:widget}.
 
 \section{Articolazione Tesi}
 L'esposizione di questo elaborato sarà così suddivisa:
 \begin{itemize}
-    \item Una sezione riguardante le tecnologie e gli strumenti utilizzati nel corso del progetto, approfondendo tutto ciò che è stato impiegato nello sviluppo dell'applicativo backend e frontend
-    \item Una macroarea relativa all'organizzazione architetturale, specificando nel dettaglio tutte le parti che compongono il progetto
-    \item una sezione raffigurante le modalità di svolgimento del lavoro relativo al progetto, viene quindi specificata l'organizzazione del lavoro interna al team
-    \item L'ultima area conclude la tesi presentando un sunto del lavoro svolto e sottolineando i punti salienti che sono stati raggiunti, vengono inoltre accennati possibili futuri sviluppi del sistema
+    \item il capitolo "Metodologia di sviluppo" [\ref{ch:metodologia}] descrive le modalità di svolgimento del lavoro relativo al progetto, in particolare riguarda l'organizzazione interna del team;
+    \item il capitolo "Tecnologie e strumenti" [\ref{chap:tecnologie_strumenti}], in cui vengono indicate e dettagliate le tecnologie e gli strumenti utilizzati nel corso del progetto, approfondisce in particolare ciò che è stato impiegato nello sviluppo dell'applicativo backend e frontend;
+    \item il capitolo "Architettura" [\ref{ch:architettura}], relativo all'organizzazione architetturale, specifica nel dettaglio tutte le parti che compongono il progetto;
+    \item il capitolo "Load Testing" [\ref{ch:stresstesting}] è volto ad esporre le statistiche di performance raccolte in seguito allo svolgimento dei test di carico;
+    \item il capitolo "Conclusione" [\ref{chap:conclusione}] conclude la tesi presentando un sunto del lavoro svolto e sottolineando i punti salienti che sono stati raggiunti, vengono inoltre accennati possibili futuri sviluppi del sistema.
 \end{itemize}

@@ -1,6 +1,6 @@
-\section{Parametri}
+\section{Parameters}
 
-Un parametro, rappresentato dalla classe Parameter, rappresenta un valore con determinate caratteristiche che viene utilizzato in svariati contesti all'interno di AULOS.
+Un parametro, rappresentato dalla classe \verb|Parameter|, rappresenta un valore con determinate caratteristiche che viene utilizzato in svariati contesti all'interno di AULOS.
 \begin{lstlisting}[caption={Parameter.cs},style=sharpCode]
 public class Parameter
 {
@@ -15,13 +15,13 @@ public class Parameter
 }
 \end{lstlisting}
 \begin{itemize}
-\item Code è l'identificativo univoco del parametro
-\item Descriptor è il descrittore del parametro, utilizzato per creare il parametro lato frontend
-\item Value è il valore del parametro
-\item SubParameters sono i sottoparametri del parametro (un parametro può rappresentare un'aggregazione di altri parametri)
-\item Type rappresenta il tipo del valore rappresentato dal parametro
+\item \verb|Code| è l'identificativo univoco del parametro;
+\item \verb|Descriptor| è il descrittore del parametro, utilizzato per creare il parametro lato frontend;
+\item \verb|Value| è il valore del parametro;
+\item \verb|SubParameters| sono i sottoparametri del parametro (un parametro può rappresentare un'aggregazione di altri parametri);
+\item \verb|Type| rappresenta il tipo del valore rappresentato dal parametro.
 \end{itemize}
-La classe ParameterDescriptor presenta
+La classe \verb|ParameterDescriptor| è così formata:
 \begin{lstlisting}[caption={ParameterDescriptor.cs},style=sharpCode]
 public class ParameterDescriptor
 {
@@ -43,10 +43,10 @@ public class ParameterDescriptor
     public string VariantType { get; set; }
 }
 \end{lstlisting}
-L'attributo Editor, istanza della classe ParameterEditor, descrive l'eventuale Editor utilizzato lato frontend per permettere la modifica del parametro da parte dell'utente
+L'attributo \verb|Editor|, istanza della classe \verb|ParameterEditor|, descrive l'eventuale \verb|Editor| utilizzato lato frontend per permettere la modifica del parametro da parte dell'utente.
 
 \subsection{Parameter Editor}
-La classe ParameterEditor è così composta:
+La classe \verb|ParameterEditor| è così composta:
 \begin{lstlisting}[caption={ParameterEditor.cs},style=sharpCode]
 public class ParameterEditor
 {
@@ -57,13 +57,13 @@ public class ParameterEditor
 }
 \end{lstlisting}
 \begin{itemize}
-\item Type è il codice univoco dell'Editor memorizzato lato frontend
-\item Path è il path dove AULOS dovrà cercare l'editor
-\item Options sono le eventuali opzioni che l'editor può avere
+\item \verb|Type| è il codice univoco dell'\verb|Editor| memorizzato lato frontend;
+\item \verb|Path| è il path dove AULOS dovrà cercare l'\verb|Editor|;
+\item \verb|Options| sono le eventuali opzioni che l'\verb|Editor| può avere.
 \end{itemize}
 
 \subsubsection{Custom Editors}
-AULOS fornisce diversi Editor per permettere all'utente di modificare i parametri, ma è possibile crearne di nuovi per casi d'uso più specifici. Un Editor è un Component Angular che va registrato all'interno dell'EditorFactory attraverso il metodo register .\\
+AULOS fornisce diversi \verb|Editor| per permettere all'utente di modificare i parametri, ma è possibile crearne di nuovi per casi d'uso più specifici. Un \verb|Editor| è un \verb|Component| Angular che va registrato all'interno dell'\verb|EditorFactory| attraverso il metodo \verb|register| .\\
 \begin{lstlisting} [caption={dashboard-parameter-editors.module.ts},style=javascriptCode]
 export class DashboardParameterEditorsModule {
 
@@ -86,7 +86,7 @@ export class DashboardParameterEditorsModule {
     }
 }
 \end{lstlisting}
-Il template dell'Editor Component contiene tre direttive strutturali (aulosEditorSmallTemplate, aulosEditorCompactTemplate e aulosEditorExpandedTemplate) le quali contengono il codice html che deve essere visualizzato a seconda dello spazio in cui è contenuto l'Editor.
+Il \verb|template| dell'\verb|Editor Component| contiene tre direttive strutturali (\verb|aulosEditorSmallTemplate|, \verb|aulosEditorCompactTemplate| e \verb|aulosEditorExpandedTemplate|), le quali contengono il codice HTML che deve essere visualizzato a seconda dello spazio in cui è contenuto l'\verb|Editor|.
 \begin{lstlisting}[caption={source-editor.component.html},style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">
   <ng-template aulosEditorSmallTemplate>
@@ -141,15 +141,15 @@ Il template dell'Editor Component contiene tre direttive strutturali (aulosEdito
   </ng-template>
 </aulos-editor-layout>
 \end{lstlisting}
-È necessario che l'Editor Component estenda BaseEditorComponent, classe che offre delle funzionalità di interfacciamento con AULOS, e che presenti la logica necessaria alla modifica del parametro a esso associato.
+È necessario che l'\verb|Editor Component| estenda \verb|BaseEditorComponent|, classe che offre delle funzionalità di interfacciamento con AULOS, e che presenti la logica necessaria alla modifica del parametro a esso associato.
 
 \subsection{Utilizzo dei parametri nell'applicativo}
 Nell'applicativo, il parametro svolge una duplice funzione:
 \begin{itemize}
-\item permette di gestire la configurazione di un widget lato frontend
-\item viene utilizzato per specificare dei filtri da applicare in fase di ottenimento dei dati
+\item permette di gestire la configurazione di un widget lato frontend;
+\item viene utilizzato per specificare dei filtri da applicare in fase di ottenimento dei dati.
 \end{itemize}
-La classe Widget e le sue estensioni nell'applicazione frontend hanno la responsabilità di gestire i parametri legati ad un widget. Questi parametri possono rappresentare un attributo grafico del widget, un valore della sua configurazione oppure un filtro da applicare ai dati da visualizzare.
+La classe Widget e le sue estensioni nell'applicazione frontend hanno la responsabilità di gestire i parametri legati a un widget. Questi parametri possono rappresentare un attributo grafico del widget, un valore della sua configurazione oppure un filtro da applicare ai dati da visualizzare.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.5]{parameters_example}\\
@@ -157,8 +157,8 @@ La classe Widget e le sue estensioni nell'applicazione frontend hanno la respons
 \end{center}
 \end{figure}
 \subsubsection{Filter Parameters}
-Data la capacità dei parametri di poter rappresentare dati eterogenei, sono stati utilizzati per rappresentare i possibili filtri di una query.\\
-I Filter Parameters vengono generati attraverso dei ParameterDescriptor, presi con una chiamata REST ((~\ref{chap:frontend})) dopo che è stata definita una source.
+Data la capacità dei parametri di poter rappresentare dati eterogenei, sono stati utilizzati per rappresentare i possibili filtri di una \textit{query}.\\
+I parametri \verb|filters| vengono generati attraverso dei \verb|ParameterDescriptor|, presi con una chiamata REST [\ref{chap:frontend}] dopo che è stata definita una source.
 \begin{lstlisting}[caption={initSourceCalls, base-widget.ts},style=javascriptCode]
 private async initSourceCalls() {
 

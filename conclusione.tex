@@ -38,7 +38,7 @@ Si è arrivati a scoprire pubblicazioni riguardo problemi assimilabili a quelli 
 \end{itemize}
 
 Per quanto concerne il livello front-end, esso è facilmente associabile a dashboard e annesso applicativo Angular.
-I livelli Business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto corrispondono rispettivamente al servizio di \textit{source management} esposto nella sezione~\ref{ch:sms} e alla logica di accesso dati dell'applicativo esposta nella sezione~\ref{chap:persistence}, per cui il servizio di source management abilita la visibilità nella pipeline del sistema tramite \textit{datasource} descritte nella sottosezione~\ref{sec:datasource}.
+I livelli Business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto corrispondono rispettivamente al servizio di \textit{source management} esposto nella sezione~\ref{ch:sms} e alla logica di accesso dati dell'applicativo esposta nella sezione~\ref{chap:persistence}, per cui il servizio di source management abilita la visibilità nella pipeline del sistema tramite \textit{datasource} descritte nella sottosezione~\ref{subsec:creazioneSource}.
 
 Entrando maggiormente nel dettaglio, una delle pattern descritte in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management: esso infatti permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
 
