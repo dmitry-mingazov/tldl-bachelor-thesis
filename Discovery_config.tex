@@ -1,18 +1,18 @@
 \section{Source Management}
 \label{ch:sms}
 
-Una \textit{source} è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una DataSource, una classe che nel pattern \textit{Model View Controller} si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
+Una \textit{source} è un'astrazione che rappresenta una sorgente di dati visualizzabili da un widget. Ogni source viene identificata da una \textit{DataSource}, una classe che nel pattern \textit{Model View Controller} si colloca tra il Controller e il Model. La gestione delle source nel backend permette il riutilizzo di uno stesso widget per la visualizzazione di dati provenienti da contesti diversi.
 
 \subsection{Creazione Source}
 \label{subsec:creazioneSource}
-Viene creata una classe DataSource che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto a ottenere i dati richiesti (e.g. GetData), che verrà implementato dalla DataSource.
+Viene creata una classe \textit{DataSource} che implementa l’interfaccia relativa al tipo di dato che deve ritornare. L'interfaccia presenterà un metodo volto a ottenere i dati richiesti (e.g. \textit{GetData}), che verrà implementato dalla \textit{DataSource}.
 \begin{lstlisting}[caption={ITupleDataSource.cs}, style=sharpCode]
 interface ITupleDataSource
     {
         public TupleDTO[] GetData(List<Parameter> parameters);
     }
 \end{lstlisting}
-\begin{lstlisting}[caption={AllRefusedDataSource.cs}, style=sharpCode]
+\begin{lstlisting}[caption={TupleDataSource.cs}, style=sharpCode]
 public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 {
   ...
@@ -44,14 +44,14 @@ public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 
 \subsection{Registrazione Source}
 \label{subsec:source}
-Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
+Le informazioni di una source sono descritte da \textit{SourceInfo} e sono le seguenti:
 \begin{itemize}
 \item \textit{SourceCode} è l’identificativo della source;
-\item \textit{TDataSource} è il tipo della DataSource legata alla source;
+\item \textit{TDataSource} è il tipo della \textit{DataSource} legata alla source;
 \item \textit{Parameters} sono i parametri messi a disposizione dalla source per modificare la \textit{query};
 \item \textit{Metadata} sono i metadati volti a modificare come vengono visualizzati i dati lato frontend.
 \end{itemize}
-Parameters e Metadata vengono scritti in un file json all’interno della cartella \textit{properties} con il nome \textit{{SourceCode}.json}, come nel seguente esempio:
+\textit{Parameters} e \textit{Metadata} vengono scritti in un file json all’interno della cartella \textit{properties} con il nome \textit{{SourceCode}.json}, come nel seguente esempio:
 \begin{lstlisting}[caption={allcode.json}, style=JavaScriptCODE]
 {
   "metadata": {
@@ -126,7 +126,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     }
 }
 \end{lstlisting}
-Il metodo AddSource, definito in \textit{DiscoveryConfiguration}, ottiene attraverso \textit{PropertiesConfiguration} le eventuali informazioni aggiuntive contenute nell’apposito file \textit{{sourceCode}.json} per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
+Il metodo \textit{AddSource}, definito in \textit{DiscoveryConfiguration}, ottiene attraverso \textit{PropertiesConfiguration} le eventuali informazioni aggiuntive contenute nell’apposito file \textit{{sourceCode}.json} per poi salvare la \textit{SourceInfo} in una lista che verrà restituita attraverso il metodo pubblico \textit{Configure}.
 \begin{lstlisting}[caption={DiscoveryConfiguration.cs}, style=sharpCode]
 public abstract class DiscoveryConfiguration
 {
@@ -146,7 +146,7 @@ public abstract class DiscoveryConfiguration
 
 }
 \end{lstlisting}
-DataDiscoveryConfiguration ottiene tutte le classi che estendono \textit{DiscoveryConfiguration}, per poi registrare in SourceManagementService tutte le source riscontrate.
+\textit{DataDiscoveryConfiguration} ottiene tutte le classi che estendono \textit{DiscoveryConfiguration}, per poi registrare in \textit{SourceManagementService} tutte le source riscontrate.
 \begin{lstlisting}[caption={DataDiscoveryConfiguraton.cs}, style=sharpCode]
 public static class DataDiscoveryConfiguration
 {
@@ -172,7 +172,7 @@ public static class DataDiscoveryConfiguration
 \end{lstlisting}
 \subsection{Interazioni Frontend}
 \label{chap:frontend}
-DataTypeCoupling è un enum che associa ad ogni risorsa il tipo di DataSource che utilizza.
+\textit{DataTypeCoupling} è un enum che associa ad ogni risorsa il tipo di \textit{DataSource} che utilizza.
 \begin{lstlisting}[caption={DataTypeCoupling.cs}, style=sharpCode]
 ...
 
@@ -187,15 +187,16 @@ public enum DataTypeCoupling
 
 }
 \end{lstlisting}
-DiscoveryController presenta due endpoint:
+\newpage
+\textit{DiscoveryController} presenta due endpoint:
 \begin{itemize}
-\item \textit{{resource}/discovery} - restituisce SourceCode e le descrizioni delle source associate a una \textit{DataSource} del tipo associato a \textit{resource}, utilizzando il metodo \textit{GetDataSourcesByType} di \textit{SourceManagementService};
-\item \textit{filters/{sourceCode}} - restituisce i parameters e i metadata di una specifica Source.
+\item \textit{{resource}/discovery} - restituisce \textit{SourceCode} e le descrizioni delle source associate a una \textit{DataSource} del tipo associato a \textit{resource}, utilizzando il metodo \textit{GetDataSourcesByType} di \textit{SourceManagementService};
+\item \textit{filters/{sourceCode}} - restituisce i parameters e i metadata di una specifica \textit{Source}.
 \end{itemize}
-Il sourceCode restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
+Il \textit{sourceCode} restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
 
 \subsection{Utilizzo}
-Un Controller che restituisce dati in una determinata forma deve chiamarsi \textit{{resource}Controller}, dove resource è una stringa registrata in DataTypeCoupling.
+Un Controller che restituisce dati in una determinata forma deve chiamarsi \textit{{resource}Controller}, dove \textit{resource} è una stringa registrata in \textit{DataTypeCoupling}.
 \begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
  [Route("api/widgets/[controller]")]
  [ApiController]
@@ -206,8 +207,8 @@ Un Controller che restituisce dati in una determinata forma deve chiamarsi \text
   
   }
 \end{lstlisting}
-Deve presentare un endpoint Post nella forma \textit{api/widgets/{resource}}
-\begin{lstlisting}[caption={TupleController.cs, endpoint POST Search}, style=sharpCode]
+Deve presentare un endpoint Post nella forma \textit{api/widgets/{resource}}.
+\begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
 [HttpPost]
 public IActionResult Search([FromBody] GenericRequestDTO request)
 {
@@ -228,4 +229,4 @@ public class GenericRequestDTO
     public List<Parameter> Filters { get; set; }
 }
 \end{lstlisting}
-Restituisce la risorsa gestita dal Controller utilizzando il metodo \textit{GetData} della DataSource che ottiene attraverso il metodo \textit{GetDataSource<T>} di \textit{SourceManagementService}, passandogli il SourceCode contenuto nella richiesta.
+Restituisce la risorsa gestita dal Controller utilizzando il metodo \textit{GetData} della \textit{DataSource} che ottiene attraverso il metodo \textit{GetDataSource}\verb|<T>| di \textit{SourceManagementService}, passandogli il \textit{SourceCode} contenuto nella richiesta.

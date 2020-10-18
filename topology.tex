@@ -5,7 +5,7 @@ I widget lato \textit{mobility} sono impiegati per mostrare i dati provenienti d
 \subsection{ITopologyDataSource}
 L'interfaccia \textit{ITopologyDataSource} contiene la definizione di tre metodi:
 
-\begin{lstlisting}[caption={ITopologyDataSource.cs}, style=javaScriptCode]
+\begin{lstlisting}[caption={TopologyController.cs}, style=javaScriptCode]
     interface ITopologyDataSource
     {
         public List<int> GetLines();
@@ -44,6 +44,7 @@ Per poter scegliere questi codici vengono effettuate tre diverse chiamate al bac
             return new ObjectResult(dataSource.GetStations(benchCode));
         }
 \end{lstlisting}
-Tramite il metodo \textit{GetDataSource<DataSource>} definito in \textit{SourceManagemetService}, viene creata l'istanza della DataSource che implementa \textit{ITopologyDataSource}, in base al code passato come parametro.
+Tramite il metodo \textit{GetDataSource<DataSource>} definito in \textit{SourceManagemetService}, viene creata l'istanza della \textit{DataSource} che implementa \textit{ITopologyDataSource}, in base al code passato come parametro.
 
 Fornendo questa interfaccia come tipo, si ha la certezza che siano stati implementati i metodi volti al reperimento delle liste di codici di linee, banchi e stazioni.
+\newpage
