@@ -122,7 +122,7 @@ private static registerWidgets(widgetsService: WidgetComponentsService): () =>
 \label{subsec:base}
 Le classi \verb|BaseWidget| e \verb|BaseWidgetComponent| sono state create con l'obiettivo di alleggerire il carico di lavoro inerente allo sviluppo di un widget. In esse risiede tutta la logica di interfacciamento con il backend, lasciando come unica responsabilità alle classi che le estendono le modalità attraverso le quali vengono visualizzati i dati.
 \\
-\verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel \textit{framework} AULOS, \verb|Widget| e \verb|WidgetComponent|.
+\verb|BaseWidget| e \verb|BaseWidgetComponent| estendono rispettivamente le classi, già presenti nel framework AULOS, \verb|Widget| e \verb|WidgetComponent|.
 \\
 All'interno del \verb|BaseWidget| viene iniettato e utilizzato il \verb|WidgetService|, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \verb|source| e \verb|filters|. 
 
@@ -460,7 +460,7 @@ export const Sourceable = (target: Function) => {
 
 };
 \end{lstlisting}
-La configurazione delle possibili source disponibili avviene nell'\textit{override} del metodo \verb|initSourceCalls|. Le \verb|options| per l'\verb|editor| del \verb|sourceParameter| vengono impostate con il metodo \verb|setSources|.
+La configurazione delle possibili source disponibili avviene nell'override del metodo \verb|initSourceCalls|. Le \verb|options| per l'\verb|editor| del \verb|sourceParameter| vengono impostate con il metodo \verb|setSources|.
 
 \begin{lstlisting}[caption={Metodo setSources e override del metodo initSourceCalls all'interno del Sourceable Decorator}, style=javaScriptCode]
 export const Sourceable = (target: Function) => {
