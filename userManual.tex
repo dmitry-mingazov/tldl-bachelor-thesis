@@ -180,7 +180,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     \item Create a controller class:
     \begin{itemize}
         \item Define a single POST method taking \textit{GenericRequestDTO} as an argument.
-        \item Call \textit{getDataSource<dataSource>}, method of \textit{SourceManagementService}, where \textit{dataSource} is the \textit{DataSource} class previously defined.
+        \item Call \textit{getDataSource}\verb|<dataSource>|, method of \textit{SourceManagementService}, where \textit{dataSource} is the \textit{DataSource} class previously defined.
         \begin{lstlisting}[caption={HttpPost request in Controller example}, style=javaScriptCode]
         [HttpPost]
         public IActionResult Search([FromBody] GenericRequestDTO request)
