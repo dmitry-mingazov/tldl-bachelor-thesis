@@ -50,20 +50,16 @@ export class ItSecurityModule {
 }
 \end{lstlisting}
 In \textit{providers} vengono fornite le implementazioni delle classi astratte
-\textit{AbstractSecurityService}, \textit{AbstractUserFactory} e \textit{AbstractTokenProviderService}, parte del framework Aulos.
-Tutta la logica principale dell'autenticazione risiede all'interno dell'\textit{ItSecurityService}. La sua responsabilità è quella di autenticare e disconnettere l'utente nella \textit{dashboard}. \\
+\textit{AbstractSecurityService}, \textit{AbstractUserFactory} e \textit{AbstractTokenProviderService}, parte del framework AULOS.
+Tutta la logica principale dell'autenticazione risiede all'interno dell'\textit{ItSecurityService}. La sua responsabilità è quella di autenticare e disconnettere l'utente nella \textit{dashboard}.
 \begin{lstlisting}[caption={Principali metodi della classe ItSecurityService}, style=javaScriptCode]
-@Injectable({
-  providedIn: 'root'
-})
 export class ItSecurityService extends AbstractSecurityService {
-
-  ...
-
-  login(username: string, password: string): Observable<ItUser> {
   
-    ...
+  ...
+  
+  login(username: string, password: string): Observable<ItUser> {
     
+    ...
     return this.httpClient.post<JWTToken>(`${this.serviceConfiguration.baseUrl}/
     issue/oauth2/token`, { username, password, grant_type: 'password', 
         scope: 'urn:gl-services-infrastructure' }, { headers })
@@ -211,7 +207,6 @@ export class ItSecurityModule {
   }
 }
 \end{lstlisting}
-\pagebreak
 \paragraph{Interceptor} Chi intercetta e gestisce le \textit{richieste} e le \textit{risposte HTTP} è l'\textit{ItHttpSecurityInterceptor}.
 Nello specifico l'\textit{ItHttpSecurityInterceptor} si occupa di: 
 \begin{itemize}
