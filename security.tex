@@ -2,7 +2,7 @@
 \label{chap:security}
 
 \paragraph{Module}
-L'autenticazione degli utenti all'interno della dashboard è gestita dall' \verb|ItSecurity|-\verb|Module|. Nell'\verb|ItSecurityModule| vengono registrati nell'array \verb|providers|, che gestisce la dependency injection, i service necessari specificando per ognuno di essi la classe astratta a cui fanno riferimento e la classe d'implementazione.
+L'autenticazione degli utenti all'interno della dashboard è gestita dall' \textit{ItSecurity}-\textit{Module}. Nell'\textit{ItSecurityModule} vengono registrati nell'array \textit{providers}, che gestisce la dependency injection, i service necessari specificando per ognuno di essi la classe astratta a cui fanno riferimento e la classe d'implementazione.
 \begin{lstlisting}[caption={Injection dei service nell'ItSecurityModule}, style=javaScriptCode]
 @NgModule({
   imports: [HttpClientModule],
@@ -49,9 +49,9 @@ export class ItSecurityModule {
   ...
 }
 \end{lstlisting}
-In \verb|providers| vengono fornite le implementazioni delle classi astratte
-\verb|Abstract|-\verb|SecurityService|, \verb|AbstractUserFactory| e \verb|AbstractTokenProviderServi|-\verb|ce|, parte del framework Aulos.
-Tutta la logica principale dell'autenticazione risiede all'interno dell'\verb|ItSecurityService|. La sua responsabilità è quella di autenticare e disconnettere l'utente nella \textit{dashboard}. \\
+In \textit{providers} vengono fornite le implementazioni delle classi astratte
+\textit{AbstractSecurityService}, \textit{AbstractUserFactory} e \textit{AbstractTokenProviderService}, parte del framework Aulos.
+Tutta la logica principale dell'autenticazione risiede all'interno dell'\textit{ItSecurityService}. La sua responsabilità è quella di autenticare e disconnettere l'utente nella \textit{dashboard}. \\
 \begin{lstlisting}[caption={Principali metodi della classe ItSecurityService}, style=javaScriptCode]
 @Injectable({
   providedIn: 'root'
@@ -158,8 +158,8 @@ Le credenziali vengono mandate all'\textit{Authorization Server} che restituisce
 \end{figure}
 \FloatBarrier 
 Il refresh token viene utilizzato dal Client per richiedere all'Authorization Server un nuovo access token quando quest'ultimo è scaduto.
-La memorizzazione dell'access e del refresh token viene svolta rispettivamente dall'\verb|ItAccessTokenProviderService| e dall'\verb|ItRefreshTokenProviderService|.
-Entrambe le classi estendono la classe astratta \verb|AbstractTokenProviderService|.\\
+La memorizzazione dell'access e del refresh token viene svolta rispettivamente dall'\textit{ItAccessTokenProviderService} e dall'\textit{ItRefreshTokenProviderService}.
+Entrambe le classi estendono la classe astratta \textit{AbstractTokenProviderService}.\\
 \begin{lstlisting}[caption={Classe astratta AbstractTokenProviderService}, style=javaScriptCode]
 export declare abstract class AbstractTokenProviderService {
     /**
@@ -176,7 +176,7 @@ export declare abstract class AbstractTokenProviderService {
     abstract remove(): Observable<void>;
 }
 \end{lstlisting}
-All'avvio della dashboard l'\verb|ItSecurityModule| autentica automaticamente l'utente se l'access token è già presente nel \textit{local storage}.\newline
+All'avvio della dashboard l'\textit{ItSecurityModule} autentica automaticamente l'utente se l'access token è già presente nel \textit{local storage}.\newline
 \begin{lstlisting}[caption={Login con token nell'ItSecurityModule}, style=javaScriptCode]
 @NgModule({
   imports: [HttpClientModule],
@@ -212,10 +212,10 @@ export class ItSecurityModule {
 }
 \end{lstlisting}
 \pagebreak
-\paragraph{Interceptor} Chi intercetta e gestisce le \textit{richieste} e le \textit{risposte http} è l'\verb|ItHttpSecurityIntercep|-\verb|tor|.
-Nello specifico l'\verb|ItHttpSecurityInterceptor| si occupa di: 
+\paragraph{Interceptor} Chi intercetta e gestisce le \textit{richieste} e le \textit{risposte HTTP} è l'\textit{ItHttpSecurityInterceptor}.
+Nello specifico l'\textit{ItHttpSecurityInterceptor} si occupa di: 
 \begin{itemize}
-    \item decorare le richieste http in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta;
+    \item decorare le richieste HTTP in uscita con token di autorizzazione, se l'header di autenticazione non è già presente nella richiesta;
     \item richiedere un access token tramite la procedura di refresh token in caso di risposta 401 a una richiesta al backend;
     \item ripetere la richiesta fallita con codice 401 dopo aver ottenuto il nuovo access token;
     \item effettuare il logout in caso di fallimento della procedura di refresh.

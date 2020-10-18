@@ -27,7 +27,7 @@ Ciononostante, lo sviluppo ha portato l'applicativo a uno stato che soddisfa i r
 
 Nella fase di revisione del lavoro svolto si è invece dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto, in particolare in merito all'architettura della generalizzazione di dati che ricopre un ruolo fondamentale nella soluzione adottata.
 
-Si è arrivati a scoprire pubblicazioni riguardo problemi assimilabili a quelli affrontati; l'organizzazione di un'applicazione web, come esposto da Diego Bonura in \textit{Patterns for web applications} \cite{DBLP:conf/seke/BonuraCM02}, può essere articolata in tre livelli:
+In questa fase sono state analizzate pubblicazioni riguardo problemi assimilabili a quelli affrontati; l'organizzazione di un'applicazione web, come esposto da Diego Bonura in \textit{Patterns for web applications} \cite{DBLP:conf/seke/BonuraCM02}, può essere articolata in tre livelli:
 \begin{itemize}
 \item
 \textit{front-end}
@@ -40,11 +40,13 @@ Si è arrivati a scoprire pubblicazioni riguardo problemi assimilabili a quelli 
 Per quanto concerne il livello front-end, esso è facilmente associabile a dashboard e annesso applicativo Angular.
 I livelli business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto le loro corrispondenze risiedono entrambe nell'applicativo ASP.NET. Si può tuttavia associare al livello business logic il servizio di \textit{source management} (vedi sezione~\ref{ch:sms}) e al livello back-end la logica di accesso dati (vedi sezione~\ref{chap:persistence}), la cui visibilità nella pipeline del sistema è abilitata dal servizio di source management attraverso \textit{datasource} (vedi sottosezione~\ref{subsec:creazioneSource}).
 
-Entrando maggiormente nel dettaglio, una delle pattern descritte in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management. Questa pattern permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
+Entrando maggiormente nel dettaglio, uno dei pattern descritti in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management. Questo pattern permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
 
-Tale studio ha permesso di confermare che, come verificabile nella letteratura specializzata \cite{GOF}, l'utilizzo di pattern nello sviluppo di software secondo il paradigma OOP può velocizzarlo e aumentare notevolmente la manutenibilità del prodotto
+Lo studio effettuato ha comprovato che, come originariamente esposto in \textit{Design Patterns: Elements of Reusable Object-Oriented Software} \cite{GOF}, l'utilizzo di pattern nello sviluppo di un software caratterizzato da componenti \textit{Object-Oriented} porta diversi vantaggi, quali velocità di sviluppo, qualità del codice e manutenibilità del prodotto finale.
 
-Prescindendo dallo sviluppo, l'applicativo sviluppato è considerabile un buon assaggio delle tecnologie in voga in ambito lavorativo al momento dello sviluppo: sistemi quali Elasticsearch e il loro crescente utilizzo in ogni ambito rendono solamente più appetibile il loro studio per studenti e professionisti già affermati nel proprio campo  in cerca di nuovi sbocchi o puramente interessati ad aggiornare il proprio \textit{skillset}.
+Prescindendo dallo sviluppo, l'applicativo presenta diverse delle tecnologie in voga in ambito lavorativo al momento della sua realizzazione: sistemi quali Elasticsearch e il loro crescente utilizzo in ogni ambito rendono solamente più appetibile il loro studio per studenti e professionisti già affermati nel proprio campo, che siano in cerca di nuovi sbocchi o puramente interessati ad aggiornare il proprio \textit{skillset}.
+
+ 
 
 \chapter{Sviluppi futuri}
 Il progetto sviluppato rappresenta una solida base per quanto concerne il lavoro di ridefinizione e generalizzazione dei widget. Per una futura estensione del risultati raggiunti, sono stati individuati i seguenti possibili sviluppi:

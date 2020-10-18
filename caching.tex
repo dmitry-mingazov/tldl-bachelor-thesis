@@ -2,12 +2,12 @@
 \label{ch:caching}
 Il caso d'uso del progetto in questione prevede una moltitudine di dashboard collegate simultaneamente a un solo backend; al fine di  migliorare la performance è stato applicato un alleggerimento del carico tramite un \textit{middleware} \footnote{Il middleware è un software assemblato nella pipeline di app per gestire richieste e risposte. \cite{Middleware}} ASP.NET di cache. Ciò ha permesso la riduzione delle richieste effettivamente soddisfatte con dati generati appositamente da database SQL ed ElasticSearch sottostanti.
 \subsection{Implementazione}
-Il sistema di cache è stato implementato basandosi su un'implementazione già esistente di \verb|IMemoryCache| in ASP.NET Core. \cite{MemCache}
+Il sistema di cache è stato implementato basandosi su un'implementazione già esistente di \textit{IMemoryCache} in ASP.NET Core. \cite{MemCache}
 \begin{lstlisting}[caption={Startup.cs, Memory Cache Injection}, style=javaScriptCode]
 services.AddMemoryCache(options => Configuration.Bind("Cache", options));
 \end{lstlisting}
 
-La chiave di cache viene generata dal frontend nell'interceptor http come \textit{hash} MD5 \cite{MD5} della concatenazione tra metodo \cite{HTTPMETHODS}, url con parametri \cite{HTTPPARAMS} e corpo \cite{HTTPBODY} della \textit{richiesta http} in uscita.
+La chiave di cache viene generata dal frontend nell'interceptor HTTP come \textit{hash} MD5 \cite{MD5} della concatenazione tra metodo \cite{HTTPMETHODS}, url con parametri \cite{HTTPPARAMS} e corpo \cite{HTTPBODY} della richiesta HTTP in uscita.
 \begin{lstlisting}[caption={Http Interceptor, line 28}, style=javaScriptCode]
 mergeMap(token => {
           this.md5.appendAsciiStr(request.method).appendAsciiStr(request.urlWithParams)
@@ -27,7 +27,7 @@ mergeMap(token => {
           
 \end{lstlisting}
 
-Il middleware di cache controlla se la richiesta in arrivo ha header \verb|AULOS-hash| e, se esistente, controlla se ha già una \textit{entry in cache} associata. In caso positivo, il middleware non chiama il middleware successivo nella catena e restituisce la entry salvata.
+Il middleware di cache controlla se la richiesta in arrivo ha header \textit{AULOS-hash} e, se esistente, controlla se ha già una \textit{entry in cache} associata. In caso positivo, il middleware non chiama il middleware successivo nella catena e restituisce la entry salvata.
 \begin{lstlisting}[caption={TotallyOriginalCachingMiddleware.cs, Cache hit scenario}, style=javaScriptCode]
 context.Request.Headers.TryGetValue("AULOS-hash", out StringValues key);
             if (_cache.TryGetValue(key, out CustomCacheEntry entry))
@@ -37,7 +37,7 @@ context.Request.Headers.TryGetValue("AULOS-hash", out StringValues key);
             }
 \end{lstlisting}
 
-Per permettere allo sviluppatore backend di decidere a quali richieste limitare l'inserimento in cache, è stato implementato un attributo di cache estensione di \\ \verb|ActionFilterAttribute| \cite{ACTIONFILTER}, che, se anteposto a un controller o a un metodo http di un controller, permette di decorare il contesto della relativa richiesta http \cite{HTTPCONTEXT} in arrivo con flag \verb|ServerDuration| necessario a distinguere richieste abilitate all'inserimento in cache.
+Per permettere allo sviluppatore backend di decidere a quali richieste limitare l'inserimento in cache, è stato implementato un attributo di cache estensione di \\ \textit{ActionFilterAttribute} \cite{ACTIONFILTER}, che, se anteposto a un controller o a un metodo HTTP di un controller, permette di decorare il contesto della relativa richiesta HTTP \cite{HTTPCONTEXT} in arrivo con flag \textit{ServerDuration} necessario a distinguere richieste abilitate all'inserimento in cache.
 Il flag contiene la durata delle entry di cache relative all'azione a cui è applicato l'attributo di cache.
 
 \begin{lstlisting}[caption={CacheAttribute.cs}, style=javaScriptCode, label={lst:cacheattribute}]
@@ -57,7 +57,7 @@ Il flag contiene la durata delle entry di cache relative all'azione a cui è app
     }
 \end{lstlisting}
 
-In caso negativo, il middleware lascia procedere la \textit{pipeline} e, se è presente nel contesto http \cite{HTTPCONTEXT} il flag \verb|ServerDuration| generato da attributi di cache \cite{ACTIONFILTER} (Fig.~\ref{lst:cacheattribute}), salva la risposta generata dalla pipeline come entry in cache di durata \verb|ServerDuration| e lascia procedere la pipeline. Se non sono presenti flag, il middleware lascia procedere la pipeline senza effettuare azioni.
+In caso negativo, il middleware lascia procedere la \textit{pipeline} e, se è presente nel contesto HTTP \cite{HTTPCONTEXT} il flag \textit{ServerDuration} generato da attributi di cache \cite{ACTIONFILTER} (Fig.~\ref{lst:cacheattribute}), salva la risposta generata dalla pipeline come entry in cache di durata \textit{ServerDuration} e lascia procedere la pipeline. Se non sono presenti flag, il middleware lascia procedere la pipeline senza effettuare azioni.
 
 \begin{lstlisting}[caption={TotallyOriginalCachingMiddleware.cs, Cache miss scenario}, style=javaScriptCode]
 entry = await CaptureResponse(context);

@@ -8,7 +8,7 @@ Si è optato per effettuare\textit{ load test} su backend tramite una \textit{su
 I test sono stati impostati per effettuare automaticamente la procedura di login per poi usare \textit{l'access token} così ottenuto per autenticare le richieste inviate verso il backend.
 
 Sono stati simulati 250 utenti concorrenti emettenti richieste a endpoint che prevedono l'uso di \textit{cache}, ripetendo test con lifetime variabili delle \textit{entry} in cache.
-La dimensione della tabella di cache è stata mantenuta costante (60000 entry) generando casualmente valori di header \verb|AULOS-hash| (Ch. \ref{ch:caching}).
+La dimensione della tabella di cache è stata mantenuta costante (60000 entry) generando casualmente valori di header \textit{AULOS-hash} (Ch. \ref{ch:caching}).
 Il corpo delle richieste è stato fornito tramite un file .csv contenente tutte le possibili richieste generabili da un utente tramite la dashboard.
 
 Testando la performance del backend quando sottoposto a un carico molto superiore a quello previsto dal caso d'uso dell'applicativo, è possibile avere un certo grado di sicurezza che il sistema sarà stabile una volta in utilizzo.
