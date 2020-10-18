@@ -32,46 +32,53 @@ L'\textit{hit ratio} di entry in cache è stato calcolato secondo la seguente fo
 
 \end{figure}
 \FloatBarrier
-La figura~\ref{fig:throughput} rappresenta i dati relativi alle richieste al secondo mentre la figura~\ref{fig:hitratio} rappresenta la percentuale stimata di hit in cache durante il test, calcolata tramite la formula in fig.~\ref{fig:formula}.
-\begin{figure}[htbp!]
+%La figura~\ref{fig:throughput} rappresenta i dati relativi alle richieste al secondo mentre la figura~\ref{fig:hitratio} rappresenta la percentuale stimata di hit in cache durante il test, calcolata tramite la formula in fig.~\ref{fig:formula}.
 
-\RawFloats
-\subfloat[Test throughput]{
-
-\resizebox{7cm}{7cm}{%
-
+Di seguito si hanno gli istogrammi ricavati dai dati estrapolati dai test JMeter: 
+\begin{figure}[hbpt!]
+\caption{Test throughput}
+\label{fig:throughput}
 \begin{tikzpicture}
 \begin{axis}[  
     hist/symbolic coords={No cache, 5s, 15s, 30s, 120s},
     area style,
     nodes near coords,
-    ymax=12000,
+    ymax=13000,
     xlabel={Cache Duration},
     ylabel={Throughput (requests/s)}
     ]
 \addplot+[ybar, mark=no] plot coordinates { (No cache, 1356) (5s, 2361) (15s, 3261) (30s, 6735) (120s, 10897) };
 \end{axis}
 \end{tikzpicture}
-}
-\label{fig:throughput}
-}
-\subfloat[Cache hit ratio]{
 
-\resizebox{7cm}{7cm}{%
+\end{figure}
+\FloatBarrier
+
+In figura~\ref{fig:throughput} si hanno i dati relativi al throughput, sotto forma di richieste soddisfatte con successo al secondo, raggiunto durante i test, organizzati in base alla durata delle entry di cache se attiva.
+I dati sono conformi alle aspettative, in quanto è prevedibile che, se soddisfare una richiesta in cache è meno dispendioso del generare dati aggiornati, si abbia un aumento della capacità di soddisfare richieste da parte del backend al diminuire della complessità delle richieste.
+
+
+
+\begin{figure}[h!]
+
+\caption{Cache hit ratio}
+\label{fig:hitratio}
 \begin{tikzpicture}
 \begin{axis}[
     hist/symbolic coords={No cache, 5s, 15s, 30s, 120s},
     area style,
     nodes near coords,
-    ymin=0, ymax=100,
+    ymin=0, ymax=110,
     xlabel={Cache Duration},
     ylabel={Cache hit \%}
     ]
 \addplot+[ybar, mark=no] plot coordinates { (No cache, 0) (5s, 17.86) (15s, 55.74) (30s, 96.55) (120s, 99.99) };
 \end{axis}
 \end{tikzpicture}
-}
-\label{fig:hitratio}
-}
-\caption{Dati estrapolati dai load test}
+
 \end{figure}
+\FloatBarrier
+In figura ~\ref{fig:hitratio} si ha una stima dell'\textit{hit ratio} in cache, il rapporto tra \textit{cache hit} e richieste totali, calcolato tramite la formula~\ref{fig:formula}, che rappresenta una stima delle entry occupate in cache dopo x richieste soddisfatte dato un numero di richieste abilitate alla registrazione in cache fisso con pari probabilità di essere lanciate.
+
+Chiaramente, questo calcolo sarebbe completamente inutile in un contesto reale, in quanto sarebbe ingenuo considerare finito il numero di richieste possibili senza una conoscenza assoluta di ogni livello del contesto applicativo: durante il testing, era infatti nota la possibilità di generare solamente circa 2500 richieste univoche utilizzando il \textit{dataset} a disposizione durante lo sviluppo.
+
