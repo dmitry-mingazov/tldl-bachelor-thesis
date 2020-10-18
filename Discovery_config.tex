@@ -12,7 +12,7 @@ interface ITupleDataSource
         public TupleDTO[] GetData(List<Parameter> parameters);
     }
 \end{lstlisting}
-\begin{lstlisting}[caption={TupleDataSource.cs}, style=sharpCode]
+\begin{lstlisting}[caption={AllRefusedDataSource.cs}, style=sharpCode]
 public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 {
   ...
@@ -207,8 +207,8 @@ Un Controller che restituisce dati in una determinata forma deve chiamarsi \text
   
   }
 \end{lstlisting}
-Deve presentare un endpoint Post nella forma \textit{api/widgets/{resource}}.
-\begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
+Deve presentare un endpoint Post nella forma \textit{api/widgets/{resource}}
+\begin{lstlisting}[caption={TupleController.cs, endpoint POST Search}, style=sharpCode]
 [HttpPost]
 public IActionResult Search([FromBody] GenericRequestDTO request)
 {
