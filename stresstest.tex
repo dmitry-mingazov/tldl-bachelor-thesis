@@ -3,7 +3,7 @@
 Si è testata la capacità del sistema di offrire funzionalità senza interruzioni all'aumentare del carico. 
 Si è optato per effettuare\textit{ load test} su backend tramite una \textit{suite di test} JMeter. \cite{JMETER}
 
-\subsection{Implementazione}
+\section{Implementazione}
 
 I test sono stati impostati per effettuare automaticamente la procedura di login per poi usare \textit{l'access token} così ottenuto per autenticare le richieste inviate verso il backend.
 
@@ -13,7 +13,7 @@ Il corpo delle richieste è stato fornito tramite un file .csv contenente tutte 
 
 Testando la performance del backend quando sottoposto a un carico molto superiore a quello previsto dal caso d'uso dell'applicativo, è possibile avere un certo grado di sicurezza che il sistema sarà stabile una volta in utilizzo.
 
-\subsection{Risultati}
+\section{Risultati}
 Sono stati eseguiti test senza cache e con \textit{lifetime} di entry in cache pari a 5, 15, 30 e 120 secondi. 
 Una volta eseguiti tutti i test, si sono raccolte le seguenti statistiche, divise per durata delle entry di cache. Tutti i test hanno avuto la durata di un'ora.
 L'\textit{hit ratio} di entry in cache è stato calcolato secondo la seguente formula, dove x è il prodotto tra lifetime delle entry in cache e \textit{throughput finale} (richieste/s) restituito da JMeter.
@@ -78,7 +78,7 @@ I dati sono conformi alle aspettative, in quanto è prevedibile che, se soddisfa
 
 \end{figure}
 \FloatBarrier
-In figura ~\ref{fig:hitratio} si ha una stima dell'\textit{hit ratio} in cache, il rapporto tra \textit{cache hit} e richieste totali, calcolato tramite la formula~\ref{fig:formula}, che rappresenta una stima delle entry occupate in cache dopo x richieste soddisfatte dato un numero di richieste abilitate alla registrazione in cache fisso con pari probabilità di essere lanciate.
+In figura ~\ref{fig:hitratio} si ha una stima dell'\textit{hit ratio} in cache, il rapporto tra \textit{cache hit} e richieste totali, calcolato tramite la formula~\ref{fig:formula}, che rappresenta una stima delle entry occupate in cache dopo un numero \emph{x} richieste soddisfatte dato un numero di richieste abilitate alla registrazione in cache fisso con pari probabilità di essere lanciate.
 
 Chiaramente, questo calcolo sarebbe completamente inutile in un contesto reale, in quanto sarebbe ingenuo considerare finito il numero di richieste possibili senza una conoscenza assoluta di ogni livello del contesto applicativo: durante il testing, era infatti nota la possibilità di generare solamente circa 2500 richieste univoche utilizzando il \textit{dataset} a disposizione durante lo sviluppo.
 
