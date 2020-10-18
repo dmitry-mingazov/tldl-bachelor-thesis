@@ -1,12 +1,15 @@
 \section{Widget}
 \label{chap:widget}
 \begin{figure}[h]
+
 \centering
 \includegraphics[scale=0.6]{images/widget_example.png}
+\caption{Pie chart widget}
+\label{fig:piechart}
 \end{figure}
 \subsection{Composizione}
 
-Un \textit{widget} è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle. \newline Prendendo ad esempio il \textit{pie chart} widget si può vedere come un widget lato \textit{frontend} sia formato da diversi \textit{file}. La classe contenente i parametri volti alla visualizzazione grafica del widget si chiama \textit{PieChartWidget}. Estende la classe \textit{BaseWidget}, dove viene gestita tutta la logica per la presa dei dati dal \textit{backend}, ed è decorata con il \textit{WidgetDecorator}, il quale aggiunge ulteriore comportamento al widget.
+Un \textit{widget} è una piccola applicazione, semplice e immediata, che mostra all'utente dati e informazioni, di solito sotto forma di grafici o tabelle. \newline Prendendo ad esempio il \textit{pie chart} widget in fig.~\ref{fig:piechart} si può vedere come un widget lato \textit{frontend} sia formato da diversi \textit{file}. La classe contenente i parametri volti alla visualizzazione grafica del widget si chiama \textit{PieChartWidget}. Estende la classe \textit{BaseWidget}, dove viene gestita tutta la logica per la presa dei dati dal \textit{backend}, ed è decorata con il \textit{WidgetDecorator}, il quale aggiunge ulteriore comportamento al widget.
 
 \begin{lstlisting}[caption={Classe PieChartWidget}, style=javaScriptCode]
 @WidgetDecorator({
@@ -96,7 +99,7 @@ Nel file HTML, di cui viene passato il path al \textit{Component} \textit{decora
 \end{lstlisting}
 Infine ogni widget viene incluso in un modulo Angular. All'avvio dell'applicazione il widget viene registrato nel sistema con la chiamata del metodo \textit{registerWidgets}, presente nel modulo. Ciò permette ad AULOS di inserirlo nella lista di widget instanziabili nella dashboard.
 
-\begin{lstlisting}[caption={Metodo all'interno del modulo che registra il widget nel sistema}, style=javaScriptCode]
+\begin{lstlisting}[caption={Modulo relativo al widget Piechart, metodo di registrazione del widget nel sistema}, style=javaScriptCode]
 private static registerWidgets(widgetsService: WidgetComponentsService): () => 
     Promise<any> {
         const result = (): Promise<any> => {
@@ -126,7 +129,7 @@ Le classi \textit{BaseWidget} e \textit{BaseWidgetComponent} sono state create c
 \\
 All'interno del \textit{BaseWidget} viene iniettato e utilizzato il \textit{WidgetService}, servizio in cui avvengono le chiamate REST, e vengono creati i parametri \textit{source} e \textit{filters}. 
 
-\begin{lstlisting}[caption={Creazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe BaseWidget, creazione dei parametri}, style=javaScriptCode]
 export class BaseWidget extends Widget {
 
     ...
@@ -148,7 +151,7 @@ export class BaseWidget extends Widget {
 
 Il parametro \textit{source} indica da quale contesto verranno presi i dati da visualizzare, mentre il parametro \textit{filters} contiene tutti i parametri che aggiungono filtri in fase di ottenimento dati (e.g. un intervallo di tempo per il quale si vogliono ottenere i risultati di un test). Il tutto viene inizializzato e caricato tramite il metodo \textit{initSourceCalls}.
 
-\begin{lstlisting}[caption={Inizializzazione dei parametri all'interno della classe BaseWidget}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe BaseWidget, inizializzazione dei parametri}, style=javaScriptCode]
 export class BaseWidget extends Widget {
     
     ...
@@ -192,7 +195,7 @@ export class BaseWidget extends Widget {
 }
 \end{lstlisting}
 Nel \textit{BaseWidgetComponent} vi è la sottoscrizione al \textit{dataObservable}, attributo \textit{Observable} fornito da \textit{BaseWidget}, la quale si occupa di chiamare il metodo \textit{getDataCallback} ogni qualvolta vengono presi dati dal backend.
-\begin{lstlisting}[caption={Metodi per l'inizializzazione dei dati all'interno della classe BaseWidgetComponent}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe BaseWidgetComponent, metodi d'inizializzazione dei dati}, style=javaScriptCode]
 @Directive()
 export abstract class BaseWidgetComponent<T extends BaseWidget> extends 
     WidgetComponent<T> implements OnInit, OnDestroy{
@@ -217,7 +220,7 @@ export abstract class BaseWidgetComponent<T extends BaseWidget> extends
 Nel \textit{WidgetService} avviene tutta la comunicazione tra frontend e backend.
 La sua responsabilità è quella di fare chiamate REST per ottenere i dati da far visualizzare all'interno dei widget. Il principale metodo che si occupa di fare ciò è il metodo \textit{getData} il quale, passatagli una \textit{GenericRequest} composta da un \textit{sourceCode} e un \textit{array} di filtri, manda una richiesta POST al backend.
 
-\begin{lstlisting}[caption={Metodo getData all'interno della classe WidgetService}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe WidgetService, metodo getData}, style=javaScriptCode]
 @Injectable({
     providedIn: 'root'
 })
@@ -239,7 +242,7 @@ Se il widget ha associata una funzione \textit{adapt}, questa verrà passata al 
 
 La lista di \textit{source} disponibili e la possibile lista di filtri e metadati si ricavano rispettivamente dal metodo \textit{getSources} e dal metodo \textit{getSourceProperties}.
 
-\begin{lstlisting}[caption={Metodi getSources e getSourceProperties all'interno della classe WidgetService}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe WidgetService, metodi getSources e getSourceProperties}, style=javaScriptCode]
 @Injectable({
     providedIn: 'root'
 })
@@ -259,7 +262,7 @@ export class WidgetService {
 \end{lstlisting}
 Se un widget è di tipo \textit{MOBILITY}, ovvero legato a dei dati provenienti dalle macchine Loccioni, avrà bisogno della possibilità di filtrare i dati in base a \textit{linea}, \textit{banco} e \textit{stazione}. Per questo all'interno del \textit{WidgetService} vi sono tre metodi predisposti per il recupero di questi ultimi.
 
-\begin{lstlisting}[caption={Metodi per recuperare linee, banchi e stazioni all'interno della classe WidgetService}, style=javaScriptCode]
+\begin{lstlisting}[caption={Classe WidgetService, metodi per recuperare linee, banchi e stazioni}, style=javaScriptCode]
 @Injectable({
     providedIn: 'root'
 })
@@ -294,7 +297,7 @@ Il \textit{WidgetDecorator} ha la responsabilità di aggiungere comportamento a 
 
 \textit{WidgetOptions} ha la seguente struttura:
 
-\begin{lstlisting}[caption={Struttura delle WidgetOptions e delle RefreshableInfo}, style=javaScriptCode]
+\begin{lstlisting}[caption={WidgetOptions e RefreshableInfo}, style=javaScriptCode]
 export interface WidgetOptions {
     // indicates which endpoint the widget has to use to take data from
     endpoint: string;
@@ -352,7 +355,7 @@ export const WidgetDecorator: (options: WidgetOptions) => (target: Function) =>
 \subsection{Mobility Decorator}
 Il \textit{Mobility} decorator si occupa di aggiungere i parametri atti al filtraggio dei dati di un widget in base a linea, banco e stazione.
 
-\begin{lstlisting}[caption={Metodo di creazione dei parametri all'interno del decorator Mobility}, style=javaScriptCode]
+\begin{lstlisting}[caption={Decorator Mobility, metodo di creazione dei parametri}, style=javaScriptCode]
 export const Mobility: (target: Function) => void = (target: Function) => {
 
     ...
@@ -381,7 +384,7 @@ export const Mobility: (target: Function) => void = (target: Function) => {
 \end{lstlisting}
 Il metodo che inizializza e definisce il comportamento che il widget avrà al cambio di uno dei parametri è il metodo \textit{initTopology}.
 
-\begin{lstlisting}[caption={Metodo initTopology all'interno del decorator Mobility}, style=javaScriptCode]
+\begin{lstlisting}[caption={Decorator Mobility, metodo initTopology}, style=javaScriptCode]
 export const Mobility: (target: Function) => void = (target: Function) => {
 
     ...
@@ -462,7 +465,7 @@ export const Sourceable = (target: Function) => {
 \end{lstlisting}
 La configurazione delle possibili source disponibili avviene nell'override del metodo \textit{initSourceCalls}. Le \textit{options} per l'\textit{editor} del \textit{sourceParameter} vengono impostate con il metodo \textit{setSources}.
 
-\begin{lstlisting}[caption={Metodo setSources e override del metodo initSourceCalls all'interno del Sourceable Decorator}, style=javaScriptCode]
+\begin{lstlisting}[caption={Decorator Sourceable, metodi initSourceCalls e setSources e override}, style=javaScriptCode]
 export const Sourceable = (target: Function) => {
 
     ...
@@ -487,7 +490,7 @@ export const Sourceable = (target: Function) => {
 Il \textit{Refreshable} decorator permette al widget di aggiornarsi e ricaricare i dati nell'arco di uno specifico intervallo di tempo. Il valore di default dell'intervallo può essere cambiato passando all'interno delle \textit{RefreshableInfo} anche un \textit{defaultRefreshRate}.
 L'intervallo poi potrà essere selezionato dall'utente al momento di configurazione della dashboard grazie al \textit{refreshRateParameter} che viene aggiunto al widget.
 
-\begin{lstlisting}[caption={Creazione del refreshRateParameter all'interno del Refreshable decorator}, style=javaScriptCode]
+\begin{lstlisting}[caption={Decorator Refreshable, creazione di refreshRateParameter}, style=javaScriptCode]
 export const Refreshable: (options?: RefreshableOptions) => (Function) => 
     void = (options?: RefreshableOptions) => {
     return (target: Function) => {
@@ -509,7 +512,7 @@ export const Refreshable: (options?: RefreshableOptions) => (Function) =>
 \end{lstlisting}
 Ogni qualvolta un utente cambi intervallo di \textit{refresh} viene effettuata una nuova registrazione all'\textit{Observable} presente nel \textit{RefreshService}, legato a quel determinato intervallo, e viene annullata la precedente registrazione.
 
-\begin{lstlisting}[caption={Metodo updateSubscription all'interno del Refreshable decorator}, style=javaScriptCode]
+\begin{lstlisting}[caption={Decorator Refreshable, metodo updateSubscription}, style=javaScriptCode]
 export const Refreshable: (options?: RefreshableOptions) => (Function) => 
     void = (options?: RefreshableOptions) => {
     return (target: Function) => {
@@ -554,7 +557,7 @@ Nello specifico il metodo \textit{getObservableOfInterval} ritorna l'\textit{Obs
 
 L'\textit{Observable} viene creato con il metodo \textit{interval}, il quale crea un \textit{Observable} che emette numeri sequenziali all'intervallo di un tempo specificato. Poi viene trasformato con il metodo \textit{multicast} in un \textit{ConnectableObservable}, particolare tipo di \textit{Observable} che non emetterà valori finché non sarà chiamato il metodo \textit{connect}. Questa chiamata viene resa automatizzata grazie al metodo \textit{refCount}, il quale gestisce la connessione in modo tale da mantenerla attiva fintanto che ci siano \textit{observer} in ascolto.
 
-\begin{lstlisting}[caption={Classe RefreshService}, style=html]
+\begin{lstlisting}[caption={source-editor.component.html}, style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">
   <ng-template aulosEditorSmallTemplate>
     <div class="input-group" [class.hidden]="disabled">
