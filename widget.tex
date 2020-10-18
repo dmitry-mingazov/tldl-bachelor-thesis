@@ -225,18 +225,17 @@ export class WidgetService {
 
     ...
 
-    public getData(widgetUrl: string, genericRequest: GenericRequest): 
-        Observable<unknown[]> {
-            const adapt = Adapters.getAdapter(widgetUrl);
-            const restCall = this.http.post<unknown[]>(`${this.widgetsUrl}/${widgetUrl}`, 
-            genericRequest);
-            return adapt ? restCall.pipe(map((data) => adapt(data))) : restCall;
-        }
+    public getData(widgetUrl: string, genericRequest: GenericRequest, adapt?: (any) => any): Observable<unknown[]> {
+        const restCall = this.http.post<unknown[]>(`${this.widgetsUrl}/${widgetUrl}`, genericRequest);
+        return adapt ? restCall.pipe(map((data) => adapt(data))) : restCall;
+    }
+    
+    ...
 
 }
 
 \end{lstlisting}
-Se esiste un'implementazione dell'\verb|Adapter|, interfaccia funzionale con il singolo metodo \verb|adapt|, per quel determinato widget, i dati che verranno presi saranno adattati prima di essere restituiti. In caso contrario verranno passati al widget dati grezzi.
+Se il widget ha associata una funzione \textit{adapt}, questa verrà passata al metodo \textit{getData} il quale la userà per adattare i dati prima di restituirli. In caso contrario verranno passati al widget i dati nella forma in cui sono al momento della risoluzione della chiamata REST.
 
 La lista di \textit{source} disponibili e la possibile lista di filtri e metadati si ricavano rispettivamente dal metodo \verb|getSources| e dal metodo \verb|getSourceProperties|.
 
