@@ -249,7 +249,7 @@
 {\bfseries \large \@secondauthor \hfill \par}%
 { \small Matricola \@secondmatricola \par}%
 %\vspace{0.30cm}%
-{\hfill Corelatore \par}%
+{\hfill Tutor Aziendale \par}%
 {\bfseries \large \@thirdauthor \hfill \@thetutor \par}%
 {\small Matricola \@thirdmatricola \par }%
 \vspace{0.30cm}%
