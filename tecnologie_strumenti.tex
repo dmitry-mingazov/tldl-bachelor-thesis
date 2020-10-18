@@ -10,7 +10,7 @@ Di seguito verranno dettagliate le tecnologie, gli strumenti, i framework ed i l
 \end{center}
 \end{figure}
 AULOS è il \textit{framework} utilizzato all'interno dell'impresa Loccioni per standardizzare lo sviluppo e rendere riconoscibile e uniforme lo stile grafico di applicativi per la visualizzazione dati. La parte frontend utilizza la tecnologia Angular, mentre la parte backend può essere scritta utilizzando linguaggi come C\# e LabView.\\
-Un componente fondamentale sul quale si è basato il lavoro svolto per il progetto è la \textit{dashboard}, nata dall'esigenza di monitorare in tempo reale i dati provenienti dalle macchine Loccioni. Offre un ambiente di \textit{authoring} che permette ai clienti di creare ad hoc in maniera semplice e veloce il proprio pannello personalizzabile \cite{AULOS}.
+Un componente fondamentale sul quale si è basato il lavoro svolto per il progetto è la \textit{dashboard}, nata dall'esigenza di monitorare in tempo reale i dati provenienti dalle macchine Loccioni. Offre un ambiente di \textit{authoring} che permette ai clienti di creare ad hoc in maniera semplice e veloce il proprio pannello personalizzabile. \cite{AULOS}
 La dashboard è composta da:
 \begin{itemize}
     \item l'elenco di tutti i possibili widget selezionabili dall'utente;
@@ -33,7 +33,7 @@ Il \textit{widget}, attore principale all'interno della dashboard,
 \end{center}
 \end{figure}
 \paragraph{Storybook}
-AULOS offre una pagina di \textit{storybook} al fine di agevolare gli sviluppatori nell'utilizzo dei suoi componenti. Ciascuna storia contenuta al suo interno si occupa di descrivere tutti gli stati di \textit{rendering} interessanti di un componente UI e di fornirne una spiegazione implementativa \cite{STORYBOOK}.
+AULOS offre una pagina di \textit{storybook} al fine di agevolare gli sviluppatori nell'utilizzo dei suoi componenti. Ciascuna storia contenuta al suo interno si occupa di descrivere tutti gli stati di \textit{rendering} interessanti di un componente UI e di fornirne una spiegazione implementativa. \cite{STORYBOOK}
 \pagebreak
 \begin{figure}[h]
 \begin{center}
@@ -51,8 +51,8 @@ AULOS offre una pagina di \textit{storybook} al fine di agevolare gli sviluppato
 \end{figure}
 \FloatBarrier
 \textit{L'applicativo frontend} del progetto discusso nella tesi è stato sviluppato con Angular.
-Angular è una piattaforma e un framework per costruire applicazioni \textit{client single-page} usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
-\paragraph{HTML} HTML (Hypertext Markup Language) è il \textit{linguaggio di markup} standard per i documenti visualizzabili in un browser web \cite{HTML}.
+Angular è una piattaforma e un framework per costruire applicazioni \textit{client single-page} usando i linguaggi HTML e TypeScript. \cite{ANGULAR}
+\paragraph{HTML} HTML (Hypertext Markup Language) è il \textit{linguaggio di markup} standard per i documenti visualizzabili in un browser web. \cite{HTML}
 \paragraph{TypeScript} TypeScript è un linguaggio di programmazione \textit{open source} sviluppato da Microsoft. Estende la sintassi di JavaScript, essendo un suo superset, in modo che qualunque programma scritto in JavaScript sia anche in grado di funzionare con TypeScript senza nessuna modifica. È stato progettato per lo sviluppo di grandi applicazioni ed è destinato a essere compilato in JavaScript per poter essere interpretato da qualunque web browser o app. \cite{TYPESCRIPT}
 L'architettura di un'applicazione Angular si basa su alcuni concetti fondamentali. Gli elementi costitutivi di base sono gli \textit{NgModules}, che forniscono un contesto di compilazione per i \textit{Component}. Questi ultimi sono elementi fondamentali per la costruzione delle UI in Angular. Ciascun Component definisce una classe che contiene dati e logica dell'applicazione ed è associato ad un modello HTML che definisce come verrà visualizzato nell'ambiente di destinazione. Il decoratore \textit{@Component()} identifica la classe immediatamente sotto di essa come un componente e fornisce il modello e i relativi metadati specifici del componente.
 I decoratori sono funzioni che modificano le classi JavaScript. Angular definisce un numero di decoratori che associano specifici tipi di metadati alle classi, in modo che il sistema sappia cosa significano quelle classi e come dovrebbero funzionare.\cite{ANGULAR}
@@ -129,7 +129,7 @@ Il framework è stato usato all'interno dell'applicativo frontend con l'obiettiv
 \end{center}
 \end{figure}
 \pagebreak
-Ogni componente include un set completo di funzionalità già pronte all'uso \cite{KENDO}. Nel caso della \textit{Kendo Grid}, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
+Ogni componente include un set completo di funzionalità già pronte all'uso. \cite{KENDO} Nel caso della \textit{Kendo Grid}, componente frequentemente utilizzato nel progetto per rappresentare dei dati all'interno di una tabella, vi è ad esempio la possibilità di filtrare, ordinare, modificare e raggruppare i dati agevolmente.
 \begin{figure}[ht!]
 \begin{center}
   \includegraphics[width=14cm]{images/kendo_grid.JPG}
@@ -180,7 +180,7 @@ Analogamente a .NET, presenta due versioni:
 \end{figure}
 Entity Framework è un ORM framework (Object-relational mapping) per .NET supportato da Microsoft. Permette agli sviluppatori di lavorare con i dati usando oggetti specifici del dominio senza concentrarsi sulle tabelle e colonne dei database in cui sono memorizzati i dati.
 \subsection{Entity Framework Core}
-Entity Framework Core è una versione leggera, estensibile, open source e cross-platform di Entity Framework. È stato utilizzato per lavorare con i dati del progetto memorizzati in server SQL e MySQL \cite{EF}.
+Entity Framework Core è una versione leggera, estensibile, open source e cross-platform di Entity Framework. È stato utilizzato per lavorare con i dati del progetto memorizzati in server SQL e MySQL. \cite{EF}
 
 \pagebreak
 \section{Linq}
@@ -191,7 +191,7 @@ Entity Framework Core è una versione leggera, estensibile, open source e cross-
   \caption{Logo Nest}
 \end{center}
 \end{figure}
-LINQ (Language-Integrated Query) è il nome di un set di tecnologie basate sull'integrazione delle funzionalità di query direttamente nel linguaggio C\#. In genere, le query sui dati vengono espresse come stringhe semplici senza il controllo dei tipi in fase di compilazione o il supporto IntelliSense. È anche necessario imparare un linguaggio di query diverso per ogni tipo di origine dati: database SQL, documenti XML, svariati servizi Web e così via. Con LINQ, una query è un costrutto del linguaggio di prima classe, come le classi, i metodi e gli eventi. È possibile scrivere query su insiemi di oggetti fortemente tipizzati usando le parole chiave del linguaggio e gli operatori comuni. La famiglia di tecnologie LINQ offre coerenza per l'esecuzione di query per oggetti (LINQ to Objects), database relazionali (LINQ to SQL) e XML (LINQ to XML). Per uno sviluppatore che scrive query, la parte integrata nel linguaggio più visibile di LINQ è l'espressione di query. Le espressioni di query vengono scritte con una sintassi di query dichiarativa. Tramite la sintassi di query è possibile eseguire operazioni di filtro, ordinamento e raggruppamento sulle origini dati usando una quantità minima di codice \cite{Linq}.
+LINQ (Language-Integrated Query) è il nome di un set di tecnologie basate sull'integrazione delle funzionalità di query direttamente nel linguaggio C\#. In genere, le query sui dati vengono espresse come stringhe semplici senza il controllo dei tipi in fase di compilazione o il supporto IntelliSense. È anche necessario imparare un linguaggio di query diverso per ogni tipo di origine dati: database SQL, documenti XML, svariati servizi Web e così via. Con LINQ, una query è un costrutto del linguaggio di prima classe, come le classi, i metodi e gli eventi. È possibile scrivere query su insiemi di oggetti fortemente tipizzati usando le parole chiave del linguaggio e gli operatori comuni. La famiglia di tecnologie LINQ offre coerenza per l'esecuzione di query per oggetti (LINQ to Objects), database relazionali (LINQ to SQL) e XML (LINQ to XML). Per uno sviluppatore che scrive query, la parte integrata nel linguaggio più visibile di LINQ è l'espressione di query. Le espressioni di query vengono scritte con una sintassi di query dichiarativa. Tramite la sintassi di query è possibile eseguire operazioni di filtro, ordinamento e raggruppamento sulle origini dati usando una quantità minima di codice. \cite{Linq}
 
 \section{ElasticSearch}
 \begin{figure}[ht!]
@@ -209,7 +209,7 @@ Elasticsearch dispone di diversi casi d'uso \cite{ELASTICSEARCH}:
     \item utilizza API RESTful standard e JSON. L'apporto costante della comunità ha portato alla creazione e al mantenimento di client in molti linguaggi come Java, Python, .NET, SQL, Perl, PHP;
     \item è possibile utilizzare le funzionalità di ricerca e analisi in tempo reale di Elasticsearch per lavorare sui big data utilizzando il connettore Elasticsearch-Hadoop (ES-Hadoop).
 \end{itemize}
-Data l'elevata efficienza di questo software diverse compagnie informatiche l'hanno scelto per i loro prodotti. Gli ambiti interessati sono quelli di ricerca per quanto concerne \textit{Tinder}, dove Elasticsearch permette di rendere il sistema più reattivo e veloce, mentre nel caso di \textit{Netflix} l'utilizzo principale è focalizzato al giusto indirizzamento di notifiche push, email e messaggistica \cite{ELASTICSEARCH}.
+Data l'elevata efficienza di questo software diverse compagnie informatiche l'hanno scelto per i loro prodotti. Gli ambiti interessati sono quelli di ricerca per quanto concerne \textit{Tinder}, dove Elasticsearch permette di rendere il sistema più reattivo e veloce, mentre nel caso di \textit{Netflix} l'utilizzo principale è focalizzato al giusto indirizzamento di notifiche push, email e messaggistica. \cite{ELASTICSEARCH}
 Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione del layer di accesso dei dati relativi alle macchine che testano le componenti degli elettrodomestici \textit{Whirlpool}. In sinergia con questo strumento è stata impiegata la dashboard di visualizzazione dati \textit{Kibana}.
 
 \section{Nest}
@@ -220,7 +220,7 @@ Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione de
 \end{center}
 \end{figure}
 NEST è un client Elasticsearch .NET di alto livello che è ancora molto fedele all'API Elasticsearch originale. Tutte le richieste e le risposte sono esposte attraverso i tipi, rendendolo ideale per essere subito operativi.
-Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con queste ultime che utilizzano suffisso idiomatico \textit{Async} sul nome del metodo \cite{Nest}.
+Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con queste ultime che utilizzano suffisso idiomatico \textit{Async} sul nome del metodo. \cite{Nest}
 Di seguito la medesima richiesta effettuata in Postman utilizzando un payload in formato json~\ref{fig:json} e in Nest~\ref{fig:nest}.
 \pagebreak
 \begin{figure}[ht!]
@@ -273,7 +273,7 @@ Oltre a mostrare una visione più generale e strutturata sul progetto, Git conse
   \caption{Logo GitLab}
 \end{center}
 \end{figure}
-GitLab è una piattaforma web open source che permette la gestione di repository Git e di funzioni trouble ticket \cite{GITLAB}.
+GitLab è una piattaforma web open source che permette la gestione di repository Git e di funzioni trouble ticket. \cite{GITLAB}
 La piattaforma si basa sull'offrire uno spazio virtuale remoto, pubblico o privato, dove archiviare il proprio repository, permettendo agli sviluppatori di lavorare in team.
 Inoltre GitLab consente di avere un controllo più immediato mettendo a disposizione dello sviluppatore una vista sui branch creati e una history delle modifiche apportate al repository.
 Ulteriore funzionalità è quella dei trouble ticket, ovvero le \textit{issue} all'interno di GitLab. Questo sistema consente di creare dei ticket per richiedere agli sviluppatori di aggiungere nuove funzionalità o di risolvere uno specifico bug. Una volta soddisfatta la richiesta il ticket potrà essere chiuso e disattivato dallo sviluppatore.
@@ -293,7 +293,7 @@ Il progetto discusso è stato archiviato su GitLab in un dominio privato Loccion
   \caption{Logo Visual Studio}
 \end{center}
 \end{figure}
-Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio, un IDE estendibile e con funzionalità complete per la creazione di applicazioni moderne per Android, iOS e Windows, nonché di applicazioni Web e servizi cloud \cite{VS}. Gli strumenti utilizzati sono:
+Nello sviluppo dell'applicativo backend è stato fatto uso di Visual Studio, un IDE estendibile e con funzionalità complete per la creazione di applicazioni moderne per Android, iOS e Windows, nonché di applicazioni Web e servizi cloud. \cite{VS} Gli strumenti utilizzati sono:
 \begin{itemize}
 \item
 \textbf{Sviluppo ASP.NET e Web}
@@ -308,7 +308,7 @@ API Web con ASP.NET Core MVC
 \item 
 app web in tempo reale con ASP.NET Core SignalR
 \end{itemize}
-Alcuni dei componenti messi a disposizione sono IntelliSense (per il completamento del codice), esplorazione del codice e refactoring per C\#, Visual Basic e F\# \cite{VS}.
+Alcuni dei componenti messi a disposizione sono IntelliSense (per il completamento del codice), esplorazione del codice e refactoring per C\#, Visual Basic e F\#. \cite{VS}
 \item
 \textbf{Sviluppo per desktop .NET}
 Viene offerta la possibilità di creare applicazioni Web con .NET Framework, applicazioni client per computer o dispositivi da rendere disponibili tramite Microsoft Store, WPF, Windows Forms e console con C\#, Visual Basic e F\#. Questo componente trova applicazione in diversi campi quali: Windows Presentation Foundation (WPF) e Windows Forms.
@@ -343,7 +343,7 @@ Live Share
   \caption{Logo Visual Studio Code}
 \end{center}
 \end{figure}
-Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Code: è un editor di codice sorgente leggero ma potente che viene eseguito sul desktop ed è disponibile per Windows, macOS e Linux. Viene fornito con il supporto integrato per JavaScript, TypeScript e Node.js e ha un ricco ecosistema di estensioni per altri linguaggi (come C ++, C\#, Java, Python, PHP, Go) e runtime (come .NET e Unity) \cite{VSCode}. Vi è la possibilità di installare delle estensioni e quelle impiegate nel progetto sono:
+Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Code: è un editor di codice sorgente leggero ma potente che viene eseguito sul desktop ed è disponibile per Windows, macOS e Linux. Viene fornito con il supporto integrato per JavaScript, TypeScript e Node.js e ha un ricco ecosistema di estensioni per altri linguaggi (come C ++, C\#, Java, Python, PHP, Go) e runtime (come .NET e Unity). \cite{VSCode} Vi è la possibilità di installare delle estensioni e quelle impiegate nel progetto sono:
 \begin{itemize}
 \item
 \begin{minipage}{0.1\textwidth}
@@ -382,7 +382,7 @@ Nello sviluppo dell'applicativo frontend è stato fatto uso di Visual Studio Cod
   \caption{Logo HeidiSQL}
 \end{center}
 \end{figure}
-HeidiSQL è un software gratuito e ha l'obiettivo di essere di facile comprensione, consente di visualizzare e modificare dati e strutture da computer che eseguono uno dei sistemi di database MariaDB, MySQL, Microsoft SQL, PostgreSQL e SQLite. Appartiene agli strumenti più popolari per MariaDB e MySQL in tutto il mondo \cite{HeidiSQL}. Tale strumento è stato utilizzato per la comunicazione con il server, al fine di manipolare le informazioni nei database che il server gestisce.
+HeidiSQL è un software gratuito e ha l'obiettivo di essere di facile comprensione, consente di visualizzare e modificare dati e strutture da computer che eseguono uno dei sistemi di database MariaDB, MySQL, Microsoft SQL, PostgreSQL e SQLite. Appartiene agli strumenti più popolari per MariaDB e MySQL in tutto il mondo. \cite{HeidiSQL} Tale strumento è stato utilizzato per la comunicazione con il server, al fine di manipolare le informazioni nei database che il server gestisce.
 
 \section{Microsoft SQL Server Management Studio}
 \begin{figure}[ht!]
@@ -392,7 +392,7 @@ HeidiSQL è un software gratuito e ha l'obiettivo di essere di facile comprensio
 \end{center}
 \end{figure}
 SQL Server Management Studio (SSMS) è un ambiente gratuito e integrato per la gestione di qualsiasi infrastruttura SQL, da SQL Server al database SQL di Azure. SSMS offre gli strumenti per configurare, monitorare e amministrare le istanze di SQL Server e i database. SSMS viene impiegato per distribuire, monitorare e aggiornare i componenti del livello dati usati dalle applicazioni, nonché per creare query e script.
-È possibile usare SSMS per eseguire query, progettare e gestire database e data warehouse in qualsiasi posizione, nel computer locale o nel cloud \cite{MSSQL}.
+È possibile usare SSMS per eseguire query, progettare e gestire database e data warehouse in qualsiasi posizione, nel computer locale o nel cloud. \cite{MSSQL}
 
 \pagebreak
 \section{Postman}
@@ -402,7 +402,7 @@ SQL Server Management Studio (SSMS) è un ambiente gratuito e integrato per la g
   \caption{Logo Postman}
 \end{center}
 \end{figure}
-Postman è uno strumento di sviluppo di API (application programming interface) che aiuta a costruire, testare e modificare API. Permette di fare vari tipi di richieste HTTP (GET, POST, PUT, PATCH), salvare gli ambienti per usi futuri e convertire le API in codice per vari linguaggi (come JavaScript, Python) \cite{POSTMAN}.
+Postman è uno strumento di sviluppo di API (application programming interface) che aiuta a costruire, testare e modificare API. Permette di fare vari tipi di richieste HTTP (GET, POST, PUT, PATCH), salvare gli ambienti per usi futuri e convertire le API in codice per vari linguaggi (come JavaScript, Python). \cite{POSTMAN}
 Nel corso dello sviluppo Postman è stato uno strumento essenziale per testare in modo veloce e immediato le richieste HTTP al backend.
 \begin{figure}[ht!]
 \begin{center}
