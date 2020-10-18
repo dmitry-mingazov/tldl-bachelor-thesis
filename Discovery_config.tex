@@ -46,12 +46,12 @@ public class AllRefusedDataSource : ITupleDataSource, ITopologyDataSource
 \label{subsec:source}
 Le informazioni di una source sono descritte da SourceInfo e sono le seguenti:
 \begin{itemize}
-\item \verb|SourceCode| è l’identificativo della source;
-\item \verb|TDataSource| è il tipo della DataSource legata alla source;
-\item \verb|Parameters| sono i parametri messi a disposizione dalla source per modificare la \textit{query};
-\item \verb|Metadata| sono i metadati volti a modificare come vengono visualizzati i dati lato frontend.
+\item \textit{SourceCode} è l’identificativo della source;
+\item \textit{TDataSource} è il tipo della DataSource legata alla source;
+\item \textit{Parameters} sono i parametri messi a disposizione dalla source per modificare la \textit{query};
+\item \textit{Metadata} sono i metadati volti a modificare come vengono visualizzati i dati lato frontend.
 \end{itemize}
-Parameters e Metadata vengono scritti in un file json all’interno della cartella \verb|properties| con il nome \verb|{SourceCode}.json|, come nel seguente esempio:
+Parameters e Metadata vengono scritti in un file json all’interno della cartella \textit{properties} con il nome \textit{{SourceCode}.json}, come nel seguente esempio:
 \begin{lstlisting}[caption={allcode.json}, style=JavaScriptCODE]
 {
   "metadata": {
@@ -101,7 +101,7 @@ Parameters e Metadata vengono scritti in un file json all’interno della cartel
   ]
 } 
 \end{lstlisting}
-Per registrare una source, si crea una classe di configurazione che estende la classe astratta \verb|DiscoveryConfiguration| e si richiama all’interno del costruttore il metodo \verb|AddSource|, passandogli le informazioni della source che si sta registrando.
+Per registrare una source, si crea una classe di configurazione che estende la classe astratta \textit{DiscoveryConfiguration} e si richiama all’interno del costruttore il metodo \textit{AddSource}, passandogli le informazioni della source che si sta registrando.
 \\
 \begin{lstlisting}[caption={TupleDiscoveryConfiguration.cs}, style=sharpCode]
 public class TupleDiscoveryConfiguration : DiscoveryConfiguration
@@ -126,7 +126,7 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     }
 }
 \end{lstlisting}
-Il metodo AddSource, definito in \verb|DiscoveryConfiguration|, ottiene attraverso \verb|PropertiesConfiguration| le eventuali informazioni aggiuntive contenute nell’apposito file \verb|{sourceCode}.json| per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
+Il metodo AddSource, definito in \textit{DiscoveryConfiguration}, ottiene attraverso \textit{PropertiesConfiguration} le eventuali informazioni aggiuntive contenute nell’apposito file \textit{{sourceCode}.json} per poi salvare la SourceInfo in una lista che verrà restituita attraverso il metodo pubblico Configure.
 \begin{lstlisting}[caption={DiscoveryConfiguration.cs}, style=sharpCode]
 public abstract class DiscoveryConfiguration
 {
@@ -146,7 +146,7 @@ public abstract class DiscoveryConfiguration
 
 }
 \end{lstlisting}
-DataDiscoveryConfiguration ottiene tutte le classi che estendono \verb|DiscoveryConfiguration|, per poi registrare in SourceManagementService tutte le source riscontrate.
+DataDiscoveryConfiguration ottiene tutte le classi che estendono \textit{DiscoveryConfiguration}, per poi registrare in SourceManagementService tutte le source riscontrate.
 \begin{lstlisting}[caption={DataDiscoveryConfiguraton.cs}, style=sharpCode]
 public static class DataDiscoveryConfiguration
 {
@@ -189,13 +189,13 @@ public enum DataTypeCoupling
 \end{lstlisting}
 DiscoveryController presenta due endpoint:
 \begin{itemize}
-\item \verb|{resource}/discovery| - restituisce SourceCode e le descrizioni delle source associate a una \verb|DataSource| del tipo associato a \verb|resource|, utilizzando il metodo \verb|GetDataSourcesByType| di \verb|SourceManagementService|;
-\item \verb|filters/{sourceCode}| - restituisce i parameters e i metadata di una specifica Source.
+\item \textit{{resource}/discovery} - restituisce SourceCode e le descrizioni delle source associate a una \textit{DataSource} del tipo associato a \textit{resource}, utilizzando il metodo \textit{GetDataSourcesByType} di \textit{SourceManagementService};
+\item \textit{filters/{sourceCode}} - restituisce i parameters e i metadata di una specifica Source.
 \end{itemize}
 Il sourceCode restituito durante questa fase verrà utilizzato dal frontend per richiedere i dati.
 
 \subsection{Utilizzo}
-Un Controller che restituisce dati in una determinata forma deve chiamarsi \verb|{resource}Controller|, dove resource è una stringa registrata in DataTypeCoupling.
+Un Controller che restituisce dati in una determinata forma deve chiamarsi \textit{{resource}Controller}, dove resource è una stringa registrata in DataTypeCoupling.
 \begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
  [Route("api/widgets/[controller]")]
  [ApiController]
@@ -206,7 +206,7 @@ Un Controller che restituisce dati in una determinata forma deve chiamarsi \verb
   
   }
 \end{lstlisting}
-Deve presentare un endpoint Post nella forma \verb|api/widgets/{resource}|
+Deve presentare un endpoint Post nella forma \textit{api/widgets/{resource}}
 \begin{lstlisting}[caption={TupleController.cs}, style=sharpCode]
 [HttpPost]
 public IActionResult Search([FromBody] GenericRequestDTO request)
@@ -216,10 +216,10 @@ public IActionResult Search([FromBody] GenericRequestDTO request)
     return new ObjectResult(dataSource.GetData(request.Filters));
 }
 \end{lstlisting}
-Prende come Body una \verb|GenericRequest|, che presenta i seguenti campi:
+Prende come Body una \textit{GenericRequest}, che presenta i seguenti campi:
 \begin{itemize}
-\item \verb|SourceCode| indica da quale fonte di dati devono essere presi i dati;
-\item \verb|Filters| sono gli eventuali parametri necessari alla esecuzione della query.
+\item \textit{SourceCode} indica da quale fonte di dati devono essere presi i dati;
+\item \textit{Filters} sono gli eventuali parametri necessari alla esecuzione della query.
 \end{itemize}
 \begin{lstlisting}[caption={GenericRequestDTO.cs}, style=sharpCode]
 public class GenericRequestDTO
@@ -228,4 +228,4 @@ public class GenericRequestDTO
     public List<Parameter> Filters { get; set; }
 }
 \end{lstlisting}
-Restituisce la risorsa gestita dal Controller utilizzando il metodo \verb|GetData| della DataSource che ottiene attraverso il metodo \verb|GetDataSource<T>| di \verb|SourceManagementService|, passandogli il SourceCode contenuto nella richiesta.
+Restituisce la risorsa gestita dal Controller utilizzando il metodo \textit{GetData} della DataSource che ottiene attraverso il metodo \textit{GetDataSource<T>} di \textit{SourceManagementService}, passandogli il SourceCode contenuto nella richiesta.

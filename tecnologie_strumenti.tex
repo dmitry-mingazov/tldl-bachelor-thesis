@@ -54,7 +54,7 @@ AULOS offre una pagina di \textit{storybook} al fine di agevolare gli sviluppato
 Angular è una piattaforma e un framework per costruire applicazioni \textit{client single-page} usando i linguaggi HTML e TypeScript \cite{ANGULAR}. 
 \paragraph{HTML} HTML (Hypertext Markup Language) è il \textit{linguaggio di markup} standard per i documenti visualizzabili in un browser web \cite{HTML}.
 \paragraph{TypeScript} TypeScript è un linguaggio di programmazione \textit{open source} sviluppato da Microsoft. Estende la sintassi di JavaScript, essendo un suo superset, in modo che qualunque programma scritto in JavaScript sia anche in grado di funzionare con TypeScript senza nessuna modifica. È stato progettato per lo sviluppo di grandi applicazioni ed è destinato a essere compilato in JavaScript per poter essere interpretato da qualunque web browser o app. \cite{TYPESCRIPT}
-L'architettura di un'applicazione Angular si basa su alcuni concetti fondamentali. Gli elementi costitutivi di base sono gli \textit{NgModules}, che forniscono un contesto di compilazione per i \textit{Component}. Questi ultimi sono elementi fondamentali per la costruzione delle UI in Angular. Ciascun Component definisce una classe che contiene dati e logica dell'applicazione ed è associato ad un modello HTML che definisce come verrà visualizzato nell'ambiente di destinazione. Il decoratore \verb|@Component()| identifica la classe immediatamente sotto di essa come un componente e fornisce il modello e i relativi metadati specifici del componente.
+L'architettura di un'applicazione Angular si basa su alcuni concetti fondamentali. Gli elementi costitutivi di base sono gli \textit{NgModules}, che forniscono un contesto di compilazione per i \textit{Component}. Questi ultimi sono elementi fondamentali per la costruzione delle UI in Angular. Ciascun Component definisce una classe che contiene dati e logica dell'applicazione ed è associato ad un modello HTML che definisce come verrà visualizzato nell'ambiente di destinazione. Il decoratore \textit{@Component()} identifica la classe immediatamente sotto di essa come un componente e fornisce il modello e i relativi metadati specifici del componente.
 I decoratori sono funzioni che modificano le classi JavaScript. Angular definisce un numero di decoratori che associano specifici tipi di metadati alle classi, in modo che il sistema sappia cosa significano quelle classi e come dovrebbero funzionare.\cite{ANGULAR}
 \begin{lstlisting}[caption={Esempio di un Component in Angular}, style=javaScriptCode]
 import { Component, OnInit } from '@angular/core';
@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
 
 }
 \end{lstlisting}
-Per i dati o la logica che non sono associati a una vista specifica e che si desidera condividere tra i componenti si crea una classe di servizio. Una definizione di classe di servizio è immediatamente preceduta dal decoratore \verb|@Injectable()|. Il decoratore fornisce i metadati che consentono ad altri provider di essere inseriti come dipendenze nella classe.
+Per i dati o la logica che non sono associati a una vista specifica e che si desidera condividere tra i componenti si crea una classe di servizio. Una definizione di classe di servizio è immediatamente preceduta dal decoratore \textit{@Injectable()}. Il decoratore fornisce i metadati che consentono ad altri provider di essere inseriti come dipendenze nella classe.
 La \textit{dependency injection (DI)} consente di mantenere le classi dei componenti snelle ed efficienti. Esse non recuperano dati dal server, convalidano l'input dell'utente o accedono direttamente alla console; delegano tali compiti ai servizi. \cite{ANGULAR}
 \begin{lstlisting}[caption={Esempio di un Service in Angular}, style=javaScriptCode]
 import { Injectable } from '@angular/core';
@@ -101,11 +101,11 @@ Il registry è accessibile via client e i pacchetti disponibili sono consultabil
   \caption{Logo RxJs}
 \end{center}
 \end{figure}
-RxJS (\textit{Reactive Extensions for JavaScript}) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \verb|Observable|, che semplifica la composizione di codice asincrono o basato su \textit{callback}. RxJS fornisce un'implementazione di \verb|Observable| e funzioni di utilità al fine di lavorarci. \cite{RxJS} 
+RxJS (\textit{Reactive Extensions for JavaScript}) è una libreria per la programmazione reattiva \footnote{La programmazione reattiva è un paradigma di programmazione asincrona che riguarda i flussi di dati e la propagazione del cambiamento.} che utilizza \textit{Observable}, che semplifica la composizione di codice asincrono o basato su \textit{callback}. RxJS fornisce un'implementazione di \textit{Observable} e funzioni di utilità al fine di lavorarci. \cite{RxJS} 
 
 Queste ultime possono essere utilizzate per:
 \begin{itemize}
-    \item convertire codice esistente per operazioni asincrone in \verb|Observable|;
+    \item convertire codice esistente per operazioni asincrone in \textit{Observable};
     \item iterare sui valori di uno stream;
     \item mappare valori di diversi tipi;
     \item filtrare stream;
@@ -220,7 +220,7 @@ Nel progetto discusso, Elasticsearch è stato utilizzato nell'implementazione de
 \end{center}
 \end{figure}
 NEST è un client Elasticsearch .NET di alto livello che è ancora molto fedele all'API Elasticsearch originale. Tutte le richieste e le risposte sono esposte attraverso i tipi, rendendolo ideale per essere subito operativi.
-Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con queste ultime che utilizzano suffisso idiomatico \verb|Async| sul nome del metodo \cite{Nest}.
+Tutti i metodi disponibili all'interno di NEST sono esposti sia come versioni sincrone che asincrone, con queste ultime che utilizzano suffisso idiomatico \textit{Async} sul nome del metodo \cite{Nest}.
 Di seguito la medesima richiesta effettuata in Postman utilizzando un payload in formato json~\ref{fig:json} e in Nest~\ref{fig:nest}.
 \pagebreak
 \begin{figure}[ht!]

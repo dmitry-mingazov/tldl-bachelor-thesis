@@ -21,10 +21,10 @@ Nella conformazione che si denota in figura~\ref{fig:persistence}, ciascuna cart
 \item 
 \textbf{Repositories:} volte all'interrogazione e manipolazione dati tramite l'uso di \textit{Data Manipulation Language} (quali Linq e Nest, rispettivamente per database SQL ed ElasticSearch).
 \item 
-\textbf{IUnitOfWork:} interfaccia in cui vengono definite \textit{repository} e metodo \verb|SaveChanges|.
+\textbf{IUnitOfWork:} interfaccia in cui vengono definite \textit{repository} e metodo \textit{SaveChanges}.
 \item
-\textbf{DbContext:} in questa classe viene fornita la \textit{connection string} del database (definita in \verb|appsettings|), si dichiarano i DbSet relativi ai model, che sono entity set utilizzati per le \textit{CRUD operation} \cite{DbSet} e in \verb|OnModelCreating| si applicano le configurazioni dei model.
+\textbf{DbContext:} in questa classe viene fornita la \textit{connection string} del database (definita in \textit{appsettings}), si dichiarano i DbSet relativi ai model, che sono entity set utilizzati per le \textit{CRUD operation} \cite{DbSet} e in \textit{OnModelCreating} si applicano le configurazioni dei model.
 \item 
-\textbf{UnitOfWork:} implementa l'interfaccia creando la repository e applicando il metodo \verb|SaveChanges| al context; quest'ultimo ha la funzione di salvare un insieme di modifiche in una transazione, oppure di eseguire un \textbf{rollback} (ossia un ripristino allo stato che precede l'aggiornamento).
+\textbf{UnitOfWork:} implementa l'interfaccia creando la repository e applicando il metodo \textit{SaveChanges} al context; quest'ultimo ha la funzione di salvare un insieme di modifiche in una transazione, oppure di eseguire un \textbf{rollback} (ossia un ripristino allo stato che precede l'aggiornamento).
 \end{itemize}
-\verb|PersistenceServiceCollectionExtension| si occupa di configurare le \textit{dependency injection} per la creazione del context ElasticSearch.
+\textit{PersistenceServiceCollectionExtension} si occupa di configurare le \textit{dependency injection} per la creazione del context ElasticSearch.

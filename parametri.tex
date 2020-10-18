@@ -1,6 +1,6 @@
 \section{Parameters}
 
-Un parametro, rappresentato dalla classe \verb|Parameter|, rappresenta un valore con determinate caratteristiche che viene utilizzato in svariati contesti all'interno di AULOS.
+Un parametro, rappresentato dalla classe \textit{Parameter}, rappresenta un valore con determinate caratteristiche che viene utilizzato in svariati contesti all'interno di AULOS.
 \begin{lstlisting}[caption={Parameter.cs},style=sharpCode]
 public class Parameter
 {
@@ -15,13 +15,13 @@ public class Parameter
 }
 \end{lstlisting}
 \begin{itemize}
-\item \verb|Code| è l'identificativo univoco del parametro;
-\item \verb|Descriptor| è il descrittore del parametro, utilizzato per creare il parametro lato frontend;
-\item \verb|Value| è il valore del parametro;
-\item \verb|SubParameters| sono i sottoparametri del parametro (un parametro può rappresentare un'aggregazione di altri parametri);
-\item \verb|Type| rappresenta il tipo del valore rappresentato dal parametro.
+\item \textit{Code} è l'identificativo univoco del parametro;
+\item \textit{Descriptor} è il descrittore del parametro, utilizzato per creare il parametro lato frontend;
+\item \textit{Value} è il valore del parametro;
+\item \textit{SubParameters} sono i sottoparametri del parametro (un parametro può rappresentare un'aggregazione di altri parametri);
+\item \textit{Type} rappresenta il tipo del valore rappresentato dal parametro.
 \end{itemize}
-La classe \verb|ParameterDescriptor| è così formata:
+La classe \textit{ParameterDescriptor} è così formata:
 \begin{lstlisting}[caption={ParameterDescriptor.cs},style=sharpCode]
 public class ParameterDescriptor
 {
@@ -43,10 +43,10 @@ public class ParameterDescriptor
     public string VariantType { get; set; }
 }
 \end{lstlisting}
-L'attributo \verb|Editor|, istanza della classe \verb|ParameterEditor|, descrive l'eventuale \verb|Editor| utilizzato lato frontend per permettere la modifica del parametro da parte dell'utente.
+L'attributo \textit{Editor}, istanza della classe \textit{ParameterEditor}, descrive l'eventuale \textit{Editor} utilizzato lato frontend per permettere la modifica del parametro da parte dell'utente.
 
 \subsection{Parameter Editor}
-La classe \verb|ParameterEditor| è così composta:
+La classe \textit{ParameterEditor} è così composta:
 \begin{lstlisting}[caption={ParameterEditor.cs},style=sharpCode]
 public class ParameterEditor
 {
@@ -57,13 +57,13 @@ public class ParameterEditor
 }
 \end{lstlisting}
 \begin{itemize}
-\item \verb|Type| è il codice univoco dell'\verb|Editor| memorizzato lato frontend;
-\item \verb|Path| è il path dove AULOS dovrà cercare l'\verb|Editor|;
-\item \verb|Options| sono le eventuali opzioni che l'\verb|Editor| può avere.
+\item \textit{Type} è il codice univoco dell'\textit{Editor} memorizzato lato frontend;
+\item \textit{Path} è il path dove AULOS dovrà cercare l'\textit{Editor};
+\item \textit{Options} sono le eventuali opzioni che l'\textit{Editor} può avere.
 \end{itemize}
 
 \subsubsection{Custom Editors}
-AULOS fornisce diversi \verb|Editor| per permettere all'utente di modificare i parametri, ma è possibile crearne di nuovi per casi d'uso più specifici. Un \verb|Editor| è un \verb|Component| Angular che va registrato all'interno dell'\verb|EditorFactory| attraverso il metodo \verb|register| .\\
+AULOS fornisce diversi \textit{Editor} per permettere all'utente di modificare i parametri, ma è possibile crearne di nuovi per casi d'uso più specifici. Un \textit{Editor} è un \textit{Component} Angular che va registrato all'interno dell'\textit{EditorFactory} attraverso il metodo \textit{register} .\\
 \begin{lstlisting} [caption={dashboard-parameter-editors.module.ts},style=javascriptCode]
 export class DashboardParameterEditorsModule {
 
@@ -86,7 +86,7 @@ export class DashboardParameterEditorsModule {
     }
 }
 \end{lstlisting}
-Il \verb|template| dell'\verb|Editor Component| contiene tre direttive strutturali (\verb|aulosEditorSmallTemplate|, \verb|aulosEditorCompactTemplate| e \verb|aulosEditorExpandedTemplate|), le quali contengono il codice HTML che deve essere visualizzato a seconda dello spazio in cui è contenuto l'\verb|Editor|.
+Il \textit{template} dell'\textit{Editor Component} contiene tre direttive strutturali (\textit{aulosEditorSmallTemplate}, \textit{aulosEditorCompactTemplate} e \textit{aulosEditorExpandedTemplate}), le quali contengono il codice HTML che deve essere visualizzato a seconda dello spazio in cui è contenuto l'\textit{Editor}.
 \begin{lstlisting}[caption={source-editor.component.html},style=html]
 <aulos-editor-layout [editorConfiguration]="editorConfiguration">
   <ng-template aulosEditorSmallTemplate>
@@ -141,7 +141,7 @@ Il \verb|template| dell'\verb|Editor Component| contiene tre direttive struttura
   </ng-template>
 </aulos-editor-layout>
 \end{lstlisting}
-È necessario che l'\verb|Editor Component| estenda \verb|BaseEditorComponent|, classe che offre delle funzionalità di interfacciamento con AULOS, e che presenti la logica necessaria alla modifica del parametro a esso associato.
+È necessario che l'\textit{Editor Component} estenda \textit{BaseEditorComponent}, classe che offre delle funzionalità di interfacciamento con AULOS, e che presenti la logica necessaria alla modifica del parametro a esso associato.
 
 \subsection{Utilizzo dei parametri nell'applicativo}
 Nell'applicativo, il parametro svolge una duplice funzione:
@@ -158,7 +158,7 @@ La classe Widget e le sue estensioni nell'applicazione frontend hanno la respons
 \end{figure}
 \subsubsection{Filter Parameters}
 Data la capacità dei parametri di poter rappresentare dati eterogenei, sono stati utilizzati per rappresentare i possibili filtri di una \textit{query}.\\
-I parametri \verb|filters| vengono generati attraverso dei \verb|ParameterDescriptor|, presi con una chiamata REST [\ref{chap:frontend}] dopo che è stata definita una source.
+I parametri \textit{filters} vengono generati attraverso dei \textit{ParameterDescriptor}, presi con una chiamata REST [\ref{chap:frontend}] dopo che è stata definita una source.
 \begin{lstlisting}[caption={initSourceCalls, base-widget.ts},style=javascriptCode]
 private async initSourceCalls() {
 
