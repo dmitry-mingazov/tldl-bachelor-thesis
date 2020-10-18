@@ -1,10 +1,10 @@
 \chapter{User Manual}
-\section{Software documentation - Frontend}
-To create a new widget you must extend the \textit{BaseWidget} and \textit{BaseWidgetComponent} [\ref{subsec:base}] classes respectively for the \textit{Widget} and \textit{WidgetComponent}[\ref{chap:widget}] classes.\\
-Then you must decorate your \textit{Widget} with the \textit{WidgetDecorator} which takes 5 fields to set the configuration.
+\section{Software setup - Frontend}
+In order to create a new widget, two classes which extend \textit{BaseWidget} and \textit{BaseWidgetComponent} [\ref{subsec:base}] must be created.\\
+The class extending \textit{BaseWidget} must be then decorated with the \textit{WidgetDecorator}, which accepts up to 5 parameters.
 \begin{lstlisting}[caption={PieChartWidget example}, style=javaScriptCode]
 @WidgetDecorator({
-    endpoint: 'tuple', 
+    endpoint: 'tuple',
     type: WidgetTypeEnum.MOBILITY,
     sourceable: true,
     refreshableInfo: {
@@ -19,7 +19,7 @@ export class PieChartWidget extends BaseWidget {
 
 }
 \end{lstlisting}
-And this is the \textbf{structure} of the options passed to the decorator [\ref{subsec:widgetDecorator}]:
+This is the structure of the parameters accepted by the decorator [\ref{subsec:widgetDecorator}]:
 \begin{lstlisting}[caption={Structure of WidgetOptions}, style=javaScriptCode]
 export interface WidgetOptions {
     endpoint: string;
@@ -39,16 +39,16 @@ export interface RefreshableInfo {
     \item \textit{type}: indicates the widget type (currently IT/MOBILITY).
     \item \textit{sourceable} (optional): indicates whether or not the widget has a selectable source parameter.
     \item \textit{refreshableInfo} (optional): indicates whether or not the widget has a refresh parameter and can be used to set the default refresh rate.
-    \item \textit{adapter} (optional): indicates the adapter class used to transform received data into a more useful form.
+    \item \textit{adapter} (optional): indicates the adapter class used to transform received data.
 \end{itemize}
-You can create an \textit{Adapter} class implementing the \textit{Adapter} functional interface and the \textit{adapt} method.
+A class implementing the \textit{Adapter} functional interface can be created.
 \begin{lstlisting}[caption={Adapter interface}, style=javaScriptCode]
 export interface Adapter {
     adapt(dto: any): any;
 }
 \end{lstlisting}
-Lastly inside the \textit{WidgetComponent} you must implement the \textit{getDataCallback} method where \textit{value} is the data received from the backend.  This method will be called everytime the widget receives data.\\
-\textbf{Note}: \textit{value} will be adapted data if an \textit{Adapter} for that class exists.
+The method \textit{getDataCallback} (where the parameter \textit{value} is the data received from the backend) must be implemented inside the class extending \textit{BaseWidgetComponent}. This method will be called each time the widget receives data.\\
+\textbf{Note}: \textit{value} will be adapted if an \textit{Adapter} was declared for the \textit{Widget} class.
 \begin{lstlisting}[caption={PieChartComponent example}, style=javaScriptCode]
 @Component({
     selector: 'app-pie-chart-widget',
@@ -68,11 +68,11 @@ export class PieChartComponent extends BaseWidgetComponent<PieChartWidget> {
 }
 \end{lstlisting}
 
-\section{Software documentation - Backend}
-To add a new widget endpoint you need to follow this steps:
+\section{Software setup - Backend}
+In order to add a new widget endpoint you need to follow these steps:
 \begin{itemize}
     \item Implement the data access layer.
-    \item Add a \textit{{sourcecode}.json} file in \textit{DiscoveryConfiguration/parameters} [\ref{subsec:source}].
+    \item Create a json file in \textit{DiscoveryConfigurations/properties} [\ref{subsec:source}].
     \begin{lstlisting}[caption={{sourcecode}.json example}, style=javaScriptCode]
     {
         "metadata": {
@@ -141,14 +141,16 @@ To add a new widget endpoint you need to follow this steps:
         ]
     }
     \end{lstlisting}
-    \textit{filters} is an array of AULOS JSON \textit{Parameters} and \textit{metadata} which defines how the dto is modified for better frontend interpretation: \textit{fieldName} defines the name of the dto unique identifier while the properties field defines parameters that will be changed in the frontend such as Kendo chart field colors and field names.
-    \item Define a \textit{DataSource} class to mediate between the controller and data access class/es [\ref{subsec:creazioneSource}].
-    \item Extend the \textit{DiscoveryConfiguration} class of the desired type (extend base class if non-existant) [\ref{fig:exendDiscovery}]:
     \begin{itemize}
-        \item Call \textit{AddSource} method in constructor:
+    \item \textit{filters} is an array of AULOS \textit{Parameter}  
+    \item \textit{metadata} describes how the data will be altered before being shown.
+    
+     \textit{properties} contains a set of tuple arrays. Each tuple has a \textit{field}, used to determine the DTO element to be processed, and a \textit{value}, which indicates the value of the property that will be applied.
+    \end{itemize}
+    \item Create a \textit{DataSource} class which will be used by the controller in order to obtain data from the data access layer [\ref{subsec:creazioneSource}].
+    \item Create a class which extends \textit{DiscoveryConfiguration} [\ref{subsec:source}] and call \textit{AddSource} method in the constructor:
         \begin{itemize}
-            \item \textit{TDataSource} should be the type of your datasource.
-            \item \textit{SourceCode} must be unique and the same as the previously created filename of the .json.
+            
             \begin{lstlisting}[caption={TupleDiscoveryConfiguration example}, style=javaScriptCode]
 public class TupleDiscoveryConfiguration : DiscoveryConfiguration
     {
@@ -172,12 +174,13 @@ public class TupleDiscoveryConfiguration : DiscoveryConfiguration
         }
     }                
             \end{lstlisting}
+            \item \textit{TDataSource} is the type of the previously created \textit{DataSource}.
+            \item \textit{SourceCode} is a unique string equal to the name of the json file previously created.
         \end{itemize}
-    \end{itemize}
-    \item Define a controller if handling a new data type or otherwise use an already existant one [\ref{subsec:utilizzo}]:
+    \item Create a controller class:
     \begin{itemize}
-        \item Single POST method taking \textit{GenericRequestDTO} argument.
-        \item Call \textit{SourceManagementService} \textit{getDataSource<dataSource>} where \textit{dataSource} is the \textit{DataSource} class/interface you need.
+        \item Define a single POST method taking \textit{GenericRequestDTO} as an argument.
+        \item Call \textit{getDataSource<dataSource>}, method of \textit{SourceManagementService}, where \textit{dataSource} is the \textit{DataSource} class previously defined.
         \begin{lstlisting}[caption={HttpPost request in Controller example}, style=javaScriptCode]
         [HttpPost]
         public IActionResult Search([FromBody] GenericRequestDTO request)
