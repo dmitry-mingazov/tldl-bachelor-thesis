@@ -19,30 +19,30 @@ determine both the proper objects and their relationships,
 and the correct balance between generality and usability.}{\textit{Diego Bonura}\footnotemark }
 \footcitetext{DBLP:conf/seke/BonuraCM02}
 
-Nell'organizzazione dello sviluppo di questo applicativo, date limitazioni di tempo sia esterne che autoimposte, è mancata una vera e propria fase di studio dello stato dell'arte per quanto concerne i problemi da affrontare.
-Ciononostante, lo sviluppo è continuato portando l'applicativo a uno stato che soddisfa i requisiti richiesti in Loccioni. 
+Nell'organizzazione dello sviluppo di questo applicativo è mancata una vera e propria fase di studio dello stato dell'arte per quanto concerne i problemi da affrontare, poiché non era stato ritenuto cruciale per la loro risoluzione.
+Ciononostante, lo sviluppo ha portato l'applicativo a uno stato che soddisfa i requisiti richiesti in Loccioni. 
 
 %Nella fase di revisione del lavoro svolto, si è dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto. [WIP]
 %In particolare, vista l'estrema centralità dell'architettura nella generalizzazione di dati, perlomeno nell'ambito della soluzione ideata, la ricerca di infrastrutture simili 
 
-Nella fase di revisione del lavoro svolto si è dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto, in particolare in merito all'architettura della generalizzazione di dati che ricopre un ruolo fondamentale nella soluzione adottata.
+Nella fase di revisione del lavoro svolto si è invece dato maggiore peso alla ricerca di fonti autorevoli che supportassero il lavoro svolto, in particolare in merito all'architettura della generalizzazione di dati che ricopre un ruolo fondamentale nella soluzione adottata.
 
 Si è arrivati a scoprire pubblicazioni riguardo problemi assimilabili a quelli affrontati; l'organizzazione di un'applicazione web, come esposto da Diego Bonura in \textit{Patterns for web applications} \cite{DBLP:conf/seke/BonuraCM02}, può essere articolata in tre livelli:
 \begin{itemize}
 \item
-\textit{front-end};
+\textit{front-end}
 \item
-\textit{business logic};
+\textit{business logic}
 \item
-\textit{back-end}.
+\textit{back-end}
 \end{itemize}
 
 Per quanto concerne il livello front-end, esso è facilmente associabile a dashboard e annesso applicativo Angular.
-I livelli Business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto corrispondono rispettivamente al servizio di \textit{source management} esposto nella sezione~\ref{ch:sms} e alla logica di accesso dati dell'applicativo esposta nella sezione~\ref{chap:persistence}, per cui il servizio di source management abilita la visibilità nella pipeline del sistema tramite \textit{datasource} descritte nella sottosezione~\ref{subsec:creazioneSource}.
+I livelli business logic e back-end non sono altrettanto facilmente associabili o scindibili, in quanto le loro corrispondenze risiedono entrambe nell'applicativo ASP.NET. Si può tuttavia associare al livello business logic il servizio di \textit{source management} (vedi sezione~\ref{ch:sms}) e al livello back-end la logica di accesso dati (vedi sezione~\ref{chap:persistence}), la cui visibilità nella pipeline del sistema è abilitata dal servizio di source management attraverso \textit{datasource} (vedi sottosezione~\ref{subsec:creazioneSource}).
 
-Entrando maggiormente nel dettaglio, una delle pattern descritte in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management: esso infatti permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
+Entrando maggiormente nel dettaglio, una delle pattern descritte in \cite{DBLP:conf/seke/BonuraCM02} nella sezione 5.3, \textit{Bus Class}, è facilmente identificabile nel sistema come il servizio di source management. Questa pattern permette di prelevare risorse tramite un identificativo univoco relativo all'utente, che nel caso del servizio di source management corrisponde a un contesto dati di interesse, astraendo dal tipo specifico delle risorse sottostanti.
 
-Tale studio ha permesso di confermare che, come verificabile nella letteratura specializzata tali LIBRILIBRILIBRILIBRILIBRI, l'utilizzo di pattern nello sviluppo di software secondo il paradigma OOP può velocizzarlo e renderlo più solido.
+Tale studio ha permesso di confermare che, come verificabile nella letteratura specializzata \cite{GOF}, l'utilizzo di pattern nello sviluppo di software secondo il paradigma OOP può velocizzarlo e aumentare notevolmente la manutenibilità del prodotto
 
 Prescindendo dallo sviluppo, l'applicativo sviluppato è considerabile un buon assaggio delle tecnologie in voga in ambito lavorativo al momento dello sviluppo: sistemi quali Elasticsearch e il loro crescente utilizzo in ogni ambito rendono solamente più appetibile il loro studio per studenti e professionisti già affermati nel proprio campo  in cerca di nuovi sbocchi o puramente interessati ad aggiornare il proprio \textit{skillset}.
 
